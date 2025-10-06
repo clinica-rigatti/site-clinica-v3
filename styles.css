@@ -261,6 +261,7 @@ html {
     letter-spacing: 5px;
     text-transform: uppercase;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .section__title--large {
@@ -891,6 +892,19 @@ html {
 /* ========================================
    MEDIA GRID
    ======================================== */
+.info-section__youtube {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.info-section__youtube-content {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
 .media-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -901,21 +915,60 @@ html {
 .media-grid__item {
     width: 372px;
     height: 209px;
+    aspect-ratio: 16 / 9;
     object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.media-grid__item:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+/* Tablet e Mobile */
+@media (max-width: 768px) {
+    .media-grid {
+        gap: 8px;
+    }
+    
+    .media-grid__item:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+    }
+
+    .info-section__youtube-content {
+        flex-direction: column;
+    }
+}
+
+/* Quando o grid fica vertical (portrait) - mostra apenas 2 vídeos */
+@media (max-width: 768px) and (orientation: portrait) {
+    .media-grid__item:nth-child(n+3) {
+        display: none;
+    }
+}
+
+/* Alternativa: usar apenas largura para detectar mobile */
+@media (max-width: 480px) {
+    .media-grid__item:nth-child(n+3) {
+        display: none;
+    }
 }
 
 /* ========================================
    CONTACT FORM
    ======================================== */
 .contact {
-    background: url('https://placehold.co/1600x822') center/cover;
+    background: url('images/mapa-clinica.png') center/cover;
     padding: 100px 0;
     display: flex;
     justify-content: center;
 }
 
 .contact__form {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(10px);
     border: 1px solid white;
     border-radius: 22px;
@@ -929,45 +982,58 @@ html {
 }
 
 .form-group {
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    position: relative;
 }
 
 .form-group__input {
     width: 100%;
-    padding: 15px 33px;
-    background: white;
+    padding: 20px 33px 10px 33px;
+    background: var(--pearl);
     border: none;
-    border-bottom: 1px solid #2F2F2F;
+    border-radius: 10px;
+    border-bottom: 2px solid var(--sand);
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
-    letter-spacing: 5px;
+    letter-spacing: 2px;
     outline: none;
+    transition: all 0.3s ease;
 }
 
-.form-group__input::placeholder {
-    color: black;
-    font-weight: 275;
+.form-group__input:focus {
+    background: white;
 }
 
-.checkbox {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
+.form-group__label {
+    position: absolute;
+    left: 33px;
+    top: 15px;
+    color: var(--coffee);
+    font-size: 16px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    background: transparent;
+    border-radius: 10px;
 }
 
-.checkbox__input {
-    width: 25px;
-    height: 25px;
-    background: #212121;
-    border-radius: 50%;
-    cursor: pointer;
+.form-group__input:focus + .form-group__label,
+.form-group__input:not(:placeholder-shown) + .form-group__label {
+    top: -10px;
+    left: 28px;
+    font-size: 11px;
+    color: var(--coffee);
+    opacity: 1;
+    background: var(--pearl);
+    padding: 0 8px;
+    letter-spacing: 1px;
 }
 
-.checkbox__label {
-    font-size: 14px;
-    font-weight: 275;
-    color: black;
+.form-group__input:focus + .form-group__label {
+    color: var(--coffee);
+    font-weight: 400;
 }
 
 /* ========================================
