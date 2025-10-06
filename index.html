@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clínica Rigatti - Método</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <img src="images/logo capa.png" alt="Clínica Rigatti" class="header__logo">
+      
+      <button id="mobile-menu-btn" class="button-menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+
+      <nav class="header__nav" aria-label="Navegação principal">
+        <a href="#clinica" class="header__nav-link">CLÍNICA</a>
+        <a href="#tratamentos" class="header__nav-link">TRATAMENTOS</a>
+        <a href="#equipe" class="header__nav-link">NOSSA EQUIPE</a>
+        <a href="#blog" class="header__nav-link">BLOG</a>
+        <a href="#contato" class="header__nav-link">CONTATO</a>
+      </nav>
+
+      <nav class="header__nav-mobile hidden" aria-label="Navegação principal">
+        <a href="#clinica" class="header__nav-link">CLÍNICA</a>
+        <a href="#tratamentos" class="header__nav-link">TRATAMENTOS</a>
+        <a href="#equipe" class="header__nav-link">NOSSA EQUIPE</a>
+        <a href="#blog" class="header__nav-link">BLOG</a>
+        <a href="#contato" class="header__nav-link">CONTATO</a>
+      </nav>
+
+      <div class="header__social">
+        <a class="header__social-link" href="" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a class="header__social-link" href="" aria-label="YouTube">
+          <i class="fa-brands fa-youtube"></i>
+        </a>
+        <a class="header__social-link" href="" aria-label="LinkedIn">
+          <i class="fa-brands fa-linkedin"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <video 
+            id="bgVideo"
+            class="hero__bg"
+            autoplay
+            muted
+            playsinline
+            webkit-playsinline
+            loop
+            preload="auto">
+            <source src="images/background-site.mp4" type="video/mp4">
+        </video>
+
+      <div class="hero__content">
+        <h2 class="hero__subtitle">MÉTODO</h2>
+        <img class="hero__logo" src="images/logo-branca.png" alt="Logo branca Clinica Rigatti">
+        <p class="hero__text">Uma abordagem centrada no cuidado silencioso, na ciência e na escuta profunda de cada paciente.</p>
+        <a href="#" class="btn btn--primary">AGENDAR AGORA</a>
+      </div>
+      <div class="hero__tagline">SUTIL-PRECISA-PERSONALIZADA</div>
+    </section>
+
+      <!-- About Section -->
+      <section class="section section--white section__about">
+          <div class="section__intro">
+              <h3 class="section__subtitle">Discrição, ciência e acompanhamento contínuo.</h3>
+              <p class="section__text">Referência em saúde personalizada. Atuamos com precisão técnica e escuta humana, oferecendo protocolos desenhados sob medida para restaurar o equilíbrio hormonal, potencializar a vitalidade e sustentar um estilo de vida com mais presença e longevidade.</p>
+          </div>
+
+          <!-- Services Grid -->
+          <div class="services-carousel">
+
+            <button class="services-btn prev" aria-label="Anterior">‹</button>
+
+            <div class="services">
+                <div class="service-card">
+                    <img src="images/reposicao-hormonal.png" alt="Reposição hormonal" class="service-card__image">
+                    <div class="service-card__overlay">
+                        <div class="service_card__overlay-header">
+                            <h4 class="service-card__title">Reposição hormonal</h4>
+                        </div>
+                        <div class="service_card__overlay-content">
+                            <p class="service-card__text">Reposição hormonal é devolver ao corpo o que o tempo levou: energia, foco, libido e bem-estar. Com ciência, personalização e segurança, ela reequilibra sistemas, reduz sintomas e resgata vitalidade. Você no controle do próprio ritmo, vivendo mais leve, produtivo e confiante. Com acompanhamento médico próximo.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="images/soroterapia.png" alt="Soroterapia" class="service-card__image">
+                    <div class="service-card__overlay">
+                        <div class="service_card__overlay-header">
+                            <h4 class="service-card__title">Soroterapia</h4>
+                        </div>
+                        <div class="service_card__overlay-content">
+                            <p class="service-card__text">Soroterapia é nutrição direta na veia, com blends personalizados de vitaminas, minerais e aminoácidos que aceleram recuperação, energia e imunidade. Protocolo seguro, feito por equipe médica, para hidratar, reequilibrar e regenerar. Resultado: corpo mais disposto, mente clara e bem-estar duradouro.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="images/nutricao-clinica-e-estetica.png" alt="Nutrição" class="service-card__image">
+                    <div class="service-card__overlay service-card__overlay--full">
+                        <div class="service_card__overlay-header">
+                            <h4 class="service-card__title">Nutrição Clínica<br>e Estética</h4>
+                        </div>
+                        <div class="service_card__overlay-content">
+                            <p class="service-card__text">Cuidar da saúde metabólica e da composição corporal vai além da estética: trata-se de investir em equilíbrio, longevidade e autoconfiança. Nossos planos nutricionais são desenvolvidos de forma individualizada, considerando objetivos específicos, rotina e estilo de vida, sempre com acompanhamento próximo e embasado em ciência.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="images/emagrecimento-com-acompanhamento.png" alt="Emagrecimento" class="service-card__image">
+                    <div class="service-card__overlay">
+                        <div class="service_card__overlay-header">
+                            <h4 class="service-card__title">Emagrecimento com Acompanhamento Médico</h4>
+                        </div>
+                        <div class="service_card__overlay-content">
+                            <p class="service-card__text">Na Rigatti®, emagrecer com acompanhamento médico é trocar tentativas por estratégia. Avaliamos hormônios, hábitos e metabolismo para criar um plano seguro e eficaz, com ajustes contínuos, monitoramento e suporte real. Resultado: perda de peso sustentável, menos fome, mais energia — ciência e cuidado.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="images/saude-feminina-e-longevidade.png" alt="Saúde Feminina" class="service-card__image">
+                    <div class="service-card__overlay">
+                        <div class="service_card__overlay-header">
+                            <h4 class="service-card__title">Saúde Feminina<br>e Longevidade</h4>
+                        </div>
+                        <div class="service_card__overlay-content">
+                            <p class="service-card__text">Saúde feminina e longevidade na Rigatti® é olhar integral: hormônios em equilíbrio, nutrição inteligente e manejo do estresse para mais vitalidade, libido e clareza mental. Cuidado personalizado, prevenção ativa e autonomia para viver décadas com disposição, pele luminosa e bem-estar.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="images/modulacao-hormonal-e-desempenho.png" alt="Modulação Hormonal" class="service-card__image">
+                    <div class="service-card__overlay">
+                        <div class="service_card__overlay-header">
+                            <h4 class="service-card__title">Modulação Hormonal e Desempenho</h4>
+                        </div>
+                        <div class="service_card__overlay-content">
+                            <p class="service-card__text">Modulação hormonal e desempenho na Rigatti® é afinar seu motor interno. Com avaliação precisa, ajustamos hormônios-chave para elevar energia, foco, libido e recuperação. Resultado: corpo que rende mais, mente afiada e bem-estar constante — ciência, personalização e segurança, com acompanhamento médico próximo.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="services-btn next" aria-label="Próximo">›</button>
+          </div>
+      </section>
+
+      <!-- Clinic Info Section -->
+      <section class="info-section info-section--gray">
+          <img src="images/mulher-info-section.png" alt="Clínica" class="info-section__image">
+          <div class="info-section__content">
+              <p class="info-section__text">Na Clínica Rigatti, unimos ciência avançada, acolhimento e luxo para guiar você rumo à melhor versão de si mesmo.</p>
+              <p class="info-section__text">Desde 2018, já ajudamos milhares de pessoas a conquistarem saúde e confiança por meio de tratamentos personalizados.</p>
+              <p class="info-section__text">Uma abordagem centrada no cuidado silencioso, na ciência e na escuta profunda de cada paciente.</p>
+              <a href="#" class="btn btn--secundary info-section__btn">SAIBA MAIS</a>
+          </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="section section--gray" id="equipe">
+          <div class="section__intro">
+              <h3 class="section__title section__title--black"><strong>NOSSA</strong> EQUIPE</h3>
+              <p class="section__text section__text--black">Nosso time é formado por médicos, nutricionistas e profissionais que atuam com formação técnica, atualização científica constante e sensibilidade humana. Aqui, ciência e empatia caminham juntas.</p>
+          </div>
+
+          <div class="team-carousel" id="teamCarousel" aria-label="Carrosel de membros da equipe">
+              <div class="team-track" id="teamTrack">
+                  <div class="team-member">
+                      <img src="images/rigatti.png" alt="Dr. Luiz Rigatti" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">DR. LUIZ RIGATTI</h4>
+                          <p class="team-member__role">MÉDICO - CEO</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/suellen.png" alt="Suellen Palmeira" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">SUELLEN PALMEIRA</h4>
+                          <p class="team-member__role">NUTRICIONISTA</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/guilherme.png" alt="Guilherme Sens" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">GUILHERME SENS</h4>
+                          <p class="team-member__role">NUTRICIONISTA</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/pamela.png" alt="Pâmela Gusmão" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Pâmela Gusmão</h4>
+                          <p class="team-member__role">ENFERMEIRA</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/ivonete.png" alt="Ivonete Bentack" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">IVONETE Bentack</h4>
+                          <p class="team-member__role">ENFERMEIRA</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/renata.png" alt="Renata Carneiro" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Renata Carneiro</h4>
+                          <p class="team-member__role">RECEPCIONISTA</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/andressa.png" alt="Andressa Bentack" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Andressa Bentack</h4>
+                          <p class="team-member__role">RECEPCIONISTA</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/camila.png" alt="Camila Gaitkoski" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Camila Gaitkoski</h4>
+                          <p class="team-member__role">FINANCEIRO</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/anderson.png" alt="Anderson Alves" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Anderson Alves</h4>
+                          <p class="team-member__role">PROGRAMADOR</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/samuel.png" alt="Samuel Nunes" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Samuel Nunes</h4>
+                          <p class="team-member__role">PROGRAMADOR</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/angelino.png" alt="Angelino gonsalves" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Angelino gonsalves</h4>
+                          <p class="team-member__role">PROGRAMADOR</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/adilson.png" alt="Adilson Matheus" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Adilson Matheus</h4>
+                          <p class="team-member__role">DIRETOR DE OPERAÇÕES</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/ana.png" alt="Ana Paula Azevedo" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Ana Paula Azevedo</h4>
+                          <p class="team-member__role">CONFIRMAÇÃO</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/cleidiane.png" alt="Cleidiane Cubas" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Cleidiane Cubas</h4>
+                          <p class="team-member__role">CONCIERGE</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/bruno.png" alt="Bruno Leon" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Bruno Leon</h4>
+                          <p class="team-member__role">RECOMPRA</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/henrique.png" alt="Henrique" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Henrique</h4>
+                          <p class="team-member__role">DIRETOR DE MARKETING</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/lucas.png" alt="Lucas Hulse" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Lucas Hulse</h4>
+                          <p class="team-member__role">VIDEOMAKER</p>
+                      </div>
+                  </div>
+                  <div class="team-member">
+                      <img src="images/igor.png" alt="Igor" class="team-member__image">
+                      <div class="team-member__info">
+                          <h4 class="team-member__name">Igor</h4>
+                          <p class="team-member__role">DESIGNER</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </section>
+
+      <!-- Blog Section -->
+      <section class="info-section info-section--light" id="blog">
+          <div class="info-section__content">
+              <h3 class="info-section__title">Explore nosso blog e transforme<br>informação em bem-estar.</h3>
+              <p class="info-section__text">Aqui você encontra conteúdos exclusivos sobre saúde hormonal, emagrecimento, performance, qualidade de vida e os bastidores da nossa abordagem personalizada. Criado para quem busca mais conhecimento, clareza e autonomia na própria jornada de transformação, o blog é o espaço onde ciência, cuidado e experiência se encontram. Inspire-se, aprenda e dê o próximo passo com confiança.</p>
+              <a href="#" class="btn btn--secundary">SAIBA MAIS</a>
+          </div>
+          <img src="images/blog.png" alt="Blog" class="info-section__image">
+      </section>
+
+      <!-- Results Section -->
+      <section class="section section--gray">
+        <h2 class="section__title section__title-results section__title--large section__title--black">RESULTADOS</h2>
+        <div class="results">
+            <button class="results__button results__button--prev" aria-label="Anterior">‹</button>
+            <div class="results__container">
+                <div class="results__track" id="resultsTrack">
+                    <!-- As imagens serão inseridas via JavaScript -->
+                </div>
+            </div>
+            <button class="results__button results__button--next" aria-label="Próximo">›</button>
+        </div>
+      </section>
+
+      <!-- CTA Section -->
+      <section class="cta">
+          <h2 class="cta__title">AGENDE SUA CONSULTA</h2>
+          <p class="cta__text">Desperte sua força real.</p>
+          <a href="#" class="btn btn--secundary">AGENDAR AGORA</a>
+      </section>
+
+      <!-- YouTube Section -->
+      <section class="info-section info-section--light">
+          <div class="media-grid">
+              <img src="https://placehold.co/372x209" alt="Vídeo 1" class="media-grid__item">
+              <img src="https://placehold.co/372x209" alt="Vídeo 2" class="media-grid__item">
+              <img src="https://placehold.co/371x209" alt="Vídeo 3" class="media-grid__item">
+              <img src="https://placehold.co/372x209" alt="Vídeo 4" class="media-grid__item">
+          </div>
+          <div class="info-section__content">
+              <h3 class="info-section__title">No YouTube, compartilhamos tudo o que você precisa saber para transformar sua saúde e seu corpo com consciência.</h3>
+              <p class="info-section__text">Falamos sobre hormônios, emagrecimento, qualidade de vida e respondemos dúvidas reais de quem está nessa jornada. É conteúdo direto, sem enrolação, para te ajudar a despertar sua melhor versão.</p>
+              <a href="#" class="btn btn--secundary">SAIBA MAIS</a>
+          </div>
+      </section>
+
+      <!-- Contact Form Section -->
+      <section class="contact" id="contato">
+          <form class="contact__form">
+              <img src="https://placehold.co/239x42" alt="Logo" class="contact__logo">
+              <div class="form-group">
+                  <input type="email" placeholder="Endereço de email" class="form-group__input" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" placeholder="Primeiro nome" class="form-group__input" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" placeholder="Sobrenome" class="form-group__input" required>
+              </div>
+              <div class="form-group">
+                  <input type="text" placeholder="Cidade" class="form-group__input" required>
+              </div>
+              <div class="checkbox">
+                  <input type="checkbox" id="updates1" class="checkbox__input">
+                  <label for="updates1" class="checkbox__label">Cadastre-se para receber atualizações da clínica</label>
+              </div>
+              <div class="checkbox">
+                  <input type="checkbox" id="updates2" class="checkbox__input">
+                  <label for="updates2" class="checkbox__label">Cadastre-se para receber atualizações da clínica</label>
+              </div>
+              <button type="submit" class="btn btn--primary btn--full">AGENDAR AGORA</button>
+          </form>
+      </section>
+
+      <!-- Footer -->
+      <footer class="footer">
+          <div class="footer__content">
+              <div class="footer__logo">
+                  <img src="https://placehold.co/121x124" alt="Logo">
+              </div>
+              <div class="footer__links">
+                  <ul class="footer__menu">
+                      <li class="footer__menu-item"><a href="#clinica" class="footer__menu-link">A CLÍNICA</a></li>
+                      <li class="footer__menu-item"><a href="#tratamentos" class="footer__menu-link">TRATAMENTOS</a></li>
+                      <li class="footer__menu-item"><a href="#equipe" class="footer__menu-link">NOSSA EQUIPE</a></li>
+                      <li class="footer__menu-item"><a href="#blog" class="footer__menu-link">BLOG</a></li>
+                  </ul>
+              </div>
+              <div class="footer__contact">
+                  <p class="footer__contact-item"><em>nacional.clinicarigatti.com.br</em></p>
+                  <p class="footer__contact-item"><strong>(47) 9 9981 - 7131</strong></p>
+                  <p class="footer__contact-item">R. 2950, 117 - Centro, Balneário Camboriú - SC</p>
+                  <div class="footer__social">
+                      <img src="https://placehold.co/33x33" alt="Instagram" class="footer__social-icon">
+                      <img src="https://placehold.co/46x33" alt="Facebook" class="footer__social-icon">
+                      <img src="https://placehold.co/33x33" alt="LinkedIn" class="footer__social-icon">
+                  </div>
+              </div>
+          </div>
+          <div class="footer__bottom">
+              <img src="https://placehold.co/89x11" alt="Copyright">
+          </div>
+      </footer>
+  </div>
+</body>
+</html>
