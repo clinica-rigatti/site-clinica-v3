@@ -10,24 +10,25 @@
 (function () {
   // Dados dos membros da equipe
   const teamMembers = [
-    { name: 'DR. LUIZ RIGATTI',   role: 'MÉDICO - CEO',         image: ''   },
-    { name: 'SUELLEN PALMEIRA',   role: 'NUTRICIONISTA',        image: ''   },
-    { name: 'GUILHERME SENS',     role: 'NUTRICIONISTA',        image: '' },
-    { name: 'PÂMELA GUSMÃO',      role: 'ENFERMEIRA',           image: ''    },
-    { name: 'IVONETE BENTACK',    role: 'ENFERMEIRA',           image: ''   },
-    { name: 'RENATA CARNEIRO',    role: 'RECEPCIONISTA',        image: ''    },
-    { name: 'ANDRESSA BENTACK',   role: 'RECEPCIONISTA',        image: ''  },
-    { name: 'CAMILA GAITKOSKI',   role: 'FINANCEIRO',           image: ''    },
-    { name: 'ANDERSON ALVES',     role: 'PROGRAMADOR',          image: ''  },
-    { name: 'SAMUEL NUNES',       role: 'PROGRAMADOR',          image: ''    },
-    { name: 'ANGELINO GONSALVES', role: 'PROGRAMADOR',          image: ''  },
-    { name: 'ADILSON MATHEUS',    role: 'DIRETOR DE OPERAÇÕES', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/adilson.png'   },
-    { name: 'ANA PAULA AZEVEDO',  role: 'CONFIRMAÇÃO',          image: ''       },
-    { name: 'CLEIDIANE CUBAS',    role: 'CONCIERGE',            image: '' },
-    { name: 'BRUNO LEON',         role: 'RECOMPRA',             image: ''     },
-    { name: 'HENRIQUE',           role: 'DIRETOR DE MARKETING', image: ''  },
-    { name: 'LUCAS HULSE',        role: 'VIDEOMAKER',           image: ''     },
-    { name: 'IGOR',               role: 'DESIGNER',             image: ''      }
+    { name: 'DR. LUIZ RIGATTI',   role: 'MÉDICO - CEO',         image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/rigatti.png'        },
+    { name: 'SUELLEN PALMEIRA',   role: 'NUTRICIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/suellen.png'        },
+    { name: 'GUILHERME SENS',     role: 'NUTRICIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/guilherme.png'      },
+    { name: 'PÂMELA GUSMÃO',      role: 'ENFERMEIRA',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/pamela.png'         },
+    { name: 'IVONETE BENTACK',    role: 'ENFERMEIRA',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/ivonete.png'        },
+    { name: 'RENATA CARNEIRO',    role: 'RECEPCIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/renata.png'         },
+    { name: 'ANDRESSA BENTACK',   role: 'RECEPCIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/andressa.png'       },
+    { name: 'CAMILA GAITKOSKI',   role: 'FINANCEIRO',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/camila.png'         },
+    { name: 'CAMILA RIGATTI',     role: 'ADVOGADA',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/camila-rigatti.png' },
+    { name: 'ANDERSON ALVES',     role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/anderson.png'       },
+    { name: 'SAMUEL NUNES',       role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/samuel.png'         },
+    { name: 'ANGELINO GONSALVES', role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/angelino.png'       },
+    { name: 'ADILSON MATHEUS',    role: 'DIRETOR DE OPERAÇÕES', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/adilson.png'        },
+    { name: 'ANA PAULA AZEVEDO',  role: 'CONFIRMAÇÃO',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/ana.png'            },
+    { name: 'CLEIDIANE CUBAS',    role: 'CONCIERGE',            image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/cleidiane.png'      },
+    { name: 'BRUNO LEON',         role: 'RECOMPRA',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/bruno.png'          },
+    { name: 'HENRIQUE',           role: 'DIRETOR DE MARKETING', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/henrique.png'       },
+    { name: 'LUCAS HULSE',        role: 'VIDEOMAKER',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/lucas.png'          },
+    { name: 'IGOR',               role: 'DESIGNER',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/igor.png'           }
   ];
 
   // Array multiplicado para criar o efeito infinito
@@ -523,15 +524,15 @@ document.addEventListener('DOMContentLoaded', () => {
 // ==============================
 // Configuração do carrossel
 const images = [
-  { src: 'images/antes-e-depois-1.png', alt: 'Resultado 1' },
-  { src: 'images/antes-e-depois-2.png', alt: 'Resultado 2' },
-  { src: 'images/antes-e-depois-3.png', alt: 'Resultado 3' },
-  { src: 'images/antes-e-depois-4.png', alt: 'Resultado 4' },
-  { src: 'images/antes-e-depois-5.png', alt: 'Resultado 5' },
-  { src: 'images/antes-e-depois-6.png', alt: 'Resultado 6' },
-  { src: 'images/antes-e-depois-7.png', alt: 'Resultado 7' },
-  { src: 'images/antes-e-depois-8.png', alt: 'Resultado 8' },
-  { src: 'images/antes-e-depois-9.png', alt: 'Resultado 9' }
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-1.png', alt: 'Resultado 1' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-2.png', alt: 'Resultado 2' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-3.png', alt: 'Resultado 3' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-4.png', alt: 'Resultado 4' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-5.png', alt: 'Resultado 5' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-6.png', alt: 'Resultado 6' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-7.png', alt: 'Resultado 7' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-8.png', alt: 'Resultado 8' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-9.png', alt: 'Resultado 9' }
 ];
 
 const track = document.getElementById('resultsTrack');
