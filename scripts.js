@@ -10,24 +10,24 @@
 (function () {
   // Dados dos membros da equipe
   const teamMembers = [
-    { name: 'DR. LUIZ RIGATTI', role: 'MÉDICO - CEO', image: 'images/rigatti.png' },
-    { name: 'SUELLEN PALMEIRA', role: 'NUTRICIONISTA', image: 'images/suellen.png' },
-    { name: 'GUILHERME SENS', role: 'NUTRICIONISTA', image: 'images/guilherme.png' },
-    { name: 'PÂMELA GUSMÃO', role: 'ENFERMEIRA', image: 'images/pamela.png' },
-    { name: 'IVONETE BENTACK', role: 'ENFERMEIRA', image: 'images/ivonete.png' },
-    { name: 'RENATA CARNEIRO', role: 'RECEPCIONISTA', image: 'images/renata.png' },
-    { name: 'ANDRESSA BENTACK', role: 'RECEPCIONISTA', image: 'images/andressa.png' },
-    { name: 'CAMILA GAITKOSKI', role: 'FINANCEIRO', image: 'images/camila.png' },
-    { name: 'ANDERSON ALVES', role: 'PROGRAMADOR', image: 'images/anderson.png' },
-    { name: 'SAMUEL NUNES', role: 'PROGRAMADOR', image: 'images/samuel.png' },
-    { name: 'ANGELINO GONSALVES', role: 'PROGRAMADOR', image: 'images/angelino.png' },
-    { name: 'ADILSON MATHEUS', role: 'DIRETOR DE OPERAÇÕES', image: 'images/adilson.png' },
-    { name: 'ANA PAULA AZEVEDO', role: 'CONFIRMAÇÃO', image: 'images/ana.png' },
-    { name: 'CLEIDIANE CUBAS', role: 'CONCIERGE', image: 'images/cleidiane.png' },
-    { name: 'BRUNO LEON', role: 'RECOMPRA', image: 'images/bruno.png' },
-    { name: 'HENRIQUE', role: 'DIRETOR DE MARKETING', image: 'images/henrique.png' },
-    { name: 'LUCAS HULSE', role: 'VIDEOMAKER', image: 'images/lucas.png' },
-    { name: 'IGOR', role: 'DESIGNER', image: 'images/igor.png' }
+    { name: 'DR. LUIZ RIGATTI',   role: 'MÉDICO - CEO',         image: ''   },
+    { name: 'SUELLEN PALMEIRA',   role: 'NUTRICIONISTA',        image: ''   },
+    { name: 'GUILHERME SENS',     role: 'NUTRICIONISTA',        image: '' },
+    { name: 'PÂMELA GUSMÃO',      role: 'ENFERMEIRA',           image: ''    },
+    { name: 'IVONETE BENTACK',    role: 'ENFERMEIRA',           image: ''   },
+    { name: 'RENATA CARNEIRO',    role: 'RECEPCIONISTA',        image: ''    },
+    { name: 'ANDRESSA BENTACK',   role: 'RECEPCIONISTA',        image: ''  },
+    { name: 'CAMILA GAITKOSKI',   role: 'FINANCEIRO',           image: ''    },
+    { name: 'ANDERSON ALVES',     role: 'PROGRAMADOR',          image: ''  },
+    { name: 'SAMUEL NUNES',       role: 'PROGRAMADOR',          image: ''    },
+    { name: 'ANGELINO GONSALVES', role: 'PROGRAMADOR',          image: ''  },
+    { name: 'ADILSON MATHEUS',    role: 'DIRETOR DE OPERAÇÕES', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/adilson.png'   },
+    { name: 'ANA PAULA AZEVEDO',  role: 'CONFIRMAÇÃO',          image: ''       },
+    { name: 'CLEIDIANE CUBAS',    role: 'CONCIERGE',            image: '' },
+    { name: 'BRUNO LEON',         role: 'RECOMPRA',             image: ''     },
+    { name: 'HENRIQUE',           role: 'DIRETOR DE MARKETING', image: ''  },
+    { name: 'LUCAS HULSE',        role: 'VIDEOMAKER',           image: ''     },
+    { name: 'IGOR',               role: 'DESIGNER',             image: ''      }
   ];
 
   // Array multiplicado para criar o efeito infinito
