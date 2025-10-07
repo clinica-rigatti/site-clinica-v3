@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,53 +7,173 @@
     <link rel="icon" href="https://clinicarigatti.s3-accelerate.amazonaws.com/imagens_sites/Prancheta+1.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        sand: '#C1B490',
+                        pearl: '#EEECEA',
+                        coffee: '#45372C',
+                    },
+                    fontFamily: {
+                        poppins: ['Poppins', 'sans-serif'],
+                    },
+                    letterSpacing: {
+                        'widest-xl': '0.3125rem',
+                        'widest-2xl': '0.625rem',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        /* Carrossel da equipe com CSS Animation */
+        .team-carousel {
+            --gap: 12px;
+            --card-w: 206px;
+            --card-h: 243px;
+            --fade: 32px;
+            position: relative;
+            overflow: hidden;
+            padding-inline: 24px;
+            -webkit-mask-image: linear-gradient(to right, transparent 0, black var(--fade), black calc(100% - var(--fade)), transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0, black var(--fade), black calc(100% - var(--fade)), transparent 100%);
+        }
+        
+        .team-track {
+            display: flex;
+            align-items: stretch;
+            gap: var(--gap);
+            will-change: transform;
+            animation: team-scroll 60s linear infinite;
+        }
+        
+        .team-carousel:hover .team-track {
+            animation-play-state: paused;
+        }
+        
+        @keyframes team-scroll {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(calc(-1 * ((var(--card-w) * 18) + (var(--gap) * 18))));
+            }
+        }
+        
+        .team-member-card {
+            position: relative;
+            width: var(--card-w);
+            flex: 0 0 var(--card-w);
+            border-radius: 8px;
+            overflow: hidden;
+            background: #111;
+        }
+        
+        @media (max-width: 1024px) {
+            .team-carousel { --card-w: 180px; --card-h: 220px; }
+        }
+        @media (max-width: 768px) {
+            .team-carousel { --card-w: 160px; --card-h: 200px; }
+        }
+        @media (max-width: 480px) {
+            .team-carousel { --card-w: 140px; --card-h: 180px; --fade: 20px; }
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            .team-carousel { -webkit-mask-image: none; mask-image: none; }
+            .team-track { animation: none; }
+        }
+        
+        /* Service card overlay */
+        .service-card {
+            --peek: 25%;
+        }
+        
+        .service-card__overlay {
+            transform: translateY(calc(100% - var(--peek)));
+            transition: transform 0.5s ease;
+            will-change: transform;
+        }
+        
+        .service-card:hover .service-card__overlay {
+            transform: translateY(0);
+        }
+        
+        .service-card__text {
+            opacity: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: opacity .3s ease .12s, max-height .3s ease .12s;
+        }
+        
+        .service-card:hover .service-card__text {
+            opacity: 1;
+            max-height: 500px;
+        }
+        
+        /* Scrollbar hide */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
     <script src="scripts.js" defer></script>
 </head>
-<body>
-  <div class="container">
+<body class="bg-black text-white">
+  <div class="w-full max-w-[1920px] mx-auto relative overflow-hidden">
+    
     <!-- Header -->
-    <header class="header">
-      <img src="images/logo capa.png" alt="Clínica Rigatti" class="header__logo">
+    <header class="absolute top-0 left-0 right-0 z-10 py-4 bg-black">
+      <img src="images/logo capa.png" alt="Clínica Rigatti" class="w-[262px] h-[51px] mx-auto">
       
-      <button id="mobile-menu-btn" class="button-menu">
+      <button id="mobile-menu-btn" class="hidden max-md:block absolute top-6 right-4 bg-transparent text-3xl border-none text-pearl">
         <i class="fa-solid fa-bars"></i>
       </button>
 
-      <nav class="header__nav" aria-label="Navegação principal">
-        <a href="#clinica" class="header__nav-link">CLÍNICA</a>
-        <a href="#tratamentos" class="header__nav-link">TRATAMENTOS</a>
-        <a href="#equipe" class="header__nav-link">NOSSA EQUIPE</a>
-        <a href="#blog" class="header__nav-link">BLOG</a>
-        <a href="#contato" class="header__nav-link">CONTATO</a>
+      <nav class="flex absolute left-1/2 -translate-x-1/2 justify-center gap-16 mt-11 max-md:hidden" aria-label="Navegação principal">
+        <a href="#clinica" class="text-pearl no-underline text-sm font-500 hover:opacity-70 transition-opacity">CLÍNICA</a>
+        <a href="#tratamentos" class="text-pearl no-underline text-sm font-light hover:opacity-70 transition-opacity">TRATAMENTOS</a>
+        <a href="#equipe" class="text-pearl no-underline text-sm font-500 hover:opacity-70 transition-opacity">NOSSA EQUIPE</a>
+        <a href="#blog" class="text-pearl no-underline text-sm font-500 hover:opacity-70 transition-opacity">BLOG</a>
+        <a href="#contato" class="text-pearl no-underline text-sm font-500 hover:opacity-70 transition-opacity">CONTATO</a>
       </nav>
 
-      <nav class="header__nav-mobile hidden" aria-label="Navegação principal">
-        <a href="#clinica" class="header__nav-link">CLÍNICA</a>
-        <a href="#tratamentos" class="header__nav-link">TRATAMENTOS</a>
-        <a href="#equipe" class="header__nav-link">NOSSA EQUIPE</a>
-        <a href="#blog" class="header__nav-link">BLOG</a>
-        <a href="#contato" class="header__nav-link">CONTATO</a>
+      <nav class="hidden max-md:flex flex-col gap-5 items-center bg-black w-11/12 mt-16 p-5 absolute top-6 left-1/2 -translate-x-1/2 shadow-lg z-50" aria-label="Navegação principal mobile">
+        <a href="#clinica" class="text-pearl no-underline text-lg font-light hover:opacity-70 transition-opacity">CLÍNICA</a>
+        <a href="#tratamentos" class="text-pearl no-underline text-lg font-light hover:opacity-70 transition-opacity">TRATAMENTOS</a>
+        <a href="#equipe" class="text-pearl no-underline text-lg font-light hover:opacity-70 transition-opacity">NOSSA EQUIPE</a>
+        <a href="#blog" class="text-pearl no-underline text-lg font-light hover:opacity-70 transition-opacity">BLOG</a>
+        <a href="#contato" class="text-pearl no-underline text-lg font-light hover:opacity-70 transition-opacity">CONTATO</a>
       </nav>
 
-      <div class="header__social">
-        <a class="header__social-link" href="" aria-label="Instagram">
+      <div class="absolute top-[35%] right-40 flex gap-5 max-md:hidden">
+        <a class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity" href="" aria-label="Instagram">
           <i class="fa-brands fa-instagram"></i>
         </a>
-        <a class="header__social-link" href="" aria-label="YouTube">
+        <a class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity" href="" aria-label="YouTube">
           <i class="fa-brands fa-youtube"></i>
         </a>
-        <a class="header__social-link" href="" aria-label="LinkedIn">
+        <a class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity" href="" aria-label="LinkedIn">
           <i class="fa-brands fa-linkedin"></i>
         </a>
       </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="relative h-[976px] max-md:h-auto max-md:min-h-[600px] flex items-center pl-[315px] max-xl:pl-[120px] max-md:pl-10 max-md:pr-10 max-md:pt-36 max-md:pb-20 max-md:justify-center max-md:text-center">
         <video 
             id="bgVideo"
-            class="hero__bg"
+            class="absolute inset-0 w-full h-full object-cover -z-10"
             autoplay
             muted
             playsinline
@@ -62,367 +182,265 @@
             preload="auto">
             <source src="images/background-site.mp4" type="video/mp4">
         </video>
+        
+        <!-- Overlay escuro sobre o vídeo -->
+        <div class="absolute inset-0 bg-black/60 -z-[5]"></div>
 
-      <div class="hero__content">
-        <h2 class="hero__subtitle">MÉTODO</h2>
-        <img class="hero__logo" src="images/logo-branca.png" alt="Logo branca Clinica Rigatti">
-        <p class="hero__text">Uma abordagem centrada no cuidado silencioso, na ciência e na escuta profunda de cada paciente.</p>
-        <a href="#" class="btn btn--primary">AGENDAR AGORA</a>
+      <div class="max-w-[498px] max-md:max-w-full">
+        <h2 class="text-2xl font-light tracking-[1.375rem] mb-5 max-md:text-lg max-md:tracking-[0.625rem] max-md:mb-2.5">MÉTODO</h2>
+        <img class="my-5 max-md:my-2.5 max-md:mx-auto" src="images/logo-branca.png" alt="Logo branca Clinica Rigatti">
+        <p class="text-lg font-light leading-6 mb-6 max-md:text-base">Uma abordagem centrada no cuidado silencioso, na ciência e na escuta profunda de cada paciente.</p>
+        <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</a>
       </div>
-      <div class="hero__tagline">SUTIL-PRECISA-PERSONALIZADA</div>
+      
+      <div class="absolute bottom-36 left-1/2 -translate-x-1/2 text-sm font-extrabold tracking-widest-2xl max-md:static max-md:transform-none max-md:mt-10 max-md:text-[10px]">SUTIL-PRECISA-PERSONALIZADA</div>
     </section>
 
-      <!-- About Section -->
-      <section class="section section--white section__about">
-          <div class="section__intro">
-              <h3 class="section__subtitle">Discrição, ciência e acompanhamento contínuo.</h3>
-              <p class="section__text">Referência em saúde personalizada. Atuamos com precisão técnica e escuta humana, oferecendo protocolos desenhados sob medida para restaurar o equilíbrio hormonal, potencializar a vitalidade e sustentar um estilo de vida com mais presença e longevidade.</p>
-          </div>
+    <!-- About Section -->
+    <section class="py-10 text-center bg-gradient-to-b from-black from-45% to-pearl to-45% max-md:from-55% max-md:to-45% text-black pt-20 pb-5">
+      <div class="max-w-[919px] px-5 mx-auto mb-8 text-pearl">
+        <h3 class="text-sm font-semibold tracking-widest-xl uppercase mb-5">Discrição, ciência e acompanhamento contínuo.</h3>
+        <p class="text-sm font-light leading-relaxed">Referência em saúde personalizada. Atuamos com precisão técnica e escuta humana, oferecendo protocolos desenhados sob medida para restaurar o equilíbrio hormonal, potencializar a vitalidade e sustentar um estilo de vida com mais presença e longevidade.</p>
+      </div>
 
-          <!-- Services Grid -->
-          <div class="services-carousel">
+      <!-- Services Grid -->
+      <div class="relative mb-16">
+        <button class="services-btn-prev absolute top-1/2 -translate-y-1/2 left-2 z-[5] w-10 h-10 border-0 rounded-full bg-black/55 text-white text-2xl grid place-items-center cursor-pointer hover:bg-black/70 transition-all xl:hidden" aria-label="Anterior">‹</button>
 
-            <button class="services-btn prev" aria-label="Anterior">‹</button>
-
-            <div class="services">
-                <div class="service-card">
-                    <img src="images/reposicao-hormonal.png" alt="Reposição hormonal" class="service-card__image">
-                    <div class="service-card__overlay">
-                        <div class="service_card__overlay-header">
-                            <h4 class="service-card__title">Reposição hormonal</h4>
-                        </div>
-                        <div class="service_card__overlay-content">
-                            <p class="service-card__text">Reposição hormonal é devolver ao corpo o que o tempo levou: energia, foco, libido e bem-estar. Com ciência, personalização e segurança, ela reequilibra sistemas, reduz sintomas e resgata vitalidade. Você no controle do próprio ritmo, vivendo mais leve, produtivo e confiante. Com acompanhamento médico próximo.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="images/soroterapia.png" alt="Soroterapia" class="service-card__image">
-                    <div class="service-card__overlay">
-                        <div class="service_card__overlay-header">
-                            <h4 class="service-card__title">Soroterapia</h4>
-                        </div>
-                        <div class="service_card__overlay-content">
-                            <p class="service-card__text">Soroterapia é nutrição direta na veia, com blends personalizados de vitaminas, minerais e aminoácidos que aceleram recuperação, energia e imunidade. Protocolo seguro, feito por equipe médica, para hidratar, reequilibrar e regenerar. Resultado: corpo mais disposto, mente clara e bem-estar duradouro.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="images/nutricao-clinica-e-estetica.png" alt="Nutrição" class="service-card__image">
-                    <div class="service-card__overlay service-card__overlay--full">
-                        <div class="service_card__overlay-header">
-                            <h4 class="service-card__title">Nutrição Clínica<br>e Estética</h4>
-                        </div>
-                        <div class="service_card__overlay-content">
-                            <p class="service-card__text">Cuidar da saúde metabólica e da composição corporal vai além da estética: trata-se de investir em equilíbrio, longevidade e autoconfiança. Nossos planos nutricionais são desenvolvidos de forma individualizada, considerando objetivos específicos, rotina e estilo de vida, sempre com acompanhamento próximo e embasado em ciência.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="images/emagrecimento-com-acompanhamento.png" alt="Emagrecimento" class="service-card__image">
-                    <div class="service-card__overlay">
-                        <div class="service_card__overlay-header">
-                            <h4 class="service-card__title">Emagrecimento com Acompanhamento Médico</h4>
-                        </div>
-                        <div class="service_card__overlay-content">
-                            <p class="service-card__text">Na Rigatti®, emagrecer com acompanhamento médico é trocar tentativas por estratégia. Avaliamos hormônios, hábitos e metabolismo para criar um plano seguro e eficaz, com ajustes contínuos, monitoramento e suporte real. Resultado: perda de peso sustentável, menos fome, mais energia — ciência e cuidado.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="images/saude-feminina-e-longevidade.png" alt="Saúde Feminina" class="service-card__image">
-                    <div class="service-card__overlay">
-                        <div class="service_card__overlay-header">
-                            <h4 class="service-card__title">Saúde Feminina<br>e Longevidade</h4>
-                        </div>
-                        <div class="service_card__overlay-content">
-                            <p class="service-card__text">Saúde feminina e longevidade na Rigatti® é olhar integral: hormônios em equilíbrio, nutrição inteligente e manejo do estresse para mais vitalidade, libido e clareza mental. Cuidado personalizado, prevenção ativa e autonomia para viver décadas com disposição, pele luminosa e bem-estar.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="images/modulacao-hormonal-e-desempenho.png" alt="Modulação Hormonal" class="service-card__image">
-                    <div class="service-card__overlay">
-                        <div class="service_card__overlay-header">
-                            <h4 class="service-card__title">Modulação Hormonal e Desempenho</h4>
-                        </div>
-                        <div class="service_card__overlay-content">
-                            <p class="service-card__text">Modulação hormonal e desempenho na Rigatti® é afinar seu motor interno. Com avaliação precisa, ajustamos hormônios-chave para elevar energia, foco, libido e recuperação. Resultado: corpo que rende mais, mente afiada e bem-estar constante — ciência, personalização e segurança, com acompanhamento médico próximo.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <button class="services-btn next" aria-label="Próximo">›</button>
-          </div>
-      </section>
-
-      <!-- Clinic Info Section -->
-      <section class="info-section info-section--gray">
-          <img src="images/mulher-info-section.png" alt="Clínica" class="info-section__image">
-          <div class="info-section__content">
-              <p class="info-section__text">Na Clínica Rigatti, unimos ciência avançada, acolhimento e luxo para guiar você rumo à melhor versão de si mesmo.</p>
-              <p class="info-section__text">Desde 2018, já ajudamos milhares de pessoas a conquistarem saúde e confiança por meio de tratamentos personalizados.</p>
-              <p class="info-section__text">Uma abordagem centrada no cuidado silencioso, na ciência e na escuta profunda de cada paciente.</p>
-              <a href="#" class="btn btn--secundary info-section__btn">SAIBA MAIS</a>
-          </div>
-      </section>
-
-      <!-- Team Section -->
-      <section class="section section--gray" id="equipe">
-          <div class="section__intro">
-              <h3 class="section__title section__title--black"><strong>NOSSA</strong> EQUIPE</h3>
-              <p class="section__text section__text--black">Nosso time é formado por médicos, nutricionistas e profissionais que atuam com formação técnica, atualização científica constante e sensibilidade humana. Aqui, ciência e empatia caminham juntas.</p>
-          </div>
-
-          <div class="team-carousel" id="teamCarousel" aria-label="Carrosel de membros da equipe">
-              <div class="team-track" id="teamTrack">
-                  <div class="team-member">
-                      <img src="images/rigatti.png" alt="Dr. Luiz Rigatti" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">DR. LUIZ RIGATTI</h4>
-                          <p class="team-member__role">MÉDICO - CEO</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/suellen.png" alt="Suellen Palmeira" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">SUELLEN PALMEIRA</h4>
-                          <p class="team-member__role">NUTRICIONISTA</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/guilherme.png" alt="Guilherme Sens" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">GUILHERME SENS</h4>
-                          <p class="team-member__role">NUTRICIONISTA</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/pamela.png" alt="Pâmela Gusmão" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Pâmela Gusmão</h4>
-                          <p class="team-member__role">ENFERMEIRA</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/ivonete.png" alt="Ivonete Bentack" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">IVONETE Bentack</h4>
-                          <p class="team-member__role">ENFERMEIRA</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/renata.png" alt="Renata Carneiro" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Renata Carneiro</h4>
-                          <p class="team-member__role">RECEPCIONISTA</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/andressa.png" alt="Andressa Bentack" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Andressa Bentack</h4>
-                          <p class="team-member__role">RECEPCIONISTA</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/camila.png" alt="Camila Gaitkoski" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Camila Gaitkoski</h4>
-                          <p class="team-member__role">FINANCEIRO</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/anderson.png" alt="Anderson Alves" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Anderson Alves</h4>
-                          <p class="team-member__role">PROGRAMADOR</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/samuel.png" alt="Samuel Nunes" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Samuel Nunes</h4>
-                          <p class="team-member__role">PROGRAMADOR</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/angelino.png" alt="Angelino gonsalves" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Angelino gonsalves</h4>
-                          <p class="team-member__role">PROGRAMADOR</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/adilson.png" alt="Adilson Matheus" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Adilson Matheus</h4>
-                          <p class="team-member__role">DIRETOR DE OPERAÇÕES</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/ana.png" alt="Ana Paula Azevedo" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Ana Paula Azevedo</h4>
-                          <p class="team-member__role">CONFIRMAÇÃO</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/cleidiane.png" alt="Cleidiane Cubas" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Cleidiane Cubas</h4>
-                          <p class="team-member__role">CONCIERGE</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/bruno.png" alt="Bruno Leon" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Bruno Leon</h4>
-                          <p class="team-member__role">RECOMPRA</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/henrique.png" alt="Henrique" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Henrique</h4>
-                          <p class="team-member__role">DIRETOR DE MARKETING</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/lucas.png" alt="Lucas Hulse" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Lucas Hulse</h4>
-                          <p class="team-member__role">VIDEOMAKER</p>
-                      </div>
-                  </div>
-                  <div class="team-member">
-                      <img src="images/igor.png" alt="Igor" class="team-member__image">
-                      <div class="team-member__info">
-                          <h4 class="team-member__name">Igor</h4>
-                          <p class="team-member__role">DESIGNER</p>
-                      </div>
-                  </div>
+        <div class="services grid grid-cols-6 gap-1 px-40 mb-16 max-xl:px-20 max-lg:flex max-lg:gap-3 max-lg:px-12 max-lg:overflow-x-auto max-lg:scroll-snap-x max-lg:scroll-smooth hide-scrollbar">
+          <!-- Service Cards -->
+          <div class="service-card relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
+            <img src="images/reposicao-hormonal.png" alt="Reposição hormonal" class="w-full h-full object-cover">
+            <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+              <div class="w-full h-1/4 flex items-center justify-center">
+                <h4 class="m-0 text-[15px] font-light uppercase text-white">Reposição hormonal</h4>
               </div>
-          </div>
-      </section>
-
-      <!-- Blog Section -->
-      <section class="info-section info-section--light" id="blog">
-          <div class="info-section__content">
-              <h3 class="info-section__title">Explore nosso blog e transforme<br>informação em bem-estar.</h3>
-              <p class="info-section__text">Aqui você encontra conteúdos exclusivos sobre saúde hormonal, emagrecimento, performance, qualidade de vida e os bastidores da nossa abordagem personalizada. Criado para quem busca mais conhecimento, clareza e autonomia na própria jornada de transformação, o blog é o espaço onde ciência, cuidado e experiência se encontram. Inspire-se, aprenda e dê o próximo passo com confiança.</p>
-              <a href="#" class="btn btn--secundary">SAIBA MAIS</a>
-          </div>
-          <img src="images/blog.png" alt="Blog" class="info-section__image">
-      </section>
-
-      <!-- Results Section -->
-      <section class="section section--gray">
-        <h2 class="section__title section__title-results section__title--large section__title--black">RESULTADOS</h2>
-        <div class="results">
-            <button class="results__button results__button--prev" aria-label="Anterior">‹</button>
-            <div class="results__container">
-                <div class="results__track" id="resultsTrack">
-                    <!-- As imagens serão inseridas via JavaScript -->
-                </div>
+              <div class="w-full h-3/4 flex items-center justify-center">
+                <p class="service-card__text text-sm font-light text-white leading-relaxed">Reposição hormonal é devolver ao corpo o que o tempo levou: energia, foco, libido e bem-estar. Com ciência, personalização e segurança, ela reequilibra sistemas, reduz sintomas e resgata vitalidade. Você no controle do próprio ritmo, vivendo mais leve, produtivo e confiante. Com acompanhamento médico próximo.</p>
+              </div>
             </div>
-            <button class="results__button results__button--next" aria-label="Próximo">›</button>
+          </div>
+
+          <div class="service-card relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
+            <img src="images/soroterapia.png" alt="Soroterapia" class="w-full h-full object-cover">
+            <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+              <div class="w-full h-1/4 flex items-center justify-center">
+                <h4 class="m-0 text-[15px] font-light uppercase text-white">Soroterapia</h4>
+              </div>
+              <div class="w-full h-3/4 flex items-center justify-center">
+                <p class="service-card__text text-sm font-light text-white leading-relaxed">Soroterapia é nutrição direta na veia, com blends personalizados de vitaminas, minerais e aminoácidos que aceleram recuperação, energia e imunidade. Protocolo seguro, feito por equipe médica, para hidratar, reequilibrar e regenerar. Resultado: corpo mais disposto, mente clara e bem-estar duradouro.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
+            <img src="images/nutricao-clinica-e-estetica.png" alt="Nutrição" class="w-full h-full object-cover">
+            <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+              <div class="w-full h-1/4 flex items-center justify-center">
+                <h4 class="m-0 text-[15px] font-light uppercase text-white">Nutrição Clínica<br>e Estética</h4>
+              </div>
+              <div class="w-full h-3/4 flex items-center justify-center">
+                <p class="service-card__text text-sm font-light text-white leading-relaxed">Cuidar da saúde metabólica e da composição corporal vai além da estética: trata-se de investir em equilíbrio, longevidade e autoconfiança. Nossos planos nutricionais são desenvolvidos de forma individualizada, considerando objetivos específicos, rotina e estilo de vida, sempre com acompanhamento próximo e embasado em ciência.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
+            <img src="images/emagrecimento-com-acompanhamento.png" alt="Emagrecimento" class="w-full h-full object-cover">
+            <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+              <div class="w-full h-1/4 flex items-center justify-center">
+                <h4 class="m-0 text-[15px] font-light uppercase text-white">Emagrecimento com Acompanhamento Médico</h4>
+              </div>
+              <div class="w-full h-3/4 flex items-center justify-center">
+                <p class="service-card__text text-sm font-light text-white leading-relaxed">Na Rigatti®, emagrecer com acompanhamento médico é trocar tentativas por estratégia. Avaliamos hormônios, hábitos e metabolismo para criar um plano seguro e eficaz, com ajustes contínuos, monitoramento e suporte real. Resultado: perda de peso sustentável, menos fome, mais energia — ciência e cuidado.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
+            <img src="images/saude-feminina-e-longevidade.png" alt="Saúde Feminina" class="w-full h-full object-cover">
+            <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+              <div class="w-full h-1/4 flex items-center justify-center">
+                <h4 class="m-0 text-[15px] font-light uppercase text-white">Saúde Feminina<br>e Longevidade</h4>
+              </div>
+              <div class="w-full h-3/4 flex items-center justify-center">
+                <p class="service-card__text text-sm font-light text-white leading-relaxed">Saúde feminina e longevidade na Rigatti® é olhar integral: hormônios em equilíbrio, nutrição inteligente e manejo do estresse para mais vitalidade, libido e clareza mental. Cuidado personalizado, prevenção ativa e autonomia para viver décadas com disposição, pele luminosa e bem-estar.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="service-card relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
+            <img src="images/modulacao-hormonal-e-desempenho.png" alt="Modulação Hormonal" class="w-full h-full object-cover">
+            <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+              <div class="w-full h-1/4 flex items-center justify-center">
+                <h4 class="m-0 text-[15px] font-light uppercase text-white">Modulação Hormonal e Desempenho</h4>
+              </div>
+              <div class="w-full h-3/4 flex items-center justify-center">
+                <p class="service-card__text text-sm font-light text-white leading-relaxed">Modulação hormonal e desempenho na Rigatti® é afinar seu motor interno. Com avaliação precisa, ajustamos hormônios-chave para elevar energia, foco, libido e recuperação. Resultado: corpo que rende mais, mente afiada e bem-estar constante — ciência, personalização e segurança, com acompanhamento médico próximo.</p>
+              </div>
+            </div>
+          </div>
         </div>
-      </section>
 
-      <!-- CTA Section -->
-      <section class="cta">
-          <h2 class="cta__title">AGENDE SUA CONSULTA</h2>
-          <p class="cta__text">Desperte sua força real.</p>
-          <a href="#" class="btn btn--secundary">AGENDAR AGORA</a>
-      </section>
+        <button class="services-btn-next absolute top-1/2 -translate-y-1/2 right-2 z-[5] w-10 h-10 border-0 rounded-full bg-black/55 text-white text-2xl grid place-items-center cursor-pointer hover:bg-black/70 transition-all xl:hidden" aria-label="Próximo">›</button>
+      </div>
+    </section>
 
-      <!-- YouTube Section -->
-      <section class="info-section info-section__youtube info-section--light">
-            <h2 class="section__title section__title--large section__title--black">Acompanhe nosso canal do Youtube</h2>
-            <div class="info-section__youtube-content">
-                <div class="media-grid">
-                    <img src="https://placehold.co/372x209" alt="Vídeo 1" class="media-grid__item">
-                    <img src="https://placehold.co/372x209" alt="Vídeo 2" class="media-grid__item">
-                    <img src="https://placehold.co/371x209" alt="Vídeo 3" class="media-grid__item">
-                    <img src="https://placehold.co/372x209" alt="Vídeo 4" class="media-grid__item">
-                </div>
-                <div class="info-section__content">
-                    <h3 class="info-section__title">No YouTube, compartilhamos tudo o que você precisa saber para transformar sua saúde e seu corpo com consciência.</h3>
-                    <p class="info-section__text">Falamos sobre hormônios, emagrecimento, qualidade de vida e respondemos dúvidas reais de quem está nessa jornada. É conteúdo direto, sem enrolação, para te ajudar a despertar sua melhor versão.</p>
-                    <a href="#" class="btn btn--secundary">SAIBA MAIS</a>
-                </div>
-            </div>
-      </section>
+    <!-- Clinic Info Section -->
+    <section class="flex gap-20 items-center justify-center py-10 px-[100px] bg-pearl max-xl:gap-2.5 max-lg:flex-col max-lg:py-16 max-lg:px-10">
+      <img src="images/mulher-info-section.png" alt="Clínica" class="w-[70%] max-w-[900px] object-cover flex-shrink-0 max-lg:w-full max-lg:max-w-[600px] max-lg:h-auto">
+      <div class="w-[30%] max-w-[505px] p-5 flex flex-col max-lg:w-full">
+        <p class="text-lg font-light text-black leading-relaxed mb-8 max-xl:mb-4 max-lg:mb-6">Na Clínica Rigatti, unimos ciência avançada, acolhimento e luxo para guiar você rumo à melhor versão de si mesmo.</p>
+        <p class="text-lg font-light text-black leading-relaxed mb-8 max-xl:mb-4 max-lg:mb-6">Desde 2018, já ajudamos milhares de pessoas a conquistarem saúde e confiança por meio de tratamentos personalizados.</p>
+        <p class="text-lg font-light text-black leading-relaxed mb-8 max-xl:mb-4 max-lg:mb-6">Uma abordagem centrada no cuidado silencioso, na ciência e na escuta profunda de cada paciente.</p>
+        <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-lg:mx-auto max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
+      </div>
+    </section>
 
-      <!-- Contact Form Section -->
-      <section class="contact" id="contato">
-          <form class="contact__form">
-              <img src="images/logo-preta.png" alt="Logo" class="contact__logo">
-              <div class="form-group">
-                  <input type="email" placeholder="" class="form-group__input" required>
-                  <label class="form-group__label">Endereço de email</label>
-              </div>
-              <div class="form-group">
-                  <input type="text" placeholder="" class="form-group__input" required>
-                  <label class="form-group__label">Nome completo</label>
-              </div>
-              <div class="form-group">
-                  <input type="text" placeholder="" class="form-group__input" required>
-                  <label class="form-group__label">Número de telefone</label>
-              </div>
-              <div class="form-group">
-                  <input type="text" placeholder="" class="form-group__input" required>
-                  <label class="form-group__label">Cidade</label>
-              </div>
-              <button type="submit" class="btn btn--primary btn--full">AGENDAR AGORA</button>
-          </form>
-      </section>
+    <!-- Team Section -->
+    <section class="py-10 text-center bg-pearl text-black" id="equipe">
+      <div class="max-w-[919px] px-5 mx-auto mb-8">
+        <h3 class="text-xl font-extrabold tracking-widest-xl uppercase mb-8 text-black"><strong>NOSSA</strong> EQUIPE</h3>
+        <p class="text-lg font-light leading-relaxed text-black">Nosso time é formado por médicos, nutricionistas e profissionais que atuam com formação técnica, atualização científica constante e sensibilidade humana. Aqui, ciência e empatia caminham juntas.</p>
+      </div>
+
+      <div class="team-carousel" id="teamCarousel" aria-label="Carrossel de membros da equipe">
+        <div class="team-track" id="teamTrack">
+          <!-- Os cards serão criados dinamicamente pelo JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="flex gap-5 items-center justify-center py-10 px-[100px] bg-[#E4E4E4] max-lg:flex-col max-lg:py-16 max-lg:px-10" id="blog">
+      <div class="w-[30%] max-w-[505px] p-5 flex flex-col max-lg:w-full">
+        <h3 class="text-lg font-extrabold uppercase leading-6 text-black mb-5">Explore nosso blog e transforme<br>informação em bem-estar.</h3>
+        <p class="text-lg font-light text-black leading-relaxed mb-8">Aqui você encontra conteúdos exclusivos sobre saúde hormonal, emagrecimento, performance, qualidade de vida e os bastidores da nossa abordagem personalizada. Criado para quem busca mais conhecimento, clareza e autonomia na própria jornada de transformação, o blog é o espaço onde ciência, cuidado e experiência se encontram. Inspire-se, aprenda e dê o próximo passo com confiança.</p>
+        <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
+      </div>
+      <img src="images/blog.png" alt="Blog" class="w-[70%] max-w-[900px] object-cover flex-shrink-0 max-lg:w-full max-lg:max-w-[600px] max-lg:h-auto">
+    </section>
+
+    <!-- Results Section -->
+    <section class="py-10 text-center bg-pearl text-black">
+      <h2 class="flex items-center justify-center gap-4 text-[32px] font-extrabold tracking-widest-xl uppercase mb-16 text-black before:content-[''] before:h-[5px] before:bg-black before:opacity-70 before:flex-1 before:max-w-[500px] before:min-w-[40px] after:content-[''] after:h-[5px] after:bg-black after:opacity-70 after:flex-1 after:max-w-[500px] after:min-w-[40px]">RESULTADOS</h2>
+      
+      <div class="relative h-[500px] flex justify-center items-center overflow-hidden max-md:h-[400px]">
+        <button class="absolute top-1/2 -translate-y-1/2 left-5 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer z-10 flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl" aria-label="Anterior">‹</button>
+        
+        <div class="relative w-full h-full flex justify-center items-center">
+          <div class="w-full flex gap-5 transition-transform duration-500" id="resultsTrack">
+            <!-- As imagens serão inseridas via JavaScript -->
+          </div>
+        </div>
+        
+        <button class="absolute top-1/2 -translate-y-1/2 right-5 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer z-10 flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl" aria-label="Próximo">›</button>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-pearl py-10 pb-20 text-center">
+      <h2 class="text-2xl font-black tracking-widest-xl text-black mb-2.5">AGENDE SUA CONSULTA</h2>
+      <p class="text-base font-light uppercase tracking-wide text-black mb-8">Desperte sua força real.</p>
+      <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</a>
+    </section>
+
+    <!-- YouTube Section -->
+    <section class="flex flex-col gap-0 py-10 px-[100px] bg-[#E4E4E4] max-lg:px-10">
+      <h2 class="text-[32px] font-extrabold tracking-widest-xl uppercase mb-16 text-center text-black">Acompanhe nosso canal do Youtube</h2>
+      
+      <div class="flex gap-5 justify-center items-center max-md:flex-col">
+        <div class="grid grid-cols-2 gap-1 flex-shrink-0">
+          <img src="https://placehold.co/372x209" alt="Vídeo 1" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01]">
+          <img src="https://placehold.co/372x209" alt="Vídeo 2" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01]">
+          <img src="https://placehold.co/371x209" alt="Vídeo 3" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-[480px]:hidden">
+          <img src="https://placehold.co/372x209" alt="Vídeo 4" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-[480px]:hidden">
+        </div>
+        
+        <div class="w-[30%] max-w-[505px] p-5 flex flex-col max-lg:w-full">
+          <h3 class="text-lg font-extrabold uppercase leading-6 text-black mb-5">No YouTube, compartilhamos tudo o que você precisa saber para transformar sua saúde e seu corpo com consciência.</h3>
+          <p class="text-lg font-light text-black leading-relaxed mb-8">Falamos sobre hormônios, emagrecimento, qualidade de vida e respondemos dúvidas reais de quem está nessa jornada. É conteúdo direto, sem enrolação, para te ajudar a despertar sua melhor versão.</p>
+          <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section -->
+    <section class="bg-[url('images/mapa-clinica.png')] bg-center bg-cover py-[100px] flex justify-center" id="contato">
+      <form class="bg-white/70 backdrop-blur-[10px] border border-white rounded-[22px] p-16 w-[711px] max-md:w-11/12 max-md:p-10">
+        <img src="images/logo-preta.png" alt="Logo" class="w-[239px] mb-8">
+        
+        <div class="mb-6 relative">
+          <input type="email" placeholder=" " class="peer w-full py-5 px-8 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
+          <label class="absolute left-8 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-7 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-7 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Endereço de email</label>
+        </div>
+        
+        <div class="mb-6 relative">
+          <input type="text" placeholder=" " class="peer w-full py-5 px-8 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
+          <label class="absolute left-8 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-7 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-7 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Nome completo</label>
+        </div>
+        
+        <div class="mb-6 relative">
+          <input type="text" placeholder=" " class="peer w-full py-5 px-8 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
+          <label class="absolute left-8 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-7 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-7 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Número de telefone</label>
+        </div>
+        
+        <div class="mb-6 relative">
+          <input type="text" placeholder=" " class="peer w-full py-5 px-8 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
+          <label class="absolute left-8 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-7 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-7 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Cidade</label>
+        </div>
+        
+        <button type="submit" class="w-full py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 border-0 cursor-pointer text-center max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</button>
+      </form>
+    </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="footer__content">
-            <div class="footer__logo">
-                <img src="images/logo-redonda.png" alt="Logo">
-            </div>
-            <div class="footer__links">
-                <ul class="footer__menu">
-                    <li class="footer__menu-item"><a href="#clinica" class="footer__menu-link">A CLÍNICA</a></li>
-                    <li class="footer__menu-item"><a href="#tratamentos" class="footer__menu-link">TRATAMENTOS</a></li>
-                    <li class="footer__menu-item"><a href="#equipe" class="footer__menu-link">NOSSA EQUIPE</a></li>
-                    <li class="footer__menu-item"><a href="#blog" class="footer__menu-link">BLOG</a></li>
-                </ul>
-            </div>
-            <div class="footer__contact">
-                <p class="footer__contact-item">
-                    <i class="fa-solid fa-pager"></i>
-                    <a href="https://nacional.metodorigatti.com.br" target="_blank" rel="external" class="footer__menu-link">nacional.metodorigatti.com.br</a>
-                </p>
-                <p class="footer__contact-item">
-                    <i class="fa-brands fa-whatsapp"></i>
-                    <a href="https://wa.me/554731701206?text=Olá!+Tenho+interesse+e+queria+mais+informações,+por+favor." class="footer__menu-link">(47) 3170 - 1206</a>
-                </p>
-                <p class="footer__contact-item">
-                    <i class="fa-solid fa-location-dot"></i>
-                    R. 2950, 117 - Centro, Balneário Camboriú - SC
-                </p>
-                <div class="footer__social">
-                    <a class="footer__social-link" href="#" aria-label="Instagram">
-                        <i class="fa-brands fa-instagram footer__social-icon"></i>
-                    </a>
-                    <a class="footer__social-link" href="#" aria-label="YouTube">
-                        <i class="fa-brands fa-youtube footer__social-icon"></i>
-                    </a>
-                    <a class="footer__social-link" href="#" aria-label="LinkedIn">
-                        <i class="fa-brands fa-linkedin footer__social-icon"></i>
-                    </a>
-                </div>
-            </div>
+    <footer class="bg-black py-20 px-40 text-white flex flex-col justify-center items-center max-lg:px-10">
+      <div class="flex gap-[100px] mb-16 max-lg:flex-col max-lg:gap-10 max-lg:justify-center max-lg:items-center max-lg:text-center">
+        <div class="flex-shrink-0">
+          <img src="images/logo-redonda.png" alt="Logo" class="w-[121px] h-[124px]">
         </div>
-        <div class="footer__bottom">
-            <img src="images/logo-branca-pequena.png" alt="Copyright">
+        
+        <div class="flex-shrink-0">
+          <ul class="list-none">
+            <li class="mb-5"><a href="#clinica" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">A CLÍNICA</a></li>
+            <li class="mb-5"><a href="#tratamentos" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">TRATAMENTOS</a></li>
+            <li class="mb-5"><a href="#equipe" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">NOSSA EQUIPE</a></li>
+            <li class="mb-5"><a href="#blog" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">BLOG</a></li>
+          </ul>
         </div>
+        
+        <div class="flex-1">
+          <p class="text-base mb-5 leading-normal">
+            <i class="fa-solid fa-pager"></i>
+            <a href="https://nacional.metodorigatti.com.br" target="_blank" rel="external" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity ml-2">nacional.metodorigatti.com.br</a>
+          </p>
+          <p class="text-base mb-5 leading-normal">
+            <i class="fa-brands fa-whatsapp"></i>
+            <a href="https://wa.me/554731701206?text=Olá!+Tenho+interesse+e+queria+mais+informações,+por+favor." class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity ml-2">(47) 3170 - 1206</a>
+          </p>
+          <p class="text-base mb-5 leading-normal">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="ml-2">R. 2950, 117 - Centro, Balneário Camboriú - SC</span>
+          </p>
+          
+          <div class="flex gap-8 mt-10 max-lg:justify-center">
+            <a class="text-pearl" href="#" aria-label="Instagram">
+              <i class="fa-brands fa-instagram w-full h-full cursor-pointer hover:opacity-70 transition-opacity text-[25px]"></i>
+            </a>
+            <a class="text-pearl" href="#" aria-label="YouTube">
+              <i class="fa-brands fa-youtube w-full h-full cursor-pointer hover:opacity-70 transition-opacity text-[25px]"></i>
+            </a>
+            <a class="text-pearl" href="#" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin w-full h-full cursor-pointer hover:opacity-70 transition-opacity text-[25px]"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="w-full border-t border-white pt-8 flex justify-center items-center">
+        <img src="images/logo-branca-pequena.png" alt="Copyright">
+      </div>
     </footer>
   </div>
 </body>

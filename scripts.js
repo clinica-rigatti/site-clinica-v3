@@ -1,30 +1,224 @@
-// Menu mobile
+// Carrossel dos cards do time
+// ====================================================
+/* Carrossel infinito de cards — versão com dados dinâmicos
+   - Cards criados dinamicamente via JavaScript
+   - Scroll verdadeiramente infinito
+   - Pausa no hover/toque
+   - Respeita prefers-reduced-motion
+*/
+
+(function () {
+  // Dados dos membros da equipe
+  const teamMembers = [
+    { name: 'DR. LUIZ RIGATTI', role: 'MÉDICO - CEO', image: 'images/rigatti.png' },
+    { name: 'SUELLEN PALMEIRA', role: 'NUTRICIONISTA', image: 'images/suellen.png' },
+    { name: 'GUILHERME SENS', role: 'NUTRICIONISTA', image: 'images/guilherme.png' },
+    { name: 'PÂMELA GUSMÃO', role: 'ENFERMEIRA', image: 'images/pamela.png' },
+    { name: 'IVONETE BENTACK', role: 'ENFERMEIRA', image: 'images/ivonete.png' },
+    { name: 'RENATA CARNEIRO', role: 'RECEPCIONISTA', image: 'images/renata.png' },
+    { name: 'ANDRESSA BENTACK', role: 'RECEPCIONISTA', image: 'images/andressa.png' },
+    { name: 'CAMILA GAITKOSKI', role: 'FINANCEIRO', image: 'images/camila.png' },
+    { name: 'ANDERSON ALVES', role: 'PROGRAMADOR', image: 'images/anderson.png' },
+    { name: 'SAMUEL NUNES', role: 'PROGRAMADOR', image: 'images/samuel.png' },
+    { name: 'ANGELINO GONSALVES', role: 'PROGRAMADOR', image: 'images/angelino.png' },
+    { name: 'ADILSON MATHEUS', role: 'DIRETOR DE OPERAÇÕES', image: 'images/adilson.png' },
+    { name: 'ANA PAULA AZEVEDO', role: 'CONFIRMAÇÃO', image: 'images/ana.png' },
+    { name: 'CLEIDIANE CUBAS', role: 'CONCIERGE', image: 'images/cleidiane.png' },
+    { name: 'BRUNO LEON', role: 'RECOMPRA', image: 'images/bruno.png' },
+    { name: 'HENRIQUE', role: 'DIRETOR DE MARKETING', image: 'images/henrique.png' },
+    { name: 'LUCAS HULSE', role: 'VIDEOMAKER', image: 'images/lucas.png' },
+    { name: 'IGOR', role: 'DESIGNER', image: 'images/igor.png' }
+  ];
+
+  // Array multiplicado para criar o efeito infinito
+  const team = [...teamMembers, ...teamMembers, ...teamMembers, ...teamMembers];
+
+  // Cria um card de membro
+  function createMemberCard(member) {
+    const card = document.createElement('div');
+    card.className = 'team-member-card relative w-[206px] min-w-[206px] flex-shrink-0 rounded-lg overflow-hidden bg-gray-900';
+    
+    card.innerHTML = `
+      <img src="${member.image}" alt="${member.name}" class="block w-full h-[243px] object-cover brightness-90">
+      <div class="absolute inset-x-0 bottom-0 p-2.5 text-center bg-gradient-to-t from-black/90 to-transparent">
+        <h4 class="text-xs font-semibold tracking-wider text-white uppercase">${member.name}</h4>
+        <p class="text-xs font-normal tracking-[0.15625rem] text-white uppercase mt-1 opacity-90">${member.role}</p>
+      </div>
+    `;
+    
+    return card;
+  }
+
+  function setupCarousel(root) {
+    const track = root.querySelector('.team-track');
+    if (!track) return;
+
+    // Limpa o conteúdo existente
+    track.innerHTML = '';
+
+    // Adiciona todos os cards do array multiplicado
+    team.forEach(member => {
+      track.appendChild(createMemberCard(member));
+    });
+
+    console.log('Total de cards criados:', track.children.length);
+    console.log('Total de membros originais:', teamMembers.length);
+
+    const SPEED = parseFloat(root.dataset.speed) || 50; // px/s
+    let paused = false;
+    let position = 0;
+    let animationId = null;
+
+    // Calcula a largura de um conjunto original (18 membros) dinamicamente
+    function getSetWidth() {
+      // Aguarda um frame para garantir que os cards foram renderizados
+      const cards = track.children;
+      if (cards.length === 0) return 0;
+      
+      let totalWidth = 0;
+      const gap = parseFloat(getComputedStyle(track).gap) || 12;
+      
+      // Calcula a largura dos primeiros N cards (um conjunto completo)
+      for (let i = 0; i < teamMembers.length; i++) {
+        if (cards[i]) {
+          const cardWidth = cards[i].getBoundingClientRect().width;
+          totalWidth += cardWidth + gap;
+        }
+      }
+      
+      console.log('Largura calculada de um conjunto:', totalWidth);
+      console.log('Cards por conjunto:', teamMembers.length);
+      
+      return totalWidth;
+    }
+
+    let setWidth = 0;
+
+    // Pausa no hover
+    root.addEventListener('mouseenter', () => { paused = true; });
+    root.addEventListener('mouseleave', () => { paused = false; });
+
+    // Pausa no toque
+    root.addEventListener('touchstart', () => { paused = true; }, { passive: true });
+    root.addEventListener('touchend', () => { 
+      setTimeout(() => { paused = false; }, 200); 
+    });
+
+    // Animação principal
+    let lastTime = performance.now();
+    let resetCount = 0;
+    
+    function animate(now) {
+      const delta = (now - lastTime) / 1000;
+      lastTime = now;
+
+      if (!paused && setWidth > 0) {
+        position += SPEED * delta;
+        
+        // Debug: mostra quando está próximo do reset
+        const percentComplete = (position / setWidth) * 100;
+        if (percentComplete > 95) {
+          console.log(`${percentComplete.toFixed(1)}% completo - position: ${position.toFixed(2)}, setWidth: ${setWidth}`);
+        }
+        
+        // Loop infinito: quando completar um conjunto original, volta ao início
+        if (position >= setWidth) {
+          position = position - setWidth;
+          resetCount++;
+          console.log(`Reset #${resetCount} - Nova position: ${position.toFixed(2)}`);
+        }
+        
+        // Aplica o transform (move para esquerda)
+        track.style.transform = `translateX(-${position}px)`;
+      }
+
+      animationId = requestAnimationFrame(animate);
+    }
+
+    // Verifica preferência de movimento reduzido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    function start() {
+      if (prefersReducedMotion.matches) {
+        if (animationId) cancelAnimationFrame(animationId);
+        track.style.transform = 'none';
+        root.classList.add('overflow-x-auto');
+        root.classList.remove('overflow-hidden');
+      } else {
+        root.classList.remove('overflow-x-auto');
+        root.classList.add('overflow-hidden');
+        
+        // Calcula setWidth após os cards serem renderizados
+        setTimeout(() => {
+          setWidth = getSetWidth();
+          lastTime = performance.now();
+          animationId = requestAnimationFrame(animate);
+        }, 200);
+      }
+    }
+
+    // Reajusta ao redimensionar
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (!prefersReducedMotion.matches) {
+          const oldSetWidth = setWidth;
+          setWidth = getSetWidth();
+          const progress = position / oldSetWidth;
+          position = progress * setWidth;
+          console.log('Resize - Novo setWidth:', setWidth);
+        }
+      }, 250);
+    });
+
+    // Monitora mudanças na preferência
+    if (prefersReducedMotion.addEventListener) {
+      prefersReducedMotion.addEventListener('change', start);
+    }
+
+    // Inicia
+    start();
+  }
+
+  function init() {
+    document.querySelectorAll('.team-carousel').forEach(setupCarousel);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();// Menu mobile
 // ========================================================
 document.addEventListener('DOMContentLoaded', () => {
   // Mobile menu toggle
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-  const mobileNav = document.querySelector('.header__nav-mobile');
+  const mobileNav = document.querySelector('nav[aria-label="Navegação principal mobile"]');
+  
   if (mobileMenuBtn && mobileNav) {
     mobileMenuBtn.addEventListener('click', () => {
-      // mobileMenuBtn.classList.toggle('hidden');
       mobileNav.classList.toggle('hidden');
     });
-    document.querySelectorAll('.header__nav-link').forEach(link => {
+    
+    // Fecha o menu ao clicar em qualquer link
+    document.querySelectorAll('nav[aria-label="Navegação principal mobile"] a').forEach(link => {
       link.addEventListener('click', () => {
-        // mobileMenuBtn.classList.remove('hidden');
-        mobileNav.classList.toggle('hidden');
+        mobileNav.classList.add('hidden');
       });
     });
+    
+    // Fecha o menu ao clicar fora dele
     document.addEventListener('click', e => {
       if (!mobileMenuBtn.contains(e.target) && !mobileNav.contains(e.target)) {
-        // mobileMenuBtn.classList.remove('hidden');
         mobileNav.classList.add('hidden');
       }
     });
   }
 });
 
-// Carrosel dos cards de serviços
+// Carrossel dos cards de serviços
 // ====================================================
 (() => {
   const TOLERANCE = 1; // margem p/ cálculo de extremos
@@ -41,8 +235,22 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateButtons(track, prevBtn, nextBtn) {
     // desabilita quando está no começo/fim
     const maxScroll = track.scrollWidth - track.clientWidth;
-    if (prevBtn) prevBtn.disabled = track.scrollLeft <= TOLERANCE;
-    if (nextBtn) nextBtn.disabled = track.scrollLeft >= maxScroll - TOLERANCE;
+    if (prevBtn) {
+      prevBtn.disabled = track.scrollLeft <= TOLERANCE;
+      if (track.scrollLeft <= TOLERANCE) {
+        prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      } else {
+        prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    }
+    if (nextBtn) {
+      nextBtn.disabled = track.scrollLeft >= maxScroll - TOLERANCE;
+      if (track.scrollLeft >= maxScroll - TOLERANCE) {
+        nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+      } else {
+        nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+      }
+    }
   }
 
   function makeDragHandlers(track) {
@@ -50,7 +258,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const onDown = (clientX) => {
       isDown = true;
-      track.classList.add('grabbing');
+      track.classList.add('cursor-grabbing');
+      track.classList.remove('cursor-grab');
       startX = clientX - track.getBoundingClientRect().left;
       scrollLeft = track.scrollLeft;
     };
@@ -65,7 +274,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const onUp = () => {
       isDown = false;
-      track.classList.remove('grabbing');
+      track.classList.remove('cursor-grabbing');
+      track.classList.add('cursor-grab');
     };
 
     // mouse
@@ -79,10 +289,10 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('touchend', onUp);
   }
 
-  function initCarousel(root) {
-    const track = root.querySelector('.services');
-    const prevBtn = root.querySelector('.services-btn.prev');
-    const nextBtn = root.querySelector('.services-btn.next');
+  function initCarousel(section) {
+    const track = section.querySelector('.services');
+    const prevBtn = section.querySelector('.services-btn-prev');
+    const nextBtn = section.querySelector('.services-btn-next');
     if (!track) return;
 
     const scrollByStep = (dir) => {
@@ -101,7 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.key === 'ArrowRight') { e.preventDefault(); scrollByStep(1); }
     });
 
-    // arrastar/“swipe”
+    // arrastar/"swipe"
     makeDragHandlers(track);
 
     // estado inicial + ao rolar/resize
@@ -112,7 +322,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function initAll() {
-    document.querySelectorAll('.services-carousel').forEach(initCarousel);
+    // Busca pela seção que contém os serviços
+    const serviceSection = document.querySelector('.services')?.closest('section');
+    if (serviceSection) {
+      initCarousel(serviceSection);
+    }
   }
 
   // auto-init quando o DOM estiver pronto
@@ -126,13 +340,13 @@ document.addEventListener('DOMContentLoaded', () => {
   window.RigattiServicesCarouselInit = initAll;
 })();
 
-// Carrosel dos cards do time
+// Carrossel dos cards do time
 // ====================================================
-/* Carrossel infinito de cards — versão para arquivo externo
-   - Suporta múltiplos carrosséis (.team-carousel) na mesma página
-   - O primeiro item que sai vira o último, sem “pulos”
-   - Pausa no hover/toque, respeita prefers-reduced-motion
-   - Ajuste de velocidade por data-speed (px/s)
+/* Carrossel infinito de cards — versão otimizada
+   - Scroll suave e verdadeiramente infinito
+   - Sem resets ou saltos visuais
+   - Pausa no hover/toque
+   - Respeita prefers-reduced-motion
 */
 
 (function () {
@@ -140,113 +354,158 @@ document.addEventListener('DOMContentLoaded', () => {
     const track = root.querySelector('.team-track');
     if (!track) return;
 
-    let SPEED = parseFloat(root.dataset.speed) || 60; // px/s
+    const SPEED = parseFloat(root.dataset.speed) || 50; // px/s
     let paused = false;
+    let offset = 0;
+    let animationId = null;
 
-    // pausa no hover/mouse
-    root.addEventListener('mouseenter', () => (paused = true));
-    root.addEventListener('mouseleave', () => (paused = false));
+    // Guarda os cards originais
+    const originalCards = Array.from(track.children);
+    const originalCount = originalCards.length;
 
-    // pausa em toque
-    root.addEventListener(
-      'touchstart',
-      () => {
-        paused = true;
-      },
-      { passive: true }
-    );
+    // Duplica os cards suficientemente para cobrir a tela + buffer
+    function setupInfiniteScroll() {
+      // Limpa duplicatas existentes
+      while (track.children.length > originalCount) {
+        track.removeChild(track.lastChild);
+      }
+
+      // Calcula quantas cópias precisamos
+      // Precisamos cobrir a largura da tela + 2x a largura de um conjunto
+      const viewportWidth = root.clientWidth;
+      const cardWidth = 206; // largura fixa do card
+      const gap = 12; // gap entre cards
+      const setWidth = (cardWidth + gap) * originalCount;
+      const copiesNeeded = Math.ceil((viewportWidth * 3) / setWidth) + 1;
+
+      // Duplica os conjuntos
+      for (let i = 0; i < copiesNeeded; i++) {
+        originalCards.forEach(card => {
+          const clone = card.cloneNode(true);
+          track.appendChild(clone);
+        });
+      }
+    }
+
+    // Calcula a largura de um conjunto completo
+    function getSetWidth() {
+      const gap = parseFloat(getComputedStyle(track).gap) || 12;
+      const cardWidth = 206; // largura fixa
+      return (cardWidth + gap) * originalCount;
+    }
+
+    // Pausa no hover
+    root.addEventListener('mouseenter', () => {
+      paused = true;
+    });
+    
+    root.addEventListener('mouseleave', () => {
+      paused = false;
+    });
+
+    // Pausa no toque mobile
+    root.addEventListener('touchstart', () => {
+      paused = true;
+    }, { passive: true });
+    
     root.addEventListener('touchend', () => {
       paused = false;
     });
 
-    function getGap() {
-      const s = getComputedStyle(track);
-      return parseFloat(s.gap) || 0;
-    }
-    function itemFullWidth(el) {
-      return el.getBoundingClientRect().width + getGap();
-    }
-
-    // Evita clonar infinitamente: guarda quantos itens eram “originais”
-    const originalCount = track.children.length;
-
-    function totalWidth() {
-      return Array.from(track.children).reduce((acc, el) => acc + itemFullWidth(el), 0);
-    }
-
-    function fillIfNeeded() {
-      const needWidth = root.clientWidth * 2; // dupla cobertura
-      let tot = totalWidth();
-      let i = 0;
-      while (tot < needWidth && i < 200) {
-        const clone = track.children[i % originalCount].cloneNode(true);
-        track.appendChild(clone);
-        tot += itemFullWidth(clone);
-        i++;
-      }
-    }
-
-    // loop
-    let last = performance.now();
-    let offset = 0; // translateX acumulado negativo
-
-    function step(now) {
-      const dt = (now - last) / 1000;
-      last = now;
+    // Animação principal - movimento contínuo sem resets
+    let lastTime = performance.now();
+    
+    function animate(currentTime) {
+      const deltaTime = (currentTime - lastTime) / 1000;
+      lastTime = currentTime;
 
       if (!paused) {
-        offset -= SPEED * dt;
-        track.style.transform = `translateX(${offset}px)`;
-
-        // recicla enquanto o primeiro item saiu totalmente
-        let first = track.firstElementChild;
-        while (first) {
-          const w = itemFullWidth(first);
-          if (Math.abs(offset) >= w) {
-            track.appendChild(first); // primeiro vira o último
-            offset += w; // corrige o translate para evitar salto
-            track.style.transform = `translateX(${offset}px)`;
-            first = track.firstElementChild;
-            continue;
-          }
-          break;
+        // Move continuamente
+        offset -= SPEED * deltaTime;
+        
+        // Calcula a largura de um conjunto
+        const setWidth = getSetWidth();
+        
+        // Quando o offset ultrapassar a largura de um conjunto,
+        // fazemos um reset "invisível" ajustando matematicamente
+        // Isso funciona porque temos múltiplas cópias idênticas
+        while (offset <= -setWidth) {
+          offset += setWidth;
         }
+        
+        // Aplica a transformação
+        track.style.transform = `translateX(${offset}px)`;
       }
 
-      requestAnimationFrame(step);
+      animationId = requestAnimationFrame(animate);
     }
 
-    // resize: reavalia cobertura
-    let resizeRAF;
-    function onResize() {
-      cancelAnimationFrame(resizeRAF);
-      resizeRAF = requestAnimationFrame(() => {
-        fillIfNeeded();
-      });
-    }
-    window.addEventListener('resize', onResize);
-
-    // acessibilidade
-    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    function applyReducedMotion(e) {
-      if (e.matches) {
+    // Verifica preferência de movimento reduzido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    
+    function start() {
+      if (prefersReducedMotion.matches) {
+        // Desabilita animação
+        if (animationId) {
+          cancelAnimationFrame(animationId);
+        }
         track.style.transform = 'none';
-        root.style.overflowX = 'auto';
-        return true;
+        root.classList.add('overflow-x-auto');
+        root.classList.remove('overflow-hidden');
       } else {
-        root.style.overflowX = 'hidden';
-        return false;
+        // Habilita animação
+        root.classList.remove('overflow-x-auto');
+        root.classList.add('overflow-hidden');
+        
+        // Setup inicial
+        setupInfiniteScroll();
+        
+        // Aguarda o DOM atualizar
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            lastTime = performance.now();
+            animationId = requestAnimationFrame(animate);
+          });
+        });
       }
     }
 
-    if (!applyReducedMotion(mq)) {
-      fillIfNeeded();
-      requestAnimationFrame((t) => {
-        last = t;
-        requestAnimationFrame(step);
-      });
+    // Reajusta ao redimensionar
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimeout);
+      resizeTimeout = setTimeout(() => {
+        if (!prefersReducedMotion.matches) {
+          // Para temporariamente
+          if (animationId) {
+            cancelAnimationFrame(animationId);
+          }
+          
+          // Reconfigura
+          setupInfiniteScroll();
+          
+          // Ajusta offset para estar dentro do range válido
+          const setWidth = getSetWidth();
+          while (offset <= -setWidth) {
+            offset += setWidth;
+          }
+          
+          // Reinicia
+          requestAnimationFrame(() => {
+            lastTime = performance.now();
+            animationId = requestAnimationFrame(animate);
+          });
+        }
+      }, 250);
+    });
+
+    // Monitora mudanças na preferência de movimento
+    if (prefersReducedMotion.addEventListener) {
+      prefersReducedMotion.addEventListener('change', start);
     }
-    mq.addEventListener?.('change', applyReducedMotion);
+
+    // Inicializa
+    start();
   }
 
   function init() {
@@ -260,7 +519,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })();
 
-// Carrosel dos antes e depois
+// Carrossel dos antes e depois
 // ==============================
 // Configuração do carrossel
 const images = [
@@ -276,17 +535,16 @@ const images = [
 ];
 
 const track = document.getElementById('resultsTrack');
-const prevBtn = document.querySelector('.results__button--prev');
-const nextBtn = document.querySelector('.results__button--next');
+const prevBtn = document.querySelector('section[class*="bg-pearl"] button[aria-label="Anterior"]');
+const nextBtn = document.querySelector('section[class*="bg-pearl"] button[aria-label="Próximo"]');
 
 let currentIndex = 0;
 let isAnimating = false;
 
-// Classes de tamanho para o padrão de 5 imagens
-const sizeClasses = ['small', 'medium', 'large', 'medium', 'small'];
-
 // Inicializa o carrossel
-function initCarousel() {
+function initResultsCarousel() {
+  if (!track) return;
+  
   // Cria array com imagens duplicadas para efeito infinito
   const extendedImages = [...images, ...images, ...images];
   
@@ -294,66 +552,104 @@ function initCarousel() {
     const imgElement = document.createElement('img');
     imgElement.src = img.src;
     imgElement.alt = img.alt;
-    imgElement.className = 'results__image';
+    imgElement.className = 'shadow-[0_4px_10px_10px_rgba(0,0,0,0.3)] rounded-[10px] object-cover flex-shrink-0 cursor-pointer transition-all duration-1000';
     
     track.appendChild(imgElement);
   });
 
   // Posiciona no conjunto do meio (primeira imagem do meio)
   currentIndex = images.length;
-  updateCarousel(false);
+  updateResultsCarousel(false);
 }
 
 // Atualiza posição e classes do carrossel
-function updateCarousel(animate = true) {
-  const allImages = track.querySelectorAll('.results__image');
+function updateResultsCarousel(animate = true) {
+  const allImages = track.querySelectorAll('img');
   
   if (!animate) {
+    track.classList.remove('duration-1000', 'transition-transform');
     track.style.transition = 'none';
   } else {
+    track.classList.add('duration-1000', 'transition-transform');
     track.style.transition = 'transform 1s ease';
+  }
+
+  // Define os tamanhos base (sem scale)
+  const sizes = {
+    small: { width: 299, height: 373 },
+    medium: { width: 317, height: 396 },
+    large: { width: 351, height: 439 }
+  };
+
+  // Detecta se é mobile
+  const isMobile = window.innerWidth <= 768;
+  if (isMobile) {
+    sizes.small = { width: 200, height: 250 };
+    sizes.medium = { width: 220, height: 275 };
+    sizes.large = { width: 240, height: 300 };
   }
 
   // Primeiro atualiza as classes para calcular os tamanhos corretos
   allImages.forEach((img, index) => {
     const relativePos = index - currentIndex;
-    let sizeClass;
 
+    // Remove todas as classes de tamanho anteriores
+    img.classList.remove(
+      'w-[299px]', 'h-[373px]', 
+      'w-[317px]', 'h-[396px]', 
+      'w-[351px]', 'h-[439px]',
+      'opacity-60', 'opacity-75', 'scale-105',
+      'max-md:w-[200px]', 'max-md:h-[250px]', 
+      'max-md:w-[220px]', 'max-md:h-[275px]', 
+      'max-md:w-[240px]', 'max-md:h-[300px]'
+    );
+
+    // Adiciona as classes apropriadas baseado na posição
     if (relativePos === 0) {
-      sizeClass = 'large';
+      // Imagem central (grande)
+      img.classList.add('w-[351px]', 'h-[439px]', 'scale-105', 'max-md:w-[240px]', 'max-md:h-[300px]');
     } else if (relativePos === -1 || relativePos === 1) {
-      sizeClass = 'medium';
+      // Imagens ao lado (médias)
+      img.classList.add('w-[317px]', 'h-[396px]', 'opacity-75', 'max-md:w-[220px]', 'max-md:h-[275px]');
     } else {
-      sizeClass = 'small';
+      // Imagens nas extremidades (pequenas)
+      img.classList.add('w-[299px]', 'h-[373px]', 'opacity-60', 'max-md:w-[200px]', 'max-md:h-[250px]');
     }
-
-    img.className = `results__image results__image--${sizeClass}`;
   });
 
-  // Aguarda um frame para garantir que os tamanhos foram aplicados
-  requestAnimationFrame(() => {
-    // Calcula o deslocamento centralizado
-    // Queremos centralizar a imagem 'large' na tela
-    const container = document.querySelector('.results__container');
+  // Aguarda para garantir que as classes foram aplicadas
+  setTimeout(() => {
+    // Calcula o deslocamento centralizado usando tamanhos fixos
+    const container = track.parentElement;
     const containerWidth = container.offsetWidth;
     
     let offset = 0;
+    const gap = 20; // gap entre as imagens
     
     // Soma a largura de todas as imagens antes da imagem central
     for (let i = 0; i < currentIndex; i++) {
-      const img = allImages[i];
-      offset += img.offsetWidth + 20; // width + gap
+      const relativePos = i - currentIndex;
+      let imgWidth;
+      
+      if (relativePos === 0) {
+        imgWidth = sizes.large.width;
+      } else if (relativePos === -1 || relativePos === 1) {
+        imgWidth = sizes.medium.width;
+      } else {
+        imgWidth = sizes.small.width;
+      }
+      
+      offset += imgWidth + gap;
     }
     
-    // Adiciona metade da largura da imagem central
-    const centralImage = allImages[currentIndex];
-    offset += Math.ceil(centralImage.offsetWidth / 2);
+    // Adiciona metade da largura da imagem central (sem considerar o scale)
+    offset += sizes.large.width / 2;
     
     // Subtrai metade da largura do container para centralizar
     offset -= containerWidth / 2;
 
     track.style.transform = `translateX(-${offset}px)`;
-  });
+  }, animate ? 0 : 50);
 }
 
 // Navega para o próximo
@@ -362,13 +658,13 @@ function nextSlide() {
   isAnimating = true;
 
   currentIndex++;
-  updateCarousel();
+  updateResultsCarousel();
 
   setTimeout(() => {
     // Se chegou no final do segundo conjunto, volta pro meio sem animação
     if (currentIndex >= images.length * 2) {
       currentIndex = images.length;
-      updateCarousel(false);
+      updateResultsCarousel(false);
     }
     isAnimating = false;
   }, 500);
@@ -380,55 +676,64 @@ function prevSlide() {
   isAnimating = true;
 
   currentIndex--;
-  updateCarousel();
+  updateResultsCarousel();
 
   setTimeout(() => {
     // Se chegou no início do primeiro conjunto, pula pro meio sem animação
     if (currentIndex < images.length) {
       currentIndex = images.length * 2 - 1;
-      updateCarousel(false);
+      updateResultsCarousel(false);
     }
     isAnimating = false;
   }, 500);
 }
 
 // Event listeners
-nextBtn.addEventListener('click', nextSlide);
-prevBtn.addEventListener('click', prevSlide);
+if (nextBtn && prevBtn && track) {
+  nextBtn.addEventListener('click', nextSlide);
+  prevBtn.addEventListener('click', prevSlide);
 
-// Suporte para teclado
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowLeft') prevSlide();
-  if (e.key === 'ArrowRight') nextSlide();
-});
+  // Suporte para teclado
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+  });
 
-// Suporte para touch/swipe em mobile
-let touchStartX = 0;
-let touchEndX = 0;
+  // Suporte para touch/swipe em mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
 
-track.addEventListener('touchstart', (e) => {
-  touchStartX = e.changedTouches[0].screenX;
-});
+  track.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  });
 
-track.addEventListener('touchend', (e) => {
-  touchEndX = e.changedTouches[0].screenX;
-  handleSwipe();
-});
+  track.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    handleSwipe();
+  });
 
-function handleSwipe() {
-  if (touchEndX < touchStartX - 50) nextSlide();
-  if (touchEndX > touchStartX + 50) prevSlide();
+  function handleSwipe() {
+    if (touchEndX < touchStartX - 50) nextSlide();
+    if (touchEndX > touchStartX + 50) prevSlide();
+  }
+
+  // Inicializa ao carregar
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initResultsCarousel);
+  } else {
+    initResultsCarousel();
+  }
+
+  // Recalcula posições ao redimensionar a janela
+  window.addEventListener('resize', () => {
+    if (track.children.length > 0) {
+      updateResultsCarousel(false);
+    }
+  });
 }
 
-// Inicializa ao carregar
-initCarousel();
-
-// Recalcula posições ao redimensionar a janela
-window.addEventListener('resize', () => {
-  updateCarousel(false);
-});
-
-
+// Carregamento dos vídeos do YouTube
+// ===================================
 // URL do arquivo JSON no S3
 const S3_JSON_URL = 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/scripts/videos.json';
 
@@ -442,7 +747,7 @@ async function loadYouTubeVideos() {
     }
 
     const data = await response.json();
-    console.log("data =>", data);
+    console.log("Vídeos carregados do S3:", data);
 
     // Valida se há vídeos no JSON
     if (!data || data.length === 0) {
@@ -450,8 +755,16 @@ async function loadYouTubeVideos() {
       return;
     }
 
-    // Seleciona todos os elementos de imagem da grade
-    const mediaItems = document.querySelectorAll('.media-grid__item');
+    // Seleciona a grade de vídeos
+    const videoGrid = document.querySelector('.grid.grid-cols-2');
+    
+    if (!videoGrid) {
+      console.error('Grade de vídeos não encontrada');
+      return;
+    }
+
+    // Seleciona todas as imagens dentro da grade
+    const mediaItems = videoGrid.querySelectorAll('img');
 
     // Para cada vídeo retornado, atualiza a imagem correspondente
     data.forEach((video, index) => {
@@ -460,26 +773,87 @@ async function loadYouTubeVideos() {
         const videoTitle = video.snippet.title;
         const videoId = video.id.videoId;
         
-        // Atualiza a imagem
-        mediaItems[index].src = thumbnail;
-        mediaItems[index].alt = videoTitle;
-        
-        // Adiciona link para o vídeo
+        // Cria um link para envolver a imagem
         const link = document.createElement('a');
         link.href = `https://www.youtube.com/watch?v=${videoId}`;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
+        link.className = 'block'; // Tailwind class
+        link.title = videoTitle;
+        
+        // Atualiza os atributos da imagem
+        mediaItems[index].src = thumbnail;
+        mediaItems[index].alt = videoTitle;
         
         // Envolve a imagem com o link
-        mediaItems[index].parentNode.insertBefore(link, mediaItems[index]);
+        const parent = mediaItems[index].parentNode;
+        parent.insertBefore(link, mediaItems[index]);
         link.appendChild(mediaItems[index]);
+        
+        console.log(`Vídeo ${index + 1} carregado: ${videoTitle}`);
       }
     });
 
+    console.log(`Total de ${data.length} vídeos carregados com sucesso`);
+
   } catch (error) {
     console.error('Erro ao carregar vídeos do YouTube:', error);
+    // Mantém os placeholders em caso de erro
   }
 }
 
 // Executa quando o DOM estiver pronto
-document.addEventListener('DOMContentLoaded', loadYouTubeVideos);
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', loadYouTubeVideos);
+} else {
+  loadYouTubeVideos();
+}
+
+// Animação suave dos labels dos inputs do formulário
+// ===================================================
+document.addEventListener('DOMContentLoaded', () => {
+  const formGroups = document.querySelectorAll('#contato .relative');
+  
+  formGroups.forEach(group => {
+    const input = group.querySelector('input');
+    const label = group.querySelector('label');
+    
+    if (!input || !label) return;
+    
+    // Função para animar label para cima
+    function floatLabel() {
+      label.classList.remove('top-4', 'left-8', 'text-base', 'opacity-70');
+      label.classList.add('-top-2.5', 'left-7', 'text-[11px]', 'opacity-100', 'bg-pearl', 'px-2');
+    }
+    
+    // Função para voltar label para posição inicial
+    function sinkLabel() {
+      label.classList.remove('-top-2.5', 'left-7', 'text-[11px]', 'opacity-100', 'bg-pearl', 'px-2');
+      label.classList.add('top-4', 'left-8', 'text-base', 'opacity-70');
+    }
+    
+    // Verifica se já tem valor ao carregar a página
+    if (input.value) {
+      floatLabel();
+    }
+    
+    // Ao focar no input
+    input.addEventListener('focus', () => {
+      floatLabel();
+    });
+    
+    // Ao perder o foco
+    input.addEventListener('blur', () => {
+      if (!input.value) {
+        sinkLabel();
+      }
+    });
+    
+    // Ao digitar (para casos de autocomplete)
+    input.addEventListener('input', () => {
+      if (input.value) {
+        floatLabel();
+      }
+    });
+  });
+});
