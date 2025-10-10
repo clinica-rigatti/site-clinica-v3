@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Rigatti - Nossa História</title>
+  <link rel="icon" href="https://clinicarigatti.s3-accelerate.amazonaws.com/imagens_sites/Prancheta+1.png" type="image/x-icon">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#C1B490',
+            pearl: '#EEECEA',
+            coffee: '#45372C',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+          letterSpacing: {
+            'widest-xl': '0.3125rem',
+            'widest-2xl': '0.625rem',
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    html, body {
+      overflow-x: hidden;
+    }
+    
+    /* Animação do menu */
+    .menu-overlay {
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+    
+    .menu-content {
+      transition: transform 0.3s ease;
+    }
+    
+    .menu-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .menu-overlay.hidden .menu-content {
+      transform: translateX(100%);
+    }
+  </style>
+  <script src="scripts/menuController.js" defer></script>
+  <script src="scripts/teamCarouselController.js" defer></script>
+</head>
+<body class="bg-pearl overflow-x-hidden">
+  <!-- Header -->
+  <header class="relative bg-pearl py-8 px-3 z-30">
+    <div class="container mx-auto px-4 flex justify-between lg:justify-center items-center relative border-b-2 border-black pb-8">
+      <a href="index.html">
+        <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-preta.png" alt="Clínica Rigatti Logo" class="h-12">
+      </a>
+      
+      <!-- Menu Hamburger Button -->
+      <button id="menuToggle" class="flex flex-col gap-1.5 w-9 hover:opacity-70 transition z-50 lg:absolute lg:right-5">
+        <span id="line1" class="w-full h-1 bg-black rounded-full transition-transform duration-300"></span>
+        <span id="line2" class="w-full h-1 bg-black rounded-full transition-opacity duration-300"></span>
+        <span id="line3" class="w-full h-1 bg-black rounded-full transition-transform duration-300"></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Menu Overlay -->
+  <div id="menuOverlay" class="menu-overlay hidden fixed inset-0 bg-black/50 z-40">
+    <div class="menu-content fixed right-0 top-0 h-full w-full max-w-md bg-white shadow-2xl">
+      <!-- Menu Content -->
+      <div class="flex flex-col h-full">
+        <!-- Header do Menu -->
+        <div class="flex justify-between items-center p-8 bg-pearl border-b border-gray-400">
+          <button id="menuClose" class="text-gray-600 hover:text-black transition">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="bg-pearl flex-1 overflow-y-auto p-8">
+          <ul class="space-y-2">
+            <li>
+              <a href="index.html" class="block py-4 px-4 text-[#282828] text-lg font-light hover:bg-[#F6F6F6] hover:text-black hover:font-normal rounded-lg transition-all">
+                Home
+              </a>
+            </li>
+            <li>
+              <a href="reposicao-hormonal.html" class="block py-4 px-4 text-[#282828] text-lg font-light hover:bg-[#F6F6F6] hover:text-black hover:font-normal rounded-lg transition-all">
+                Reposição Hormonal
+              </a>
+            </li>
+            <li>
+              <a href="soroterapia.html" class="block py-4 px-4 text-[#282828] text-lg font-light hover:bg-[#F6F6F6] hover:text-black hover:font-normal rounded-lg transition-all">
+                Soroterapia
+              </a>
+            </li>
+            <li>
+              <a href="nutricao.html" class="block py-4 px-4 text-[#282828] text-lg font-light hover:bg-[#F6F6F6] hover:text-black hover:font-normal rounded-lg transition-all">
+                Nutrição
+              </a>
+            </li>
+            <li>
+              <a href="emagrecimento.html" class="block py-4 px-4 text-[#282828] text-lg font-light hover:bg-[#F6F6F6] hover:text-black hover:font-normal rounded-lg transition-all">
+                Emagrecimento
+              </a>
+            </li>
+            <li>
+              <a href="saude-feminina.html" class="block py-4 px-4 text-[#282828] text-lg font-light hover:bg-[#F6F6F6] hover:text-black hover:font-normal rounded-lg transition-all">
+                Saúde Feminina
+              </a>
+            </li>
+            <li>
+              <a href="modulacao-hormonal.html" class="block py-4 px-4 text-[#282828] text-lg font-light hover:bg-[#F6F6F6] hover:text-black hover:font-normal rounded-lg transition-all">
+                Modulação Hormonal
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="relative h-[344px] w-full mb-16">
+    <div class="absolute inset-0 bg-gradient-to-b from-black/60 to-black/60">
+      <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/frente-clinica.jpg" alt="Hero Image" class="w-full h-full object-cover mix-blend-overlay">
+    </div>
+  </section>
+
+  <!-- História Section -->
+  <section class="container mx-auto px-4 max-w-5xl mb-16">
+    <p class="text-black text-lg font-light leading-relaxed">
+      Fundada em 2018 pelo Dr. Rigatti, a Clínica Rigatti® nasceu com um propósito claro: transformar vidas por meio do equilíbrio entre corpo, mente e emoções. Desde o início, a proposta sempre foi ir além da estética, oferecendo uma abordagem completa e personalizada em emagrecimento, equilíbrio hormonal e bem-estar.
+      <br><br>
+      Com um olhar atento para a individualidade de cada paciente, a clínica rapidamente se destacou por unir ciência, acolhimento e sofisticação em uma experiência única. Na Rigatti®, o cuidado vai muito além do consultório: é sobre despertar a força real que existe dentro de cada pessoa.
+    </p>
+  </section>
+
+  <!-- Dr. Rigatti Section -->
+  <section class="container mx-auto px-4 mb-10">
+    <div class="flex flex-col lg:flex-row gap-12 items-center max-w-6xl mx-auto">
+      <!-- Imagem -->
+      <div class="flex-shrink-0">
+        <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/dr-rigatti.png" alt="Dr. Luiz Henrique Rigatti" class="w-full max-w-[473px] h-auto">
+      </div>
+      
+      <!-- Conteúdo -->
+      <div class="flex-1 relative">
+        <h2 class="text-black text-[32px] text-center font-semibold leading-tight mb-6">
+          DR. LUIZ HENRIQUE RIGATTI
+        </h2>
+        <p class="text-black text-[17px] text-center font-light leading-[34px] mb-4">
+          Médico, palestrante e criador do Método Médico Rigatti, referência em medicina integrativa, longevidade e alta performance.
+        </p>
+        <ul class="text-black text-[17px] text-center font-light leading-[34px] space-y-1">
+          <li>Mais de 10 anos transformando vidas no Brasil</li>
+          <li>Protocolos inspirados em referências internacionais como Dr. Thierry Hertoghe</li>
+          <li>Uso de IA para diagnósticos e ajustes milimétricos</li>
+          <li>Tratamentos personalizados para pacientes exigentes que buscam resultados reais</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="py-10 text-center bg-pearl text-black" id="equipe">
+    <div class="max-w-[919px] px-5 mx-auto mb-8">
+      <h3 class="text-xl font-extrabold tracking-widest-xl uppercase mb-8 text-black"><strong>NOSSA</strong> EQUIPE</h3>
+      <p class="text-lg font-light leading-relaxed text-black">Nosso time é formado por médicos, nutricionistas e profissionais que atuam com formação técnica, atualização científica constante e sensibilidade humana. Aqui, ciência e empatia caminham juntas.</p>
+    </div>
+
+    <div class="team-carousel overflow-hidden" data-speed="50" id="teamCarousel" aria-label="Carrossel de membros da equipe">
+      <div class="team-track flex gap-3">
+      <!-- Os cards serão criados dinamicamente pelo JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="relative bg-black">
+    <!-- Overlay para escurecer a imagem de fundo -->
+    <div class="absolute inset-0 bg-[url('https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/grade-branca.png')] bg-cover bg-center text-white opacity-10"></div>
+
+    <!-- Conteúdo do footer -->
+    <div class="relative py-20 px-40 flex flex-col justify-center items-center max-lg:px-10">
+      <div class="flex gap-[100px] mb-16 max-lg:flex-col max-lg:gap-10 max-lg:justify-center max-lg:items-center max-lg:text-center">
+        <div class="flex-shrink-0">
+          <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-redonda.png" alt="Logo" class="w-[121px] h-[124px]">
+        </div>
+        
+        <div class="flex-shrink-0">
+          <ul class="list-none">
+            <li class="mb-5"><a href="clinica.html" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">A CLÍNICA</a></li>
+            <li class="mb-5"><a href="index.html#servicos" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">TRATAMENTOS</a></li>
+            <li class="mb-5"><a href="index.html#equipe" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">NOSSA EQUIPE</a></li>
+            <li class="mb-5"><a href="index.html#blog" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">BLOG</a></li>
+          </ul>
+        </div>
+        
+        <div class="flex-1">
+          <p class="text-pearl mb-5 leading-normal">
+            <i class="fa-solid fa-pager"></i>
+            <a href="https://nacional.metodorigatti.com.br" target="_blank" rel="external" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity ml-2">nacional.metodorigatti.com.br</a>
+          </p>
+          <p class="text-pearl mb-5 leading-normal">
+            <i class="fa-brands fa-whatsapp"></i>
+            <a href="https://wa.me/554731701206?text=Olá!+Tenho+interesse+e+queria+mais+informações,+por+favor." class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity ml-2">(47) 3170 - 1206</a>
+          </p>
+          <p class="text-pearl mb-5 leading-normal">
+            <i class="fa-solid fa-location-dot"></i>
+            <span class="ml-2">R. 2950, 117 - Centro, Balneário Camboriú - SC</span>
+          </p>
+      
+          <div class="flex gap-8 mt-10 max-lg:justify-center">
+            <a class="text-pearl" href="https://www.instagram.com/rigattibr" target="_blank" rel="external" aria-label="Instagram">
+              <i class="fa-brands fa-instagram w-full h-full cursor-pointer hover:opacity-70 transition-opacity text-[25px]"></i>
+            </a>
+            <a class="text-pearl" href="https://www.youtube.com/@clinicarigatti" target="_blank" rel="external" aria-label="YouTube">
+              <i class="fa-brands fa-youtube w-full h-full cursor-pointer hover:opacity-70 transition-opacity text-[25px]"></i>
+            </a>
+            <a class="text-pearl" href="https://www.linkedin.com/in/dr-luiz-henrique-rigatti/" target="_blank" rel="external" aria-label="LinkedIn">
+              <i class="fa-brands fa-linkedin w-full h-full cursor-pointer hover:opacity-70 transition-opacity text-[25px]"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="w-full border-t border-white pt-8 flex justify-center items-center">
+        <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca-pequena.png" alt="Copyright">
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

@@ -786,6 +786,7 @@ async function loadYouTubeVideos() {
         const thumbnail = video.snippet.thumbnails.high.url;
         const videoTitle = video.snippet.title;
         const videoId = video.id.videoId;
+        console.log("videoId =>", videoId);
         
         // Cria um link para envolver a imagem
         const link = document.createElement('a');
@@ -870,4 +871,136 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+});
+
+// menu.js - Script de controle do menu hambúrguer
+// Aguarda o carregamento completo do DOM antes de executar
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Seleção de elementos
+    const menuToggle = document.getElementById('menuToggle');
+    const menuToggleDesktop = document.getElementById('menuToggleDesktop');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuClose = document.getElementById('menuClose');
+    const line1 = document.getElementById('line1');
+    const line2 = document.getElementById('line2');
+    const line3 = document.getElementById('line3');
+    const line1Desktop = document.getElementById('line1Desktop');
+    const line2Desktop = document.getElementById('line2Desktop');
+    const line3Desktop = document.getElementById('line3Desktop');
+    
+    let isMenuOpen = false;
+
+    /**
+     * Alterna o estado do menu (aberto/fechado)
+     */
+    function toggleMenu() {
+        isMenuOpen = !isMenuOpen;
+        
+        if (isMenuOpen) {
+            openMenu();
+        } else {
+            closeMenu();
+        }
+    }
+
+    /**
+     * Abre o menu e anima o hambúrguer para X
+     */
+    function openMenu() {
+        if (!menuOverlay) return;
+        
+        menuOverlay.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        
+        // Anima hambúrguer para X (mobile)
+        // animateHamburgerToX(line1, line2, line3);
+        
+        // Anima hambúrguer para X (desktop)
+        // animateHamburgerToX(line1Desktop, line2Desktop, line3Desktop);
+    }
+
+    /**
+     * Fecha o menu e restaura o hambúrguer
+     */
+    function closeMenu() {
+        if (!menuOverlay) return;
+        
+        menuOverlay.classList.add('hidden');
+        document.body.style.overflow = '';
+        
+        // Volta hambúrguer ao normal (mobile)
+        // resetHamburger(line1, line2, line3);
+        
+        // Volta hambúrguer ao normal (desktop)
+        // resetHamburger(line1Desktop, line2Desktop, line3Desktop);
+    }
+
+    // /**
+    //  * Anima as linhas do hambúrguer para formar um X
+    //  * @param {HTMLElement} line1 - Primeira linha
+    //  * @param {HTMLElement} line2 - Segunda linha
+    //  * @param {HTMLElement} line3 - Terceira linha
+    //  */
+    // function animateHamburgerToX(line1, line2, line3) {
+    //     if (line1 && line2 && line3) {
+    //         line1.style.transform = 'rotate(45deg) translateY(10px)';
+    //         line2.style.opacity = '0';
+    //         line3.style.transform = 'rotate(-45deg) translateY(-10px)';
+    //     }
+    // }
+
+    // /**
+    //  * Restaura as linhas do hambúrguer ao estado original
+    //  * @param {HTMLElement} line1 - Primeira linha
+    //  * @param {HTMLElement} line2 - Segunda linha
+    //  * @param {HTMLElement} line3 - Terceira linha
+    //  */
+    // function resetHamburger(line1, line2, line3) {
+    //     if (line1 && line2 && line3) {
+    //         line1.style.transform = '';
+    //         line2.style.opacity = '1';
+    //         line3.style.transform = '';
+    //     }
+    // }
+
+    // Event Listeners
+    
+    // Botão hambúrguer mobile
+    if (menuToggle) {
+        menuToggle.addEventListener('click', toggleMenu);
+    }
+    
+    // Botão hambúrguer desktop
+    if (menuToggleDesktop) {
+        menuToggleDesktop.addEventListener('click', toggleMenu);
+    }
+    
+    // Botão fechar do menu
+    if (menuClose) {
+        menuClose.addEventListener('click', toggleMenu);
+    }
+    
+    // Fecha menu ao clicar no overlay (fundo escuro)
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', (e) => {
+            if (e.target === menuOverlay) {
+                toggleMenu();
+            }
+        });
+
+        // Fecha menu ao clicar em qualquer link do menu
+        const menuLinks = menuOverlay.querySelectorAll('nav a');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', toggleMenu);
+        });
+    }
+
+    // Fecha menu ao pressionar ESC
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && isMenuOpen) {
+            toggleMenu();
+        }
+    });
+
 });
