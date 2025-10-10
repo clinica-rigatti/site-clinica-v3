@@ -1,133 +1,138 @@
 <!DOCTYPE html>
 <html lang="pt-BR" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clínica Rigatti - Método</title>
-    <link rel="icon" href="https://clinicarigatti.s3-accelerate.amazonaws.com/imagens_sites/Prancheta+1.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        sand: '#C1B490',
-                        pearl: '#EEECEA',
-                        coffee: '#45372C',
-                    },
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif'],
-                    },
-                    letterSpacing: {
-                        'widest-xl': '0.3125rem',
-                        'widest-2xl': '0.625rem',
-                    }
-                }
-            }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clínica Rigatti - Método</title>
+  <link rel="icon" href="https://clinicarigatti.s3-accelerate.amazonaws.com/imagens_sites/Prancheta+1.png" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#C1B490',
+            pearl: '#EEECEA',
+            coffee: '#45372C',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+          letterSpacing: {
+            'widest-xl': '0.3125rem',
+            'widest-2xl': '0.625rem',
+          }
         }
-    </script>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-        }
-        
-        /* Carrossel da equipe com CSS Animation */
-        .team-carousel {
-            --gap: 12px;
-            --card-w: 206px;
-            --card-h: 243px;
-            --fade: 32px;
-            position: relative;
-            overflow: hidden;
-            padding-inline: 24px;
-            -webkit-mask-image: linear-gradient(to right, transparent 0, black var(--fade), black calc(100% - var(--fade)), transparent 100%);
-            mask-image: linear-gradient(to right, transparent 0, black var(--fade), black calc(100% - var(--fade)), transparent 100%);
-        }
-        
-        .team-track {
-            display: flex;
-            align-items: stretch;
-            gap: var(--gap);
-            will-change: transform;
-            animation: team-scroll 60s linear infinite;
-        }
-        
-        .team-carousel:hover .team-track {
-            animation-play-state: paused;
-        }
-        
-        @keyframes team-scroll {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(calc(-1 * ((var(--card-w) * 18) + (var(--gap) * 18))));
-            }
-        }
-        
-        .team-member-card {
-            position: relative;
-            width: var(--card-w);
-            flex: 0 0 var(--card-w);
-            border-radius: 8px;
-            overflow: hidden;
-            background: #111;
-        }
-        
-        @media (max-width: 1024px) {
-            .team-carousel { --card-w: 180px; --card-h: 220px; }
-        }
-        @media (max-width: 768px) {
-            .team-carousel { --card-w: 160px; --card-h: 200px; }
-        }
-        @media (max-width: 480px) {
-            .team-carousel { --card-w: 140px; --card-h: 180px; --fade: 20px; }
-        }
-        
-        @media (prefers-reduced-motion: reduce) {
-            .team-carousel { -webkit-mask-image: none; mask-image: none; }
-            .team-track { animation: none; }
-        }
-        
-        /* Service card overlay */
-        .service-card {
-            --peek: 25%;
-        }
-        
-        .service-card__overlay {
-            transform: translateY(calc(100% - var(--peek)));
-            transition: transform 0.5s ease;
-            will-change: transform;
-        }
-        
-        .service-card:hover .service-card__overlay {
-            transform: translateY(0);
-        }
-        
-        .service-card__text {
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: opacity .3s ease .12s, max-height .3s ease .12s;
-        }
-        
-        .service-card:hover .service-card__text {
-            opacity: 1;
-            max-height: 500px;
-        }
-        
-        /* Scrollbar hide */
-        .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
-    <script src="scripts.js" defer></script>
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+    
+    /* Carrossel da equipe com CSS Animation */
+    .team-carousel {
+      --gap: 12px;
+      --card-w: 206px;
+      --card-h: 243px;
+      --fade: 32px;
+      position: relative;
+      overflow: hidden;
+      padding-inline: 24px;
+      -webkit-mask-image: linear-gradient(to right, transparent 0, black var(--fade), black calc(100% - var(--fade)), transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0, black var(--fade), black calc(100% - var(--fade)), transparent 100%);
+    }
+    
+    .team-track {
+      display: flex;
+      align-items: stretch;
+      gap: var(--gap);
+      will-change: transform;
+      animation: team-scroll 60s linear infinite;
+    }
+    
+    .team-carousel:hover .team-track {
+      animation-play-state: paused;
+    }
+    
+    @keyframes team-scroll {
+      from {
+        transform: translateX(0);
+      }
+      to {
+        transform: translateX(calc(-1 * ((var(--card-w) * 18) + (var(--gap) * 18))));
+      }
+    }
+    
+    .team-member-card {
+      position: relative;
+      width: var(--card-w);
+      flex: 0 0 var(--card-w);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #111;
+    }
+    
+    @media (max-width: 1024px) {
+      .team-carousel { --card-w: 180px; --card-h: 220px; }
+    }
+    @media (max-width: 768px) {
+      .team-carousel { --card-w: 160px; --card-h: 200px; }
+    }
+    @media (max-width: 480px) {
+      .team-carousel { --card-w: 140px; --card-h: 180px; --fade: 20px; }
+    }
+    
+    @media (prefers-reduced-motion: reduce) {
+      .team-carousel { -webkit-mask-image: none; mask-image: none; }
+      .team-track { animation: none; }
+    }
+    
+    /* Service card overlay */
+    .service-card {
+      --peek: 25%;
+    }
+    
+    .service-card__overlay {
+      transform: translateY(calc(100% - var(--peek)));
+      transition: transform 0.5s ease;
+      will-change: transform;
+    }
+    
+    .service-card:hover .service-card__overlay {
+      transform: translateY(0);
+    }
+    
+    .service-card__text {
+      opacity: 0;
+      max-height: 0;
+      overflow: hidden;
+      transition: opacity .3s ease .12s, max-height .3s ease .12s;
+    }
+    
+    .service-card:hover .service-card__text {
+      opacity: 1;
+      max-height: 500px;
+    }
+    
+    /* Scrollbar hide */
+    .hide-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .hide-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+  <script src="scripts/teamCarouselController.js" defer></script>
+  <script src="scripts/menuController.js" defer></script>
+  <script src="scripts/servicesCarouselController.js" defer></script>
+  <script src="scripts/beforeAndAfterCarouselController.js" defer></script>
+  <script src="scripts/youtubeVideosController.js" defer></script>
+  <script src="scripts/input.js" defer></script>
 </head>
 <body class="bg-black text-white">
   <div class="w-full mx-auto relative overflow-hidden">
