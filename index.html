@@ -133,6 +133,7 @@
   <script src="scripts/beforeAndAfterCarouselController.js" defer></script>
   <script src="scripts/youtubeVideosController.js" defer></script>
   <script src="scripts/input.js" defer></script>
+  <script src="scripts/formHandler.js" defer></script>
 </head>
 <body class="bg-black text-white">
   <div class="w-full mx-auto relative overflow-hidden">
@@ -195,7 +196,7 @@
         <h2 class="text-2xl font-light tracking-[1.375rem] mb-5 max-md:text-lg max-md:tracking-[0.625rem] max-md:mb-2.5">MÉTODO</h2>
         <img class="my-5 max-md:my-2.5 max-md:mx-auto" src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca.png" alt="Logo branca Clinica Rigatti">
         <p class="text-lg font-light leading-6 mb-6 max-md:text-base">Uma abordagem centrada no cuidado silencioso, na ciência e na escuta profunda de cada paciente.</p>
-        <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</a>
+        <a href="#contato" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</a>
       </div>
       
       <div class="absolute bottom-36 left-1/2 -translate-x-1/2 text-sm font-extrabold tracking-widest-2xl max-md:relative max-md:bottom-auto max-md:left-auto max-md:translate-x-0 max-md:mt-10 max-md:text-[10px]">SUTIL-PRECISA-PERSONALIZADA</div>
@@ -299,7 +300,7 @@
         <p class="text-lg font-light text-black leading-relaxed mb-8 max-xl:mb-4 max-lg:mb-6">Na Clínica Rigatti, unimos ciência avançada, acolhimento e luxo para guiar você rumo à melhor versão de si mesmo.</p>
         <p class="text-lg font-light text-black leading-relaxed mb-8 max-xl:mb-4 max-lg:mb-6">Desde 2018, já ajudamos milhares de pessoas a conquistarem saúde e confiança por meio de tratamentos personalizados.</p>
         <p class="text-lg font-light text-black leading-relaxed mb-8 max-xl:mb-4 max-lg:mb-6">Uma abordagem centrada no cuidado silencioso, na ciência e na escuta profunda de cada paciente.</p>
-        <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-lg:mx-auto max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
+        <a href="clinica.html" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-lg:mx-auto max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
       </div>
     </section>
 
@@ -322,7 +323,7 @@
       <div class="w-[30%] max-w-[505px] p-5 flex flex-col max-lg:w-full">
         <h3 class="text-lg font-extrabold uppercase leading-6 text-black mb-5">Explore nosso blog e transforme<br>informação em bem-estar.</h3>
         <p class="text-lg font-light text-black leading-relaxed mb-8">Aqui você encontra conteúdos exclusivos sobre saúde hormonal, emagrecimento, performance, qualidade de vida e os bastidores da nossa abordagem personalizada. Criado para quem busca mais conhecimento, clareza e autonomia na própria jornada de transformação, o blog é o espaço onde ciência, cuidado e experiência se encontram. Inspire-se, aprenda e dê o próximo passo com confiança.</p>
-        <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
+        <a href="https://blog.clinicarigatti.com.br/" target="_blank" rel="external" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
       </div>
       <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/blog.png" alt="Blog" class="w-[70%] max-w-[900px] object-cover flex-shrink-0 max-lg:w-full max-lg:max-w-[600px] max-lg:h-auto">
     </section>
@@ -348,7 +349,7 @@
     <section class="bg-pearl py-10 pb-20 text-center">
       <h2 class="text-2xl font-black tracking-widest-xl text-black mb-2.5">AGENDE SUA CONSULTA</h2>
       <p class="text-base font-light uppercase tracking-wide text-black mb-8">Desperte sua força real.</p>
-      <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</a>
+      <a href="#contato" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</a>
     </section>
 
     <!-- YouTube Section -->
@@ -366,39 +367,43 @@
         <div class="w-[30%] max-w-[505px] p-5 flex flex-col max-xl:w-full max-xl:max-w-3xl max-xl:text-center">
           <h3 class="text-lg font-extrabold uppercase leading-6 text-black mb-5">No YouTube, compartilhamos tudo o que você precisa saber para transformar sua saúde e seu corpo com consciência.</h3>
           <p class="text-lg font-light text-black leading-relaxed mb-8">Falamos sobre hormônios, emagrecimento, qualidade de vida e respondemos dúvidas reais de quem está nessa jornada. É conteúdo direto, sem enrolação, para te ajudar a despertar sua melhor versão.</p>
-          <a href="#" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
+          <a href="https://www.youtube.com/@clinicarigatti" target="_blank" rel="external" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 text-center max-md:text-base max-md:py-4 max-md:px-8">SAIBA MAIS</a>
         </div>
       </div>
     </section>
 
     <!-- Contact Form Section -->
-    <section class="bg-[url('https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/mapa-clinica.png')] bg-center bg-cover py-[100px] flex justify-center" id="contato">
-      <form class="bg-white/70 backdrop-blur-[10px] border border-white rounded-[22px] p-16 w-[711px] max-md:w-11/12 max-md:p-10">
-        <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-preta.png" alt="Logo" class="w-[239px] mb-8">
-        
-        <div class="mb-6 relative">
-          <input type="email" placeholder=" " class="peer w-full py-5 px-8 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
-          <label class="absolute left-8 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-7 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-7 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Endereço de email</label>
-        </div>
-        
-        <div class="mb-6 relative">
-          <input type="text" placeholder=" " class="peer w-full py-5 px-8 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
-          <label class="absolute left-8 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-7 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-7 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Nome completo</label>
-        </div>
-        
-        <div class="mb-6 relative">
-          <input type="text" placeholder=" " class="peer w-full py-5 px-8 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
-          <label class="absolute left-8 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-7 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-7 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Número de telefone</label>
-        </div>
-        
-        <div class="mb-6 relative">
-          <input type="text" placeholder=" " class="peer w-full py-5 px-8 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
-          <label class="absolute left-8 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-7 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-7 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Cidade</label>
-        </div>
-        
-        <button type="submit" class="w-full py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 border-0 cursor-pointer text-center max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</button>
-      </form>
-    </section>
+  <section class="bg-[url('https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/mapa-clinica.png')] bg-center bg-cover py-[100px] flex justify-center" id="contato">
+    <form id="contactForm" class="bg-white/70 backdrop-blur-[10px] border border-white rounded-[22px] p-16 w-[711px] max-md:w-11/12 max-md:p-10">
+      <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-preta.png" alt="Logo" class="w-[239px] mb-8">
+      
+      <div class="mb-6 relative">
+        <i class="fas fa-envelope text-coffee text-base absolute left-4 top-3.5 pointer-events-none"></i>
+        <input type="email" placeholder=" " id="emailInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
+        <label class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Endereço de email</label>
+      </div>
+      
+      <div class="mb-6 relative">
+        <i class="fas fa-user text-coffee text-base absolute left-4 top-3.5 pointer-events-none"></i>
+        <input type="text" placeholder=" " id="nameInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
+        <label class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Nome completo</label>
+      </div>
+      
+      <div class="mb-6 relative">
+        <i class="fas fa-phone text-coffee text-base absolute left-4 top-3.5 pointer-events-none"></i>
+        <input type="text" placeholder=" " id="phoneInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
+        <label class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Número de telefone</label>
+      </div>
+      
+      <div class="mb-6 relative">
+        <i class="fas fa-map-marker-alt text-coffee text-base absolute left-4 top-3.5 pointer-events-none"></i>
+        <input type="text" placeholder=" " id="cityInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
+        <label class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Cidade</label>
+      </div>
+      
+      <button type="submit" id="submitButton" class="w-full py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 border-0 cursor-pointer text-center max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</button>
+    </form>
+  </section>
 
     <!-- Footer -->
     <footer class="relative bg-black">

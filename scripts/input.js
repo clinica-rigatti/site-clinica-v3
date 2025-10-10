@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     function sinkLabel() {
       label.classList.remove('-top-2.5', 'left-7', 'text-[11px]', 'opacity-100', 'bg-pearl', 'px-2');
-      label.classList.add('top-4', 'left-8', 'text-base', 'opacity-70');
+      label.classList.add('top-4', 'left-12', 'text-base', 'opacity-70');
     }
 
     if (input.value) {

@@ -98,7 +98,7 @@
         
         const percentComplete = (position / setWidth) * 100;
         if (percentComplete > 95) {
-          console.log(`${percentComplete.toFixed(1)}% completo - position: ${position.toFixed(2)}, setWidth: ${setWidth}`);
+          // console.log(`${percentComplete.toFixed(1)}% completo - position: ${position.toFixed(2)}, setWidth: ${setWidth}`);
         }
         
         if (position >= setWidth) {
