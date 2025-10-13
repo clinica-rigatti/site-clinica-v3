@@ -75,12 +75,38 @@
       overflow: hidden;
       transition: opacity .3s ease .12s, max-height .3s ease .12s;
     }
-    
+
     .service-card:hover .service-card__text {
       opacity: 1;
       max-height: 500px;
     }
-    
+
+    /* Scroll no conteúdo do texto em telas menores */
+    .service-card__content {
+      overflow-y: auto;
+      overflow-x: hidden;
+      max-height: 100%;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(193, 180, 144, 0.5) transparent;
+    }
+
+    .service-card__content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .service-card__content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .service-card__content::-webkit-scrollbar-thumb {
+      background-color: rgba(193, 180, 144, 0.5);
+      border-radius: 10px;
+    }
+
+    .service-card__content::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(193, 180, 144, 0.8);
+    }
+
     /* Scrollbar hide */
     .hide-scrollbar::-webkit-scrollbar {
       display: none;
@@ -248,11 +274,11 @@
       <a href="reposicao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
         <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/reposicao-hormonal.png" alt="Reposição hormonal" class="w-full h-full object-cover">
         <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
-          <div class="w-full h-1/4 flex items-center justify-center">
+          <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
             <h4 class="m-0 text-[15px] font-light uppercase text-white">Reposição hormonal</h4>
           </div>
-          <div class="w-full h-3/4 flex items-center justify-center">
-            <p class="service-card__text text-sm font-light text-white leading-relaxed">Reposição hormonal é devolver ao corpo o que o tempo levou: energia, foco, libido e bem-estar. Com ciência, personalização e segurança, ela reequilibra sistemas, reduz sintomas e resgata vitalidade. Você no controle do próprio ritmo, vivendo mais leve, produtivo e confiante. Com acompanhamento médico próximo.</p>
+          <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+            <p class="service-card__text text-sm font-light text-white leading-relaxed px-2">Reposição hormonal é devolver ao corpo o que o tempo levou: energia, foco, libido e bem-estar. Com ciência, personalização e segurança, ela reequilibra sistemas, reduz sintomas e resgata vitalidade. Você no controle do próprio ritmo, vivendo mais leve, produtivo e confiante. Com acompanhamento médico próximo.</p>
           </div>
         </div>
       </a>
@@ -260,11 +286,11 @@
       <a href="soroterapia.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
         <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/soroterapia.png" alt="Soroterapia" class="w-full h-full object-cover">
         <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
-          <div class="w-full h-1/4 flex items-center justify-center">
+          <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
             <h4 class="m-0 text-[15px] font-light uppercase text-white">Soroterapia</h4>
           </div>
-          <div class="w-full h-3/4 flex items-center justify-center">
-            <p class="service-card__text text-sm font-light text-white leading-relaxed">Soroterapia é nutrição direta na veia, com blends personalizados de vitaminas, minerais e aminoácidos que aceleram recuperação, energia e imunidade. Protocolo seguro, feito por equipe médica, para hidratar, reequilibrar e regenerar. Resultado: corpo mais disposto, mente clara e bem-estar duradouro.</p>
+          <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+            <p class="service-card__text text-sm font-light text-white leading-relaxed px-2">Soroterapia é nutrição direta na veia, com blends personalizados de vitaminas, minerais e aminoácidos que aceleram recuperação, energia e imunidade. Protocolo seguro, feito por equipe médica, para hidratar, reequilibrar e regenerar. Resultado: corpo mais disposto, mente clara e bem-estar duradouro.</p>
           </div>
         </div>
       </a>
@@ -272,11 +298,11 @@
       <a href="nutricao.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
         <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/nutricao-clinica-e-estetica.png" alt="Nutrição" class="w-full h-full object-cover">
         <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
-          <div class="w-full h-1/4 flex items-center justify-center">
+          <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
             <h4 class="m-0 text-[15px] font-light uppercase text-white">Nutrição Clínica<br>e Estética</h4>
           </div>
-          <div class="w-full h-3/4 flex items-center justify-center">
-            <p class="service-card__text text-sm font-light text-white leading-relaxed">Cuidar da saúde metabólica e da composição corporal vai além da estética: trata-se de investir em equilíbrio, longevidade e autoconfiança. Nossos planos nutricionais são desenvolvidos de forma individualizada, considerando objetivos específicos, rotina e estilo de vida, sempre com acompanhamento próximo e embasado em ciência.</p>
+          <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+            <p class="service-card__text text-sm font-light text-white leading-relaxed px-2">Cuidar da saúde metabólica e da composição corporal vai além da estética: trata-se de investir em equilíbrio, longevidade e autoconfiança. Nossos planos nutricionais são desenvolvidos de forma individualizada, considerando objetivos específicos, rotina e estilo de vida, sempre com acompanhamento próximo e embasado em ciência.</p>
           </div>
         </div>
       </a>
@@ -284,11 +310,11 @@
       <a href="emagrecimento.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
         <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/emagrecimento-com-acompanhamento.png" alt="Emagrecimento" class="w-full h-full object-cover">
         <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
-          <div class="w-full h-1/4 flex items-center justify-center">
+          <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
             <h4 class="m-0 text-[15px] font-light uppercase text-white">Emagrecimento com Acompanhamento Médico</h4>
           </div>
-          <div class="w-full h-3/4 flex items-center justify-center">
-            <p class="service-card__text text-sm font-light text-white leading-relaxed">Na Rigatti®, emagrecer com acompanhamento médico é trocar tentativas por estratégia. Avaliamos hormônios, hábitos e metabolismo para criar um plano seguro e eficaz, com ajustes contínuos, monitoramento e suporte real. Resultado: perda de peso sustentável, menos fome, mais energia — ciência e cuidado.</p>
+          <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+            <p class="service-card__text text-sm font-light text-white leading-relaxed px-2">Na Rigatti®, emagrecer com acompanhamento médico é trocar tentativas por estratégia. Avaliamos hormônios, hábitos e metabolismo para criar um plano seguro e eficaz, com ajustes contínuos, monitoramento e suporte real. Resultado: perda de peso sustentável, menos fome, mais energia — ciência e cuidado.</p>
           </div>
         </div>
       </a>
@@ -296,11 +322,11 @@
       <a href="saude-feminina.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
         <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/saude-feminina-e-longevidade.png" alt="Saúde Feminina" class="w-full h-full object-cover">
         <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
-          <div class="w-full h-1/4 flex items-center justify-center">
+          <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
             <h4 class="m-0 text-[15px] font-light uppercase text-white">Saúde Feminina<br>e Longevidade</h4>
           </div>
-          <div class="w-full h-3/4 flex items-center justify-center">
-            <p class="service-card__text text-sm font-light text-white leading-relaxed">Saúde feminina e longevidade na Rigatti® é olhar integral: hormônios em equilíbrio, nutrição inteligente e manejo do estresse para mais vitalidade, libido e clareza mental. Cuidado personalizado, prevenção ativa e autonomia para viver décadas com disposição, pele luminosa e bem-estar.</p>
+          <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+            <p class="service-card__text text-sm font-light text-white leading-relaxed px-2">Saúde feminina e longevidade na Rigatti® é olhar integral: hormônios em equilíbrio, nutrição inteligente e manejo do estresse para mais vitalidade, libido e clareza mental. Cuidado personalizado, prevenção ativa e autonomia para viver décadas com disposição, pele luminosa e bem-estar.</p>
           </div>
         </div>
       </a>
@@ -308,11 +334,11 @@
       <a href="modulacao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
         <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/modulacao-hormonal-e-desempenho.png" alt="Modulação Hormonal" class="w-full h-full object-cover">
         <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
-          <div class="w-full h-1/4 flex items-center justify-center">
+          <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
             <h4 class="m-0 text-[15px] font-light uppercase text-white">Modulação Hormonal e Desempenho</h4>
           </div>
-          <div class="w-full h-3/4 flex items-center justify-center">
-            <p class="service-card__text text-sm font-light text-white leading-relaxed">Modulação hormonal e desempenho na Rigatti® é afinar seu motor interno. Com avaliação precisa, ajustamos hormônios-chave para elevar energia, foco, libido e recuperação. Resultado: corpo que rende mais, mente afiada e bem-estar constante — ciência, personalização e segurança, com acompanhamento médico próximo.</p>
+          <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+            <p class="service-card__text text-sm font-light text-white leading-relaxed px-2">Modulação hormonal e desempenho na Rigatti® é afinar seu motor interno. Com avaliação precisa, ajustamos hormônios-chave para elevar energia, foco, libido e recuperação. Resultado: corpo que rende mais, mente afiada e bem-estar constante — ciência, personalização e segurança, com acompanhamento médico próximo.</p>
           </div>
         </div>
       </a>
