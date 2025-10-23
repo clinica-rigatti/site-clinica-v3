@@ -221,18 +221,15 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="relative h-[976px] max-md:h-auto max-md:min-h-[600px] flex items-center pl-[315px] max-xl:pl-[120px] max-md:pl-10 max-md:pr-10 max-md:pt-36 max-md:pb-20 max-md:justify-center max-md:text-center max-md:flex-col">
-      <video 
-        id="bgVideo"
-        class="absolute inset-0 w-full h-full object-cover -z-10"
-        autoplay
-        muted
-        playsinline
-        webkit-playsinline
-        loop
-        preload="auto">
-        <source src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/background-site.mp4" type="video/mp4">
-      </video>
+    <section class="relative h-[976px] max-md:h-auto max-md:min-h-[600px] flex items-center pl-[315px] max-xl:pl-[120px] max-md:pl-10 max-md:pr-10 max-md:pt-36 max-md:pb-20 max-md:justify-center max-md:text-center max-md:flex-col overflow-hidden">
+      <iframe
+        src="https://player.vimeo.com/video/1129969584?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0"
+        frameborder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        class="absolute -z-10 pointer-events-none"
+        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;"
+        title="background-site">
+      </iframe>
         
       <!-- Overlay escuro sobre o vídeo -->
       <div class="absolute inset-0 bg-black/60 -z-[5]"></div>
@@ -262,7 +259,7 @@
 
           <!-- Service Cards -->
           <a href="reposicao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
-            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/reposicao-hormonal.png" alt="Reposição hormonal" class="w-full h-full object-cover">
+            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/reposicao-hormonal.jpg" alt="Reposição hormonal" class="w-full h-full object-cover">
             <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
               <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
                 <h4 class="m-0 text-[15px] font-light uppercase text-white">Reposição hormonal</h4>
@@ -274,7 +271,7 @@
           </a>
 
           <a href="soroterapia.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
-            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/soroterapia.png" alt="Soroterapia" class="w-full h-full object-cover">
+            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/soroterapia.jpg" alt="Soroterapia" class="w-full h-full object-cover">
             <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
               <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
                 <h4 class="m-0 text-[15px] font-light uppercase text-white">Soroterapia</h4>
@@ -286,7 +283,7 @@
           </a>
 
           <a href="nutricao.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
-            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/nutricao-clinica-e-estetica.png" alt="Nutrição" class="w-full h-full object-cover">
+            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/nutricao-clinica-e-estetica.jpg" alt="Nutrição" class="w-full h-full object-cover">
             <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
               <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
                 <h4 class="m-0 text-[15px] font-light uppercase text-white">Nutrição Clínica<br>e Estética</h4>
@@ -298,7 +295,7 @@
           </a>
 
           <a href="emagrecimento.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
-            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/emagrecimento-com-acompanhamento.png" alt="Emagrecimento" class="w-full h-full object-cover">
+            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/emagrecimento-com-acompanhamento.jpg" alt="Emagrecimento" class="w-full h-full object-cover">
             <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
               <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
                 <h4 class="m-0 text-[15px] font-light uppercase text-white">Emagrecimento com Acompanhamento Médico</h4>
@@ -310,7 +307,7 @@
           </a>
 
           <a href="saude-feminina.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
-            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/saude-feminina-e-longevidade.png" alt="Saúde Feminina" class="w-full h-full object-cover">
+            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/saude-feminina-e-longevidade.jpg" alt="Saúde Feminina" class="w-full h-full object-cover">
             <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
               <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
                 <h4 class="m-0 text-[15px] font-light uppercase text-white">Saúde Feminina<br>e Longevidade</h4>
@@ -322,7 +319,7 @@
           </a>
 
           <a href="modulacao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-lg:flex-[0_0_32%] max-lg:scroll-snap-align-center max-lg:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4]">
-            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/modulacao-hormonal-e-desempenho.png" alt="Modulação Hormonal" class="w-full h-full object-cover">
+            <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/modulacao-hormonal-e-desempenho.jpg" alt="Modulação Hormonal" class="w-full h-full object-cover">
             <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
               <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
                 <h4 class="m-0 text-[15px] font-light uppercase text-white">Modulação Hormonal e Desempenho</h4>
