@@ -1,24 +1,24 @@
 (function () {
   const teamMembers = [
-    { name: 'DR. LUIZ RIGATTI',   role: 'MÉDICO - CEO',         image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/rigatti.jpg'        },
-    { name: 'SUELLEN PALMEIRA',   role: 'NUTRICIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/suellen.jpg'        },
-    { name: 'GUILHERME SENS',     role: 'NUTRICIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/guilherme.jpg'      },
-    { name: 'PÂMELA GUSMÃO',      role: 'ENFERMEIRA',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/pamela.jpg'         },
-    { name: 'IVONETE BENTACK',    role: 'ENFERMEIRA',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/ivonete.jpg'        },
-    { name: 'RENATA CARNEIRO',    role: 'RECEPCIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/renata.jpg'         },
-    { name: 'ANDRESSA BENTACK',   role: 'RECEPCIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/andressa.jpg'       },
-    { name: 'CAMILA GAITKOSKI',   role: 'FINANCEIRO',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/camila.jpg'         },
-    { name: 'CAMILA RIGATTI',     role: 'ADVOGADA',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/camila-rigatti.jpg' },
-    { name: 'ANDERSON ALVES',     role: 'ENGENHEIRO DE IA',     image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/anderson.jpg'       },
-    { name: 'SAMUEL NUNES',       role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/samuel.jpg'         },
-    { name: 'ANGELINO GONSALVES', role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/angelino.jpg'       },
-    { name: 'ADILSON MATHEUS',    role: 'DIRETOR DE OPERAÇÕES', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/adilson.jpg'        },
-    { name: 'ANA PAULA AZEVEDO',  role: 'CONFIRMAÇÃO',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/ana.jpg'            },
-    { name: 'CLEIDIANE CUBAS',    role: 'CONCIERGE',            image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/cleidiane.jpg'      },
-    { name: 'BRUNO LEON',         role: 'RECOMPRA',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/bruno.jpg'          },
-    { name: 'HENRIQUE',           role: 'DIRETOR DE MARKETING', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/henrique.jpg'       },
-    { name: 'LUCAS HULSE',        role: 'VIDEOMAKER',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/lucas.jpg'          },
-    { name: 'IGOR',               role: 'DESIGNER',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/igor.jpg'           }
+    { name: 'DR. LUIZ RIGATTI',   role: 'MÉDICO - CEO',         image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/rigatti.webp'        },
+    { name: 'SUELLEN PALMEIRA',   role: 'NUTRICIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/suellen.webp'        },
+    { name: 'GUILHERME SENS',     role: 'NUTRICIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/guilherme.webp'      },
+    { name: 'PÂMELA GUSMÃO',      role: 'ENFERMEIRA',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/pamela.webp'         },
+    { name: 'IVONETE BENTACK',    role: 'ENFERMEIRA',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/ivonete.webp'        },
+    { name: 'RENATA CARNEIRO',    role: 'RECEPCIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/renata.webp'         },
+    { name: 'ANDRESSA BENTACK',   role: 'RECEPCIONISTA',        image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/andressa.webp'       },
+    { name: 'CAMILA GAITKOSKI',   role: 'FINANCEIRO',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/camila.webp'         },
+    { name: 'CAMILA RIGATTI',     role: 'ADVOGADA',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/camila-rigatti.webp' },
+    { name: 'ANDERSON ALVES',     role: 'ENGENHEIRO DE IA',     image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/anderson.webp'       },
+    { name: 'SAMUEL NUNES',       role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/samuel.webp'         },
+    { name: 'ANGELINO GONSALVES', role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/angelino.webp'       },
+    { name: 'ADILSON MATHEUS',    role: 'DIRETOR DE OPERAÇÕES', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/adilson.webp'        },
+    { name: 'ANA PAULA AZEVEDO',  role: 'CONFIRMAÇÃO',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/ana.webp'            },
+    { name: 'CLEIDIANE CUBAS',    role: 'CONCIERGE',            image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/cleidiane.webp'      },
+    { name: 'BRUNO LEON',         role: 'RECOMPRA',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/bruno.webp'          },
+    { name: 'HENRIQUE',           role: 'DIRETOR DE MARKETING', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/henrique.webp'       },
+    { name: 'LUCAS HULSE',        role: 'VIDEOMAKER',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/lucas.webp'          },
+    { name: 'IGOR',               role: 'DESIGNER',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/igor.webp'           }
   ];
 
   const team = [...teamMembers, ...teamMembers, ...teamMembers, ...teamMembers];
