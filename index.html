@@ -37,8 +37,14 @@
   <link rel="preload" as="image" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo+capa.webp" fetchpriority="high">
   <link rel="preload" as="image" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca.png" fetchpriority="high">
 
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <!-- Preload critical font weights with font-display swap -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+
+  <!-- Defer Font Awesome (não crítico) -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/></noscript>
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -190,11 +196,14 @@
       background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
       opacity: 1;
       transition: opacity 0.5s ease-in-out;
+      will-change: opacity;
+      transform: translateZ(0); /* Force GPU acceleration */
     }
 
     .hero-video-placeholder.loaded {
       opacity: 0;
       pointer-events: none;
+      visibility: hidden; /* Remove from layout when loaded */
     }
 
     /* Lazy loading smooth transitions */
@@ -267,7 +276,7 @@
     <header class="absolute top-0 left-0 right-0 z-[2] py-[15px] bg-black max-md:flex max-md:justify-between max-md:py-5 max-md:px-2.5">
       <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo+capa.webp" alt="Clínica Rigatti" class="w-[262px] h-[51px] mx-auto max-md:mx-0" width="262" height="51" fetchpriority="high">
       
-      <button id="mobile-menu-btn" class="hidden max-md:block bg-transparent text-3xl border-none text-pearl">
+      <button id="mobile-menu-btn" class="hidden max-md:block bg-transparent text-3xl border-none text-pearl" aria-label="Abrir menu de navegação">
         <i class="fa-solid fa-bars"></i>
       </button>
 
@@ -499,27 +508,27 @@
       <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-preta.png" alt="Logo" class="w-[239px] mb-8" loading="lazy" width="239" height="82">
       
       <div class="mb-6 relative">
-        <i class="fas fa-envelope text-coffee text-base absolute left-4 top-3.5 pointer-events-none"></i>
-        <input type="email" placeholder=" " id="emailInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
-        <label class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Endereço de email</label>
+        <i class="fas fa-envelope text-coffee text-base absolute left-4 top-3.5 pointer-events-none" aria-hidden="true"></i>
+        <input type="email" placeholder=" " id="emailInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required aria-label="Endereço de email">
+        <label for="emailInput" class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Endereço de email</label>
       </div>
       
       <div class="mb-6 relative">
-        <i class="fas fa-user text-coffee text-base absolute left-4 top-3.5 pointer-events-none"></i>
-        <input type="text" placeholder=" " id="nameInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
-        <label class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Nome completo</label>
+        <i class="fas fa-user text-coffee text-base absolute left-4 top-3.5 pointer-events-none" aria-hidden="true"></i>
+        <input type="text" placeholder=" " id="nameInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required aria-label="Nome completo">
+        <label for="nameInput" class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Nome completo</label>
       </div>
       
       <div class="mb-6 relative">
-        <i class="fas fa-phone text-coffee text-base absolute left-4 top-3.5 pointer-events-none"></i>
-        <input type="text" placeholder=" " id="phoneInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
-        <label class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Número de telefone</label>
+        <i class="fas fa-phone text-coffee text-base absolute left-4 top-3.5 pointer-events-none" aria-hidden="true"></i>
+        <input type="text" placeholder=" " id="phoneInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required aria-label="Número de telefone">
+        <label for="phoneInput" class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Número de telefone</label>
       </div>
-      
+
       <div class="mb-6 relative">
-        <i class="fas fa-map-marker-alt text-coffee text-base absolute left-4 top-3.5 pointer-events-none"></i>
-        <input type="text" placeholder=" " id="cityInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required>
-        <label class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Cidade</label>
+        <i class="fas fa-map-marker-alt text-coffee text-base absolute left-4 top-3.5 pointer-events-none" aria-hidden="true"></i>
+        <input type="text" placeholder=" " id="cityInput" class="peer w-full py-5 px-8 pl-12 pt-5 pb-2.5 bg-pearl border-0 rounded-[10px] border-b-2 border-sand text-[15px] text-black font-poppins tracking-wider outline-none transition-all duration-300 focus:bg-white" required aria-label="Cidade">
+        <label for="cityInput" class="absolute left-12 top-4 text-coffee text-base font-medium tracking-wider pointer-events-none transition-all duration-300 opacity-70 bg-transparent rounded-[10px] peer-focus:-top-2.5 peer-focus:left-11 peer-focus:text-[11px] peer-focus:opacity-100 peer-focus:bg-pearl peer-focus:px-2 peer-focus:rounded-[10px] peer-[:not(:placeholder-shown)]:-top-2.5 peer-[:not(:placeholder-shown)]:left-11 peer-[:not(:placeholder-shown)]:text-[11px] peer-[:not(:placeholder-shown)]:opacity-100 peer-[:not(:placeholder-shown)]:bg-pearl peer-[:not(:placeholder-shown)]:px-2 peer-[:not(:placeholder-shown)]:rounded-[10px]">Cidade</label>
       </div>
       
       <button type="submit" id="submitButton" class="w-full py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 border-0 cursor-pointer text-center max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</button>
