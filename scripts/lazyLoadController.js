@@ -1,40 +1,37 @@
 (() => {
   /**
-   * Lazy Load Controller
+   * Lazy Load Controller - OTIMIZADO
    * Gerencia o carregamento suave de imagens com loading="lazy"
-   * Adiciona animação de fade-in quando as imagens são carregadas
    */
 
   function init() {
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
-
     if (!lazyImages.length) return;
 
-    // Para cada imagem lazy
-    lazyImages.forEach(img => {
-      // Se a imagem já está carregada (do cache)
-      if (img.complete && img.naturalHeight !== 0) {
-        img.classList.add('loaded');
-      } else {
-        // Adiciona listener para quando carregar
-        img.addEventListener('load', function onLoad() {
-          this.classList.add('loaded');
-          this.removeEventListener('load', onLoad);
-        }, { once: true });
-
-        // Fallback para erros de carregamento
-        img.addEventListener('error', function onError() {
-          this.classList.add('loaded');
-          this.removeEventListener('error', onError);
-        }, { once: true });
+    // Event delegation é mais performático
+    const handleImageLoad = (e) => {
+      if (e.target.tagName === 'IMG' && e.target.hasAttribute('loading')) {
+        e.target.classList.add('loaded');
       }
-    });
+    };
+
+    // Um único listener para todas as imagens
+    document.addEventListener('load', handleImageLoad, true);
+
+    // Processa imagens já carregadas (cache) em um único loop
+    requestIdleCallback(() => {
+      lazyImages.forEach(img => {
+        if (img.complete && img.naturalHeight !== 0) {
+          img.classList.add('loaded');
+        }
+      });
+    }, { timeout: 1000 });
   }
 
-  // Inicializa quando o DOM estiver pronto
+  // Defer initialization
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', init, { once: true, passive: true });
   } else {
-    init();
+    requestIdleCallback(init);
   }
 })();
