@@ -11,22 +11,24 @@
   }
 
   function updateButtons(track, prevBtn, nextBtn) {
-    const maxScroll = track.scrollWidth - track.clientWidth;
+    // Batch all DOM reads first to avoid forced reflow
+    const scrollLeft = track.scrollLeft;
+    const scrollWidth = track.scrollWidth;
+    const clientWidth = track.clientWidth;
+    const maxScroll = scrollWidth - clientWidth;
+
+    // Then do all DOM writes
     if (prevBtn) {
-      prevBtn.disabled = track.scrollLeft <= TOLERANCE;
-      if (track.scrollLeft <= TOLERANCE) {
-        prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-      } else {
-        prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-      }
+      const isAtStart = scrollLeft <= TOLERANCE;
+      prevBtn.disabled = isAtStart;
+      prevBtn.classList.toggle('opacity-50', isAtStart);
+      prevBtn.classList.toggle('cursor-not-allowed', isAtStart);
     }
     if (nextBtn) {
-      nextBtn.disabled = track.scrollLeft >= maxScroll - TOLERANCE;
-      if (track.scrollLeft >= maxScroll - TOLERANCE) {
-        nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-      } else {
-        nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-      }
+      const isAtEnd = scrollLeft >= maxScroll - TOLERANCE;
+      nextBtn.disabled = isAtEnd;
+      nextBtn.classList.toggle('opacity-50', isAtEnd);
+      nextBtn.classList.toggle('cursor-not-allowed', isAtEnd);
     }
   }
 

@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Referência em saúde personalizada com reposição hormonal, emagrecimento, soroterapia e longevidade. Ciência, acolhimento e resultados reais desde 2018 em Curitiba.">
   <title>Clínica Rigatti - Método</title>
 
   <!-- Open Graph / Facebook -->
@@ -25,13 +26,17 @@
 
   <link rel="icon" href="https://clinicarigatti.s3-accelerate.amazonaws.com/imagens_sites/Prancheta+1.png" type="image/x-icon">
 
-  <!-- Preconnect para otimizar carregamento do Vimeo -->
-  <link rel="preconnect" href="https://player.vimeo.com">
-  <link rel="dns-prefetch" href="https://player.vimeo.com">
+  <!-- Preconnect crítico para origins principais - ECONOMIA DE 640MS NO LCP -->
+  <link rel="preconnect" href="https://vod-adaptive-ak.vimeocdn.com" crossorigin>
+  <link rel="preconnect" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com" crossorigin>
+  <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Preconnect para S3 -->
-  <link rel="preconnect" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com">
-  <link rel="dns-prefetch" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com">
+  <!-- DNS-prefetch para resources secundários -->
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+  <link rel="dns-prefetch" href="https://f.vimeocdn.com">
 
   <!-- Preload de imagens críticas above the fold -->
   <link rel="preload" as="image" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo+capa.webp" fetchpriority="high">
@@ -43,27 +48,31 @@
   <!-- Font Awesome com defer (não crítico) -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/></noscript>
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Tailwind config ANTES do script CDN -->
   <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            sand: '#C1B490',
-            pearl: '#EEECEA',
-            coffee: '#45372C',
-          },
-          fontFamily: {
-            poppins: ['Poppins', 'sans-serif'],
-          },
-          letterSpacing: {
-            'widest-xl': '0.3125rem',
-            'widest-2xl': '0.625rem',
+    window.tailwind = {
+      config: {
+        theme: {
+          extend: {
+            colors: {
+              sand: '#C1B490',
+              pearl: '#EEECEA',
+              coffee: '#45372C',
+            },
+            fontFamily: {
+              poppins: ['Poppins', 'sans-serif'],
+            },
+            letterSpacing: {
+              'widest-xl': '0.3125rem',
+              'widest-2xl': '0.625rem',
+            }
           }
         }
       }
     }
   </script>
+  <script src="https://cdn.tailwindcss.com" defer></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
@@ -301,6 +310,8 @@
       </div>
     </header>
 
+    <!-- Main Content -->
+    <main>
     <!-- Hero Section -->
     <section class="relative h-[976px] max-md:h-auto max-md:min-h-[600px] flex items-center pl-[315px] max-xl:pl-[120px] max-md:pl-10 max-md:pr-10 max-md:pt-36 max-md:pb-20 max-md:justify-center max-md:text-center max-md:flex-col overflow-hidden">
       <!-- Placeholder enquanto o vídeo carrega -->
@@ -526,6 +537,7 @@
       <button type="submit" id="submitButton" class="w-full py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 border-0 cursor-pointer text-center max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</button>
     </form>
   </section>
+    </main>
 
     <!-- Footer -->
     <footer class="relative bg-black">

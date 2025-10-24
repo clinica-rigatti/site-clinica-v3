@@ -59,16 +59,20 @@ function updateResultsCarousel(animate = true) {
     sizes.large = { width: 240, height: 300 };
   }
 
+  // Batch DOM read BEFORE any writes
+  const container = track.parentElement;
+  const containerWidth = container.offsetWidth;
+
   allImages.forEach((img, index) => {
     const relativePos = index - currentIndex;
 
     img.classList.remove(
-      'w-[299px]', 'h-[373px]', 
-      'w-[317px]', 'h-[396px]', 
+      'w-[299px]', 'h-[373px]',
+      'w-[317px]', 'h-[396px]',
       'w-[351px]', 'h-[439px]',
       'opacity-60', 'opacity-75', 'scale-105',
-      'max-md:w-[200px]', 'max-md:h-[250px]', 
-      'max-md:w-[220px]', 'max-md:h-[275px]', 
+      'max-md:w-[200px]', 'max-md:h-[250px]',
+      'max-md:w-[220px]', 'max-md:h-[275px]',
       'max-md:w-[240px]', 'max-md:h-[300px]'
     );
 
@@ -82,8 +86,6 @@ function updateResultsCarousel(animate = true) {
   });
 
   setTimeout(() => {
-    const container = track.parentElement;
-    const containerWidth = container.offsetWidth;
     
     let offset = 0;
     const gap = 20;
