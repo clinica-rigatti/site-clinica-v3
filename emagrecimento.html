@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Emagrecimento com Acompanhamento Médico - Clínica Rigatti</title>
   <link rel="icon" href="https://clinicarigatti.s3-accelerate.amazonaws.com/imagens_sites/Prancheta+1.png" type="image/x-icon">
+
+  <!-- Preconnect para S3 -->
+  <link rel="preconnect" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com">
+  <link rel="dns-prefetch" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com">
+
+  <!-- Preload de imagens críticas above the fold -->
+  <link rel="preload" as="image" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo+capa.webp" fetchpriority="high">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
@@ -385,7 +392,7 @@
     <div class="relative py-20 px-40 flex flex-col justify-center items-center max-lg:px-10">
       <div class="flex gap-[100px] mb-16 max-lg:flex-col max-lg:gap-10 max-lg:justify-center max-lg:items-center max-lg:text-center">
         <div class="flex-shrink-0">
-          <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-redonda.png" alt="Logo" class="w-[121px] h-[124px]" loading="lazy">
+          <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-redonda.png" alt="Logo" class="w-[121px] h-[124px]" loading="lazy" width="121" height="124">
         </div>
         
         <div class="flex-shrink-0">
@@ -426,7 +433,7 @@
       </div>
       
       <div class="w-full border-t border-white pt-8 flex justify-center items-center">
-        <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca-pequena.png" alt="Copyright" loading="lazy">
+        <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca-pequena.png" alt="Copyright" loading="lazy" width="239" height="25">
       </div>
     </div>
   </footer>
