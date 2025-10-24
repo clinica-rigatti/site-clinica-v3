@@ -115,7 +115,23 @@
       -ms-overflow-style: none;
       scrollbar-width: none;
     }
+
+    /* Lazy loading smooth transitions */
+    img[loading="lazy"] {
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+
+    img[loading="lazy"].loaded {
+      opacity: 1;
+    }
+
+    /* Placeholder background para evitar layout shift */
+    img[loading="lazy"]:not(.loaded) {
+      background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    }
   </style>
+  <script src="scripts/lazyLoadController.js" defer></script>
   <script src="scripts/menuController.js" defer></script>
   <script src="scripts/servicesCarouselController.js" defer></script>
 </head>
