@@ -49,30 +49,28 @@
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/></noscript>
 
-  <!-- Tailwind config ANTES do script CDN -->
+  <!-- Tailwind CDN - SÍNCRONO (necessário para evitar FOUC) -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
-    window.tailwind = {
-      config: {
-        theme: {
-          extend: {
-            colors: {
-              sand: '#C1B490',
-              pearl: '#EEECEA',
-              coffee: '#45372C',
-            },
-            fontFamily: {
-              poppins: ['Poppins', 'sans-serif'],
-            },
-            letterSpacing: {
-              'widest-xl': '0.3125rem',
-              'widest-2xl': '0.625rem',
-            }
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#C1B490',
+            pearl: '#EEECEA',
+            coffee: '#45372C',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+          letterSpacing: {
+            'widest-xl': '0.3125rem',
+            'widest-2xl': '0.625rem',
           }
         }
       }
     }
   </script>
-  <script src="https://cdn.tailwindcss.com" defer></script>
   <style>
     body {
       font-family: 'Poppins', sans-serif;
