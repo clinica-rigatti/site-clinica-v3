@@ -387,6 +387,22 @@
       opacity: 1 !important;
     }
 
+    /* EXCEÇÃO: validation-alert deve ficar oculto por padrão */
+    #modalContent .validation-alert {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+    }
+
+    /* Só mostra quando tiver a classe .show */
+    #modalContent .validation-alert.show {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: auto !important;
+    }
+
     #modalContent input,
     #modalContent textarea,
     #modalContent select {
@@ -675,11 +691,25 @@
       font-size: 14px;
       font-weight: 300;
       margin-top: 16px;
-      display: none;
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+      height: 0 !important;
+      overflow: hidden !important;
     }
 
     .validation-alert.show {
-      display: block;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: auto !important;
+      animation: shake 0.4s ease;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-10px); }
+      75% { transform: translateX(10px); }
     }
 
     .final-step-content {
