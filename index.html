@@ -220,6 +220,607 @@
     @keyframes fadeIn {
       to { opacity: 1; }
     }
+
+    /* WhatsApp Floating Button */
+    .whatsapp-floating-btn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+      z-index: 999;
+      border: none;
+    }
+
+    .whatsapp-floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+
+    .whatsapp-floating-btn i {
+      font-size: 32px;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-floating-btn {
+        width: 56px;
+        height: 56px;
+        bottom: 20px;
+        right: 20px;
+      }
+
+      .whatsapp-floating-btn i {
+        font-size: 28px;
+      }
+    }
+
+    /* Modal Styles */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      padding: 16px;
+    }
+
+    .modal-overlay.hidden {
+      display: none;
+    }
+
+    .modal-container {
+      background: white;
+      max-width: 672px;
+      width: 100%;
+      max-height: 90vh;
+      overflow: hidden;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .modal-header {
+      background-color: #fff;
+      color: black;
+      padding: 24px 32px;
+      position: relative;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: transparent;
+      border: none;
+      color: black;
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .close-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .progress-container {
+      margin-bottom: 24px;
+    }
+
+    .progress-text {
+      font-size: 14px;
+      color: black;
+      margin-bottom: 12px;
+      font-weight: bold;
+      letter-spacing: 0.05em;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 2px;
+      background-color: rgba(0, 0, 0, 0.253);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background-color: black;
+      transition: width 0.5s ease;
+    }
+
+    .modal-title {
+      font-size: 28px;
+      font-weight: bold;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .modal-subtitle {
+      font-size: 16px;
+      color: black;
+      font-weight: 400;
+    }
+
+    .subtitle-highlight {
+      color: black;
+      font-weight: 500;
+    }
+
+    .gate-badge {
+      display: inline-block;
+      background-color: #fbbf24;
+      color: #78350f;
+      font-size: 11px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .modal-content {
+      padding: 40px;
+      overflow-y: auto;
+      max-height: calc(90vh - 280px);
+      background: white;
+      min-height: 200px;
+    }
+
+    /* Garantir que todos os elementos dentro do modal sejam visíveis */
+    #modalContent * {
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #modalContent input,
+    #modalContent textarea,
+    #modalContent select {
+      display: block !important;
+      color: #000 !important;
+    }
+
+    /* Regras específicas para form-group e elementos de formulário */
+    #modalContent .form-group,
+    #modalContent > div,
+    #modalContent > form > div {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    #modalContent .form-label {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      color: #374151 !important;
+    }
+
+    #modalContent .form-input,
+    #modalContent input[type="text"],
+    #modalContent input[type="email"],
+    #modalContent input[type="tel"] {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      color: #000 !important;
+      background: transparent !important;
+      min-height: 45px !important;
+      width: 100% !important;
+    }
+
+    .form-group {
+      margin-bottom: 24px;
+      display: block;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 12px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      visibility: visible;
+      opacity: 1;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      padding-left: 0;
+      border: none;
+      border-bottom: 2px solid #d1d5db;
+      background: transparent;
+      outline: none;
+      font-size: 16px;
+      font-weight: 300;
+      font-family: 'Poppins', sans-serif;
+      transition: border-color 0.2s;
+      color: #000 !important;
+      box-sizing: border-box;
+      display: block;
+      visibility: visible;
+      opacity: 1;
+      height: auto;
+      min-height: 45px;
+      line-height: 1.5;
+    }
+
+    .form-input::placeholder {
+      color: #9ca3af;
+      opacity: 1;
+    }
+
+    .form-input:-webkit-autofill,
+    .form-input:-webkit-autofill:hover,
+    .form-input:-webkit-autofill:focus {
+      -webkit-text-fill-color: #000 !important;
+      -webkit-box-shadow: 0 0 0px 1000px white inset;
+      transition: background-color 5000s ease-in-out 0s;
+    }
+
+    .form-input:focus {
+      border-bottom-color: #000;
+    }
+
+    .form-input.error {
+      border-bottom-color: #ef4444;
+    }
+
+    .error-message {
+      color: #ef4444;
+      font-size: 12px;
+      margin-top: 8px;
+      font-weight: 300;
+    }
+
+    .options-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .option-btn {
+      width: 100%;
+      padding: 16px 24px;
+      border: 1px solid #d1d5db;
+      border-left: 3px solid #45372C;
+      background: white;
+      color: #000;
+      text-align: left;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .option-btn:hover {
+      border-color: #45372C;
+      border-left-color: #45372C;
+      background-color: black;
+      color: white;
+    }
+
+    .option-btn.selected {
+      border-color: #45372C;
+      border-left-color: #45372C;
+      background-color: black;
+      color: white;
+    }
+
+    .option-btn.gate-option {
+      border-left: 3px solid #45372C;
+    }
+
+    .option-btn.gate-option.selected {
+      border-left-color: #45372C;
+    }
+
+    .check-icon {
+      width: 20px;
+      height: 20px;
+    }
+
+    .arrow-icon {
+      width: 20px;
+      height: 20px;
+      transition: color 0.2s;
+    }
+
+    .result-container {
+      text-align: center;
+      padding: 32px 20px;
+    }
+
+    .result-icon {
+      width: 56px;
+      height: 56px;
+      background-color: #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+    }
+
+    .result-title {
+      font-size: 24px;
+      font-weight: 300;
+      margin-bottom: 16px;
+      color: #000;
+      letter-spacing: -0.02em;
+    }
+
+    .result-message {
+      font-size: 15px;
+      color: #6b7280;
+      margin-bottom: 32px;
+      font-weight: 300;
+      line-height: 1.5;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .classification-badge {
+      display: none;
+    }
+
+    .whatsapp-btn {
+      width: 100%;
+      max-width: 340px;
+      padding: 14px 24px;
+      background-color: #25D366;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+      margin: 0 auto;
+    }
+
+    .whatsapp-btn:hover {
+      background-color: #1EBE57;
+      box-shadow: 0 6px 16px rgba(37, 211, 102, 0.4);
+    }
+
+    .modal-footer {
+      border-top: 1px solid #e5e7eb;
+      padding: 20px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+    }
+
+    .btn {
+      padding: 12px 24px;
+      border: none;
+      cursor: pointer;
+      font-family: 'Poppins', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-back {
+      background: transparent;
+      color: #6b7280;
+      padding: 12px 16px;
+    }
+
+    .btn-back:hover:not(:disabled) {
+      color: #000;
+    }
+
+    .btn-back:disabled {
+      opacity: 0.2;
+      cursor: not-allowed;
+    }
+
+    .back-text {
+      display: inline;
+    }
+
+    .btn-next {
+      background-color: black;
+      color: white;
+      padding: 12px 32px;
+    }
+
+    .btn-next:hover {
+      background-color: #EEECEA;
+      color: black;
+    }
+
+    .validation-alert {
+      background-color: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #991b1b;
+      padding: 12px 16px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 300;
+      margin-top: 16px;
+      display: none;
+    }
+
+    .validation-alert.show {
+      display: block;
+    }
+
+    .final-step-content {
+      text-align: center;
+      padding: 40px 20px 32px;
+    }
+
+    .final-icon {
+      width: 48px;
+      height: 48px;
+      color: #000;
+      margin: 0 auto 20px;
+    }
+
+    .final-title {
+      font-size: 22px;
+      font-weight: 300;
+      color: #000;
+      margin-bottom: 12px;
+      line-height: 1.3;
+    }
+
+    .final-description {
+      font-size: 15px;
+      color: #6b7280;
+      font-weight: 300;
+      line-height: 1.5;
+      max-width: 420px;
+      margin: 0 auto 32px;
+    }
+
+    .final-warning {
+      background-color: #fffbeb;
+      border-left: 3px solid #45372C;
+      padding: 12px 16px;
+      margin: 0 auto;
+      max-width: 460px;
+      text-align: left;
+    }
+
+    .final-warning p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #92400e;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    .final-warning strong {
+      font-weight: 500;
+    }
+
+    /* Loading Styles */
+    .spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #000;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 640px) {
+      .modal-header {
+        padding: 20px 24px;
+      }
+
+      .modal-title {
+        font-size: 20px;
+      }
+
+      .modal-subtitle {
+        font-size: 14px;
+      }
+
+      .modal-content {
+        padding: 24px;
+      }
+
+      .form-input {
+        font-size: 16px;
+        min-height: 45px;
+      }
+
+      .form-group {
+        margin-bottom: 20px;
+      }
+
+      .form-label {
+        font-size: 11px;
+        margin-bottom: 10px;
+      }
+
+      .option-btn {
+        padding: 16px 20px;
+        font-size: 14px;
+      }
+
+      .result-container {
+        padding: 24px 16px;
+      }
+
+      .result-icon {
+        width: 48px;
+        height: 48px;
+      }
+
+      .result-title {
+        font-size: 20px;
+      }
+
+      .result-message {
+        font-size: 14px;
+        margin-bottom: 24px;
+      }
+
+      .whatsapp-btn {
+        font-size: 14px;
+        padding: 12px 20px;
+      }
+
+      .close-btn {
+        width: 32px;
+        height: 32px;
+        top: 12px;
+        right: 12px;
+      }
+
+      .back-text {
+        display: none;
+      }
+
+      .btn-back {
+        padding: 12px;
+      }
+    }
   </style>
   <script src="scripts/teamCarouselController.js" defer></script>
   <script src="scripts/menuHomeController.js" defer></script>
@@ -228,6 +829,89 @@
   <script src="scripts/youtubeVideosController.js" defer></script>
   <script src="scripts/input.js" defer></script>
   <script src="scripts/formHandler.js" defer></script>
+
+  <!-- WhatsApp Button Controller -->
+  <script>
+    (() => {
+      let scriptLoaded = false;
+
+      function loadModalScript() {
+        if (scriptLoaded) {
+          // Se o script já foi carregado, apenas abre o modal
+          if (typeof toggleModal === 'function') {
+            toggleModal();
+          }
+          return;
+        }
+
+        // Carrega o script do modal
+        const script = document.createElement('script');
+        script.src = 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/scripts/modalScoreController.js';
+        script.onload = function() {
+          scriptLoaded = true;
+          console.log('✅ Script do modal carregado com sucesso');
+
+          // Aguarda um momento para garantir que todas as funções foram definidas
+          setTimeout(() => {
+            // Verifica se as funções necessárias existem
+            if (typeof toggleModal === 'function') {
+              console.log('✅ Função toggleModal encontrada');
+              toggleModal();
+
+              // Força a renderização do conteúdo se necessário
+              setTimeout(() => {
+                if (typeof renderContent === 'function') {
+                  console.log('✅ Forçando renderização do conteúdo');
+                  renderContent();
+                }
+              }, 100);
+            } else {
+              console.error('❌ Função toggleModal não encontrada');
+            }
+          }, 100);
+        };
+        script.onerror = function() {
+          console.error('❌ Erro ao carregar o script do modal');
+          alert('Erro ao carregar o formulário. Por favor, tente novamente.');
+        };
+        document.head.appendChild(script);
+      }
+
+      // Adiciona listener aos botões
+      function init() {
+        const whatsappBtn = document.getElementById('whatsappFloatingBtn');
+        const heroBtn = document.getElementById('heroAgendarBtn');
+        const ctaBtn = document.getElementById('ctaAgendarBtn');
+
+        if (whatsappBtn) {
+          whatsappBtn.addEventListener('click', loadModalScript);
+          console.log('✅ Listener adicionado ao botão WhatsApp');
+        } else {
+          console.error('❌ Botão WhatsApp não encontrado');
+        }
+
+        if (heroBtn) {
+          heroBtn.addEventListener('click', loadModalScript);
+          console.log('✅ Listener adicionado ao botão Hero');
+        } else {
+          console.error('❌ Botão Hero não encontrado');
+        }
+
+        if (ctaBtn) {
+          ctaBtn.addEventListener('click', loadModalScript);
+          console.log('✅ Listener adicionado ao botão CTA');
+        } else {
+          console.error('❌ Botão CTA não encontrado');
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
+      }
+    })();
+  </script>
 
   <!-- Lazy load do vídeo hero -->
   <script>
@@ -326,8 +1010,8 @@
         <div class="max-w-[520px] max-md:max-w-full">
           <h2 class="text-2xl font-light tracking-[1.375rem] mb-2 max-md:text-lg max-md:tracking-[0.625rem] max-md:mb-2">MÉTODO</h2>
           <img class="my-2 max-md:my-2.5 max-md:mx-auto" src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca.png" alt="Logo branca Clinica Rigatti" width="318" height="109" fetchpriority="high">
-          <p class="text-xl font-light leading-6 mb-2 max-md:text-base">Emagreça de forma personalizada com protocolos médicos exclusivos da Clínica Rigatti.</p>
-          <a href="#contato" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8">Agendar minha avaliação</a>
+          <p class="text-xl font-light leading-6 my-4 max-md:text-base">Emagreça de forma personalizada com protocolos médicos exclusivos da Clínica Rigatti.</p>
+          <button id="heroAgendarBtn" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">Agendar minha avaliação</button>
         </div>
         
         <div class="absolute bottom-36 left-1/2 -translate-x-1/2 text-sm font-extrabold tracking-widest-2xl max-md:relative max-md:bottom-auto max-md:left-auto max-md:translate-x-0 max-md:mt-10 max-md:text-[10px]">SUTIL-PRECISA-PERSONALIZADA</div>
@@ -336,8 +1020,8 @@
       <!-- About Section -->
       <section id="servicos" class="py-10 text-center bg-gradient-to-b from-black from-45% to-pearl to-45% max-md:from-55% max-md:to-45% text-black pt-20 pb-5">
         <div class="max-w-[919px] px-5 mx-auto mb-8 text-pearl">
-          <h3 class="text-sm font-semibold tracking-widest-xl uppercase mb-5">Discrição, ciência e acompanhamento contínuo.</h3>
-          <p class="text-sm font-light leading-relaxed">Referência em saúde personalizada. Atuamos com precisão técnica e escuta humana, oferecendo protocolos desenhados sob medida para restaurar o equilíbrio hormonal, potencializar a vitalidade e sustentar um estilo de vida com mais presença e longevidade.</p>
+          <h3 class="text-xl font-semibold uppercase mb-5">Discrição, ciência e acompanhamento contínuo.</h3>
+          <p class="text-lg font-light leading-relaxed">Referência em saúde personalizada. Atuamos com precisão técnica e escuta humana, oferecendo protocolos desenhados sob medida para restaurar o equilíbrio hormonal, potencializar a vitalidade e sustentar um estilo de vida com mais presença e longevidade.</p>
         </div>
 
         <!-- Services Grid -->
@@ -480,7 +1164,7 @@
       <section class="bg-pearl py-10 pb-20 text-center">
         <h2 class="text-2xl font-black tracking-widest-xl text-black mb-2.5">AGENDE SUA CONSULTA</h2>
         <p class="text-base font-light uppercase tracking-wide text-black mb-8">Desperte sua força real.</p>
-        <a href="#contato" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</a>
+        <button id="ctaAgendarBtn" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">AGENDAR AGORA</button>
       </section>
 
       <!-- YouTube Section -->
@@ -503,7 +1187,7 @@
         </div>
       </section>
 
-      <!-- Contact Form Section -->
+      <!-- Contact Form Section
       <section class="bg-[url('https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/mapa-clinica.webp')] bg-center bg-cover py-[100px] flex justify-center" id="contato">
         <form id="contactForm" class="bg-white/70 backdrop-blur-[10px] border border-white rounded-[22px] p-16 w-[711px] max-md:w-11/12 max-md:p-10">
           <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-preta.png" alt="Logo" class="w-[239px] mb-8" loading="lazy" width="239" height="82">
@@ -534,8 +1218,65 @@
           
           <button type="submit" id="submitButton" class="w-full py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 border-0 cursor-pointer text-center max-md:text-base max-md:py-4 max-md:px-8">AGENDAR AGORA</button>
         </form>
-      </section>
+      </section> -->
     </main>
+
+    <!-- WhatsApp Floating Button -->
+    <button id="whatsappFloatingBtn" class="whatsapp-floating-btn" aria-label="Abrir avaliação no WhatsApp">
+      <i class="fa-brands fa-whatsapp"></i>
+    </button>
+
+    <!-- Modal Container -->
+    <div id="modalOverlay" class="modal-overlay hidden">
+      <div class="modal-container">
+        <!-- Header -->
+        <div id="modalHeader" class="modal-header">
+          <button class="close-btn" onclick="toggleModal()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+
+          <div id="progressContainer" class="progress-container">
+            <div class="progress-text">
+              <span id="progressText">1 / 10</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div id="progressBar" class="progress-bar" style="width: 10%"></div>
+            </div>
+          </div>
+
+          <div id="gateBadgeContainer"></div>
+          <h2 id="modalTitle" class="modal-title">Vamos começar</h2>
+          <p id="modalSubtitle" class="modal-subtitle">Preencha seus dados para uma avaliação personalizada</p>
+        </div>
+
+        <!-- Content -->
+        <div class="modal-content" id="modalContent">
+          <!-- Conteúdo dinâmico será inserido aqui -->
+        </div>
+
+        <!-- Footer -->
+        <div class="modal-footer" id="modalFooter">
+          <button class="btn btn-back" id="btnBack" onclick="previousStep()" disabled>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="19" y1="12" x2="5" y2="12"></line>
+              <polyline points="12 19 5 12 12 5"></polyline>
+            </svg>
+            <span class="back-text">Voltar</span>
+          </button>
+
+          <button class="btn btn-next" id="btnNext" onclick="nextStep()">
+            <span id="btnNextText">Continuar</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
 
     <!-- Footer -->
     <footer class="relative bg-black">
