@@ -763,6 +763,23 @@
     }
 
     /* Loading Styles */
+    .loading-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 300px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .loading-container p {
+      margin: 20px 0 0 0;
+      color: #6b7280;
+      font-size: 16px;
+      text-align: center;
+    }
+
     .spinner {
       width: 50px;
       height: 50px;
@@ -770,6 +787,7 @@
       border-top: 4px solid #000;
       border-radius: 50%;
       animation: spin 1s linear infinite;
+      margin: 0 auto;
     }
 
     @keyframes spin {
@@ -849,6 +867,22 @@
 
       .btn-back {
         padding: 12px;
+      }
+
+      .loading-container {
+        min-height: 250px;
+        padding: 30px 20px;
+      }
+
+      .loading-container p {
+        font-size: 14px;
+        margin-top: 16px;
+      }
+
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border-width: 3px;
       }
     }
   </style>
