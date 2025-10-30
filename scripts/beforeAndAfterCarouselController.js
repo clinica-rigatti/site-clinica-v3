@@ -1,13 +1,13 @@
 const images = [
-  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-1.webp', alt: 'Resultado 1' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-9.webp', alt: 'Resultado 9' },
   { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-2.webp', alt: 'Resultado 2' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-5.webp', alt: 'Resultado 5' },
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-1.webp', alt: 'Resultado 1' },
   { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-3.webp', alt: 'Resultado 3' },
   { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-4.webp', alt: 'Resultado 4' },
-  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-5.webp', alt: 'Resultado 5' },
   { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-6.webp', alt: 'Resultado 6' },
   { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-7.webp', alt: 'Resultado 7' },
-  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-8.webp', alt: 'Resultado 8' },
-  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-9.webp', alt: 'Resultado 9' }
+  { src: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-8.webp', alt: 'Resultado 8' }
 ];
 
 const track = document.getElementById('resultsTrack');
