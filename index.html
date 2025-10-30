@@ -1003,7 +1003,7 @@
       function init() {
         const whatsappBtn = document.getElementById('whatsappFloatingBtn');
         const heroBtn = document.getElementById('heroAgendarBtn');
-        const ctaBtn = document.getElementById('ctaAgendarBtn');
+        const ctaButtons = document.querySelectorAll('.cta-agendar-btn');
 
         if (whatsappBtn) {
           whatsappBtn.addEventListener('click', loadModalScript);
@@ -1019,11 +1019,14 @@
           console.error('❌ Botão Hero não encontrado');
         }
 
-        if (ctaBtn) {
-          ctaBtn.addEventListener('click', loadModalScript);
-          console.log('✅ Listener adicionado ao botão CTA');
-        } else {
-          console.error('❌ Botão CTA não encontrado');
+        // Adiciona listener a todos os botões CTA
+        ctaButtons.forEach((btn, index) => {
+          btn.addEventListener('click', loadModalScript);
+          console.log(`✅ Listener adicionado ao botão CTA ${index + 1}`);
+        });
+
+        if (ctaButtons.length === 0) {
+          console.error('❌ Nenhum botão CTA encontrado');
         }
       }
 
@@ -1170,8 +1173,7 @@
               </p>
 
               <button
-                id="ctaAgendarBtn"
-                class="inline-block py-4 px-8 bg-coffee text-pearl text-sand font-bold tracking-widest hover:bg-sand hover:text-coffee transition-all duration-300 border-0 cursor-pointer shadow-md"
+                class="cta-agendar-btn inline-block py-4 px-8 bg-coffee text-pearl text-sand font-bold tracking-widest hover:bg-sand hover:text-coffee transition-all duration-300 border-0 cursor-pointer shadow-md"
               >
                 AGENDAR MINHA AVALIAÇÃO
               </button>
@@ -1360,7 +1362,7 @@
       <section class="bg-pearl py-10 pb-20 text-center">
         <h2 class="text-2xl font-black tracking-widest-xl text-black mb-2.5">AGENDE SUA CONSULTA</h2>
         <p class="text-base font-light uppercase tracking-wide text-black mb-8">Desperte sua força real.</p>
-        <button id="ctaAgendarBtn" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">AGENDAR AGORA</button>
+        <button class="cta-agendar-btn inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">AGENDAR AGORA</button>
       </section>
 
       <!-- YouTube Section -->
