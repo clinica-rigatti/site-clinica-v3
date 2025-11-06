@@ -43,7 +43,7 @@
   <link rel="preload" as="image" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca.png" fetchpriority="high">
 
   <!-- Carregamento SÍNCRONO mas otimizado com display=swap -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 
   <!-- Font Awesome com defer (não crítico) -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -79,7 +79,12 @@
     body {
       font-family: 'Poppins', sans-serif;
     }
-    
+
+    /* Força negrito em strong mesmo com font-light */
+    strong {
+      font-weight: 700 !important;
+    }
+
     /* Carrossel da equipe com CSS Animation */
     .team-carousel {
       --gap: 12px;
@@ -1563,7 +1568,7 @@
                 <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/verificado-gold.png" alt="Verificado" class="w-12 h-12" width="48" height="48" loading="lazy">
               </div>
               <div class="flex-1">
-                <p class="text-black text-base font-light leading-relaxed"><strong>+10 anos</strong> transformando vidas no Brasil</p>
+                <p class="text-black text-base font-light leading-relaxed"><strong>+ 10 anos</strong> transformando vidas no Brasil</p>
               </div>
             </div>
 
