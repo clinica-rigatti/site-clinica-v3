@@ -11,8 +11,9 @@ const images = [
 ];
 
 const track = document.getElementById('resultsTrack');
-const prevBtn = document.querySelector('section[class*="bg-pearl"] button[aria-label="Anterior"]');
-const nextBtn = document.querySelector('section[class*="bg-pearl"] button[aria-label="Próximo"]');
+const carouselContainer = track?.parentElement?.parentElement;
+const prevBtn = carouselContainer?.querySelector('button[aria-label="Anterior"]');
+const nextBtn = carouselContainer?.querySelector('button[aria-label="Próximo"]');
 
 let currentIndex = 0;
 let isAnimating = false;

@@ -1507,6 +1507,14 @@
         <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/blog.webp" alt="Blog" class="w-[70%] max-w-[900px] object-cover flex-shrink-0 max-lg:w-full max-lg:max-w-[600px] max-lg:h-auto" loading="lazy" width="900" height="1200">
       </section>
 
+      <!-- CTA Section -->
+      <section class="bg-[#E4E4E4] px-5 pb-10 pt-0 text-center">
+        <div class="w-[90%] max-w-[1400px] mx-auto border-t border-coffee/40 mb-10"></div>
+        <h2 class="text-2xl font-black tracking-widest-xl text-black mb-2.5 leading-none">AGENDE SUA CONSULTA</h2>
+        <p class="text-base font-light uppercase tracking-wide text-black mb-8">Desperte sua força real.</p>
+        <button class="cta-agendar-btn inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">AGENDAR AGORA</button>
+      </section>
+
       <!-- Results Section with Videos and Before/After -->
       <section class="py-10 text-center bg-pearl text-black">
         <!-- Título da Seção -->
@@ -1558,7 +1566,7 @@
       </section>
 
       <!-- Trust Badges Section -->
-      <section class="bg-pearl pb-10 px-5 max-md:pb-10">
+      <section class="bg-[#E4E4E4] py-10 px-5">
         <div class="max-w-[1400px] mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 max-md:gap-6">
 
@@ -1626,11 +1634,20 @@
         </div>
       </section>
 
-      <!-- CTA Section -->
-      <section class="bg-pearl px-5 pb-10 text-center">
-        <h2 class="text-2xl font-black tracking-widest-xl text-black mb-2.5">AGENDE SUA CONSULTA</h2>
-        <p class="text-base font-light uppercase tracking-wide text-black mb-8">Desperte sua força real.</p>
-        <button class="cta-agendar-btn inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">AGENDAR AGORA</button>
+      <!-- Calculadora IMC Section -->
+      <section class="bg-white px-5 py-10 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="inline-flex items-center justify-center w-24 h-24 bg-sand/20 rounded-full mb-6">
+            <i class="fas fa-weight-scale text-5xl text-coffee"></i>
+          </div>
+          <h2 class="text-2xl font-black tracking-widest-xl text-coffee mb-4 max-md:text-xl">DESCUBRA SEU IMC</h2>
+          <p class="text-base font-light text-black leading-relaxed mb-8 max-md:text-sm">
+            O <strong>Índice de Massa Corporal</strong> é uma ferramenta importante para avaliar sua saúde.
+            Calcule agora e descubra se seu peso está adequado para sua altura.
+            <strong>Conhecer seu IMC</strong> é o primeiro passo para uma vida mais saudável e equilibrada.
+          </p>
+          <a href="calculadora-imc.html" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">CALCULAR MEU IMC</a>
+        </div>
       </section>
 
       <!-- YouTube Section -->
@@ -1921,5 +1938,39 @@
   </script>
 
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgXHktkSWSlzY42kbfm5-aG1jvNPyu898&callback=initMap&v=weekly" async defer></script>
+
+  <!-- Script para passar UTMs para a calculadora -->
+  <script>
+    (() => {
+      // Capturar UTMs da URL atual
+      const urlParams = new URLSearchParams(window.location.search);
+      const utms = {
+        utm_source: urlParams.get('utm_source'),
+        utm_medium: urlParams.get('utm_medium'),
+        utm_campaign: urlParams.get('utm_campaign'),
+        utm_term: urlParams.get('utm_term'),
+        utm_content: urlParams.get('utm_content')
+      };
+
+      // Encontrar o link da calculadora
+      const calculadoraLink = document.querySelector('a[href="calculadora-imc.html"]');
+
+      if (calculadoraLink) {
+        // Construir query string com UTMs
+        const utmParams = new URLSearchParams();
+        Object.keys(utms).forEach(key => {
+          if (utms[key]) {
+            utmParams.append(key, utms[key]);
+          }
+        });
+
+        // Adicionar UTMs ao link se existirem
+        const utmString = utmParams.toString();
+        if (utmString) {
+          calculadoraLink.href = `calculadora-imc.html?${utmString}`;
+        }
+      }
+    })();
+  </script>
 </body>
 </html>

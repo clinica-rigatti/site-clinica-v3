@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calcule seu Índice de Massa Corporal (IMC) e descubra se seu peso está adequado para sua altura. Clínica Rigatti - Saúde Personalizada.">
+  <title>Calculadora de IMC - Clínica Rigatti</title>
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.clinicarigatti.com.br/calculadora-imc.html">
+  <meta property="og:title" content="Calculadora de IMC - Clínica Rigatti">
+  <meta property="og:description" content="Calcule seu Índice de Massa Corporal e descubra se seu peso está adequado para sua altura.">
+  <meta property="og:image" content="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/open-graph.jpg">
+
+  <link rel="icon" href="https://clinicarigatti.s3-accelerate.amazonaws.com/imagens_sites/Prancheta+1.png" type="image/x-icon">
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <!-- DNS-prefetch -->
+  <link rel="dns-prefetch" href="https://cdn.tailwindcss.com">
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/></noscript>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            sand: '#C1B490',
+            pearl: '#EEECEA',
+            coffee: '#45372C',
+          },
+          fontFamily: {
+            poppins: ['Poppins', 'sans-serif'],
+          },
+          letterSpacing: {
+            'widest-xl': '0.3125rem',
+            'widest-2xl': '0.625rem',
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    /* Força negrito em strong mesmo com font-light */
+    strong {
+      font-weight: 700 !important;
+    }
+
+    /* Animação para o resultado */
+    .result-appear {
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Estilo dos inputs */
+    input[type="number"]::-webkit-inner-spin-button,
+    input[type="number"]::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    /* Custom range slider styles - Elegant Version */
+    input[type="range"].slider-elegant {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #ffffff 0%, #000000 100%);
+      outline: none;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    input[type="range"].slider-elegant:hover {
+      height: 8px;
+    }
+
+    input[type="range"].slider-elegant::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #000000;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0,0,0,0.2);
+      border: 3px solid white;
+      transition: all 0.3s ease;
+    }
+
+    input[type="range"].slider-elegant::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0,0,0,0.3);
+    }
+
+    input[type="range"].slider-elegant::-webkit-slider-thumb:active {
+      transform: scale(1.1);
+    }
+
+    input[type="range"].slider-elegant::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #000000;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 2px 4px rgba(0,0,0,0.2);
+      border: 3px solid white;
+      transition: all 0.3s ease;
+    }
+
+    input[type="range"].slider-elegant::-moz-range-thumb:hover {
+      transform: scale(1.2);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4), 0 3px 6px rgba(0,0,0,0.3);
+    }
+
+    input[type="range"].slider-elegant::-moz-range-thumb:active {
+      transform: scale(1.1);
+    }
+
+    /* Animação suave para cards */
+    .step-content > div {
+      animation: slideInUp 0.4s ease-out;
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Animação de fade in para lazy loading */
+    img[loading="lazy"] {
+      opacity: 0;
+      animation: fadeIn 0.3s ease-in forwards;
+    }
+
+    @keyframes fadeIn {
+      to { opacity: 1; }
+    }
+
+    /* Scrollbar customizada para cards de resultado */
+    .result-card-content {
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(193, 180, 144, 0.5) transparent;
+    }
+
+    .result-card-content::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .result-card-content::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .result-card-content::-webkit-scrollbar-thumb {
+      background-color: rgba(193, 180, 144, 0.5);
+      border-radius: 10px;
+    }
+
+    .result-card-content::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(193, 180, 144, 0.8);
+    }
+
+    /* GPU Acceleration para melhor performance */
+    .step-content {
+      will-change: transform;
+      transform: translateZ(0);
+    }
+
+    /* Estilos para radio buttons customizados - Step 1 e Step 2 */
+    input[type="radio"]:checked + div {
+      background-color: #000;
+      border-color: #fff;
+    }
+
+    input[type="radio"]:checked + div * {
+      color: #fff !important;
+    }
+
+    /* Mostrar checkmark quando selecionado */
+    input[type="radio"]:checked + div .opacity-0 {
+      opacity: 1 !important;
+    }
+  </style>
+</head>
+<body class="bg-pearl overflow-hidden">
+
+  <!-- Header -->
+  <header class="bg-black py-6 px-5 absolute top-0 left-0 right-0 z-50">
+    <div class="max-w-7xl mx-auto text-center">
+      <a href="index.html">
+        <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo+capa.webp" alt="Clínica Rigatti" class="w-[262px] h-[51px] mx-auto" width="262" height="51" loading="eager">
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="h-screen flex items-center justify-center px-5 pt-[100px] overflow-y-auto">
+    <div class="w-full max-w-2xl my-auto">
+
+      <!-- Card do Formulário -->
+      <div class="bg-white rounded-lg shadow-lg p-10 max-md:p-6">
+
+        <!-- Título Principal -->
+        <h1 class="text-2xl font-black text-black mb-8 text-center leading-tight max-md:text-xl uppercase">
+          CALCULE SEU GASTO DE ENERGIA DIÁRIO
+        </h1>
+
+        <!-- Step 1: Condicionamento Físico -->
+        <div id="step1" class="step-content">
+          <p class="text-lg font-semibold text-black mb-6 text-center max-md:text-base">
+            Qual condicionamento físico mais se assemelha ao seu atual:
+          </p>
+
+          <div class="space-y-4" data-step="1">
+            <label class="block cursor-pointer group">
+              <input type="radio" name="condicionamento" value="abaixo-peso" class="hidden" required>
+              <div class="border-2 border-black rounded-lg p-6 transition-all duration-300 hover:bg-black hover:border-white max-md:p-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0">
+                    <i class="fas fa-feather text-3xl text-black group-hover:text-white max-md:text-2xl transition-colors duration-300"></i>
+                  </div>
+                  <div class="flex-1 text-left">
+                    <h3 class="text-lg font-bold text-black group-hover:text-white max-md:text-base transition-colors duration-300">Abaixo do Peso Ideal</h3>
+                  </div>
+                </div>
+              </div>
+            </label>
+
+            <label class="block cursor-pointer group">
+              <input type="radio" name="condicionamento" value="peso-ideal" class="hidden" required>
+              <div class="border-2 border-black rounded-lg p-6 transition-all duration-300 hover:bg-black hover:border-white max-md:p-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0">
+                    <i class="fas fa-user-check text-3xl text-black group-hover:text-white max-md:text-2xl transition-colors duration-300"></i>
+                  </div>
+                  <div class="flex-1 text-left">
+                    <h3 class="text-lg font-bold text-black group-hover:text-white max-md:text-base transition-colors duration-300">Próximo do Peso Ideal</h3>
+                  </div>
+                </div>
+              </div>
+            </label>
+
+            <label class="block cursor-pointer group">
+              <input type="radio" name="condicionamento" value="acima-peso" class="hidden" required>
+              <div class="border-2 border-black rounded-lg p-6 transition-all duration-300 hover:bg-black hover:border-white max-md:p-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0">
+                    <i class="fas fa-weight-scale text-3xl text-black group-hover:text-white max-md:text-2xl transition-colors duration-300"></i>
+                  </div>
+                  <div class="flex-1 text-left">
+                    <h3 class="text-lg font-bold text-black group-hover:text-white max-md:text-base transition-colors duration-300">Muito acima do Peso</h3>
+                  </div>
+                </div>
+              </div>
+            </label>
+
+            <label class="block cursor-pointer group">
+              <input type="radio" name="condicionamento" value="atleta" class="hidden" required>
+              <div class="border-2 border-black rounded-lg p-6 transition-all duration-300 hover:bg-black hover:border-white max-md:p-4">
+                <div class="flex items-center gap-4">
+                  <div class="flex-shrink-0">
+                    <i class="fas fa-dumbbell text-3xl text-black group-hover:text-white max-md:text-2xl transition-colors duration-300"></i>
+                  </div>
+                  <div class="flex-1 text-left">
+                    <h3 class="text-lg font-bold text-black group-hover:text-white max-md:text-base transition-colors duration-300">Atleta</h3>
+                  </div>
+                </div>
+              </div>
+            </label>
+          </div>
+
+          <button id="btnStep1" type="button" disabled class="w-full py-4 px-6 text-lg font-bold bg-sand text-coffee rounded-md shadow-md enabled:hover:bg-coffee enabled:hover:text-sand transition-all duration-300 border-0 cursor-pointer mt-8 max-md:text-lg disabled:opacity-50 disabled:cursor-not-allowed uppercase">
+            CONTINUAR
+          </button>
+        </div>
+
+        <!-- Step 2: Informações Pessoais -->
+        <div id="step2" class="step-content hidden">
+          <p class="text-lg font-semibold text-black mb-6 text-center max-md:text-base">
+            Precisamos conhecer um pouco sobre você
+          </p>
+
+          <div class="space-y-3">
+            <!-- Gênero Card -->
+            <div class="bg-white rounded-xl p-4 shadow-sm border-2 border-black transition-all duration-300 hover:shadow-md">
+              <div class="flex items-center gap-2 mb-3">
+                <div class="w-9 h-9 bg-sand rounded-lg flex items-center justify-center flex-shrink-0">
+                  <i class="fas fa-venus-mars text-coffee text-base"></i>
+                </div>
+                <div>
+                  <label class="block text-black font-bold text-sm tracking-wide uppercase">GÊNERO</label>
+                  <p class="text-xs text-black font-light">Selecione uma opção</p>
+                </div>
+              </div>
+              <div class="flex gap-2">
+                <label class="flex-1 cursor-pointer group">
+                  <input type="radio" name="genero" value="feminino" class="hidden">
+                  <div class="relative border-2 border-black rounded-lg p-3 text-center transition-all duration-300 hover:bg-black hover:border-white hover:scale-105">
+                    <i class="fas fa-venus text-2xl text-black group-hover:text-white mb-1 transition-all duration-300"></i>
+                    <p class="text-sm font-bold text-black group-hover:text-white transition-all duration-300">Feminino</p>
+                    <div class="absolute top-1 right-1 w-4 h-4 rounded-full border-2 border-black bg-black flex items-center justify-center opacity-0">
+                      <i class="fas fa-check text-white text-[9px]"></i>
+                    </div>
+                  </div>
+                </label>
+                <label class="flex-1 cursor-pointer group">
+                  <input type="radio" name="genero" value="masculino" class="hidden">
+                  <div class="relative border-2 border-black rounded-lg p-3 text-center transition-all duration-300 hover:bg-black hover:border-white hover:scale-105">
+                    <i class="fas fa-mars text-2xl text-black group-hover:text-white mb-1 transition-all duration-300"></i>
+                    <p class="text-sm font-bold text-black group-hover:text-white transition-all duration-300">Masculino</p>
+                    <div class="absolute top-1 right-1 w-4 h-4 rounded-full border-2 border-black bg-black flex items-center justify-center opacity-0">
+                      <i class="fas fa-check text-white text-[9px]"></i>
+                    </div>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Grid de 3 colunas: Idade, Altura e Peso -->
+            <div class="grid grid-cols-3 gap-3 max-md:grid-cols-1">
+              <!-- Idade Card -->
+              <div class="bg-white rounded-xl p-4 shadow-sm border-2 border-black transition-all duration-300 hover:shadow-md">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-9 h-9 bg-sand rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-calendar-alt text-coffee text-base"></i>
+                  </div>
+                  <div>
+                    <label class="block text-black font-bold text-sm tracking-wide uppercase">IDADE</label>
+                    <p class="text-xs text-black font-light">Anos</p>
+                  </div>
+                </div>
+                <div class="bg-sand px-2 py-2 rounded-lg mb-2 text-center">
+                  <div class="text-xl font-black text-coffee" id="idadeValue">19 anos</div>
+                </div>
+                <input type="range" id="idadeRange" min="19" max="80" value="19" class="w-full slider-elegant">
+                <div class="flex justify-between text-xs text-black mt-1 font-medium">
+                  <span>19</span>
+                  <span>80</span>
+                </div>
+              </div>
+
+              <!-- Altura Card -->
+              <div class="bg-white rounded-xl p-4 shadow-sm border-2 border-black transition-all duration-300 hover:shadow-md">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-9 h-9 bg-sand rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-ruler-vertical text-coffee text-base"></i>
+                  </div>
+                  <div>
+                    <label class="block text-black font-bold text-sm tracking-wide uppercase">ALTURA</label>
+                    <p class="text-xs text-black font-light">cm</p>
+                  </div>
+                </div>
+                <div class="bg-sand px-2 py-2 rounded-lg mb-2 text-center">
+                  <div class="text-xl font-black text-coffee" id="alturaValue">170 cm</div>
+                </div>
+                <input type="range" id="alturaRange" min="130" max="230" value="170" class="w-full slider-elegant">
+                <div class="flex justify-between text-xs text-black mt-1 font-medium">
+                  <span>130</span>
+                  <span>230</span>
+                </div>
+              </div>
+
+              <!-- Peso Card -->
+              <div class="bg-white rounded-xl p-4 shadow-sm border-2 border-black transition-all duration-300 hover:shadow-md">
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="w-9 h-9 bg-sand rounded-lg flex items-center justify-center flex-shrink-0">
+                    <i class="fas fa-weight text-coffee text-base"></i>
+                  </div>
+                  <div>
+                    <label class="block text-black font-bold text-sm tracking-wide uppercase">PESO</label>
+                    <p class="text-xs text-black font-light">kg</p>
+                  </div>
+                </div>
+                <div class="bg-sand px-2 py-2 rounded-lg mb-2 text-center">
+                  <div class="text-xl font-black text-coffee" id="pesoValue">100 kg</div>
+                </div>
+                <input type="range" id="pesoRange" min="40" max="180" value="100" class="w-full slider-elegant">
+                <div class="flex justify-between text-xs text-black mt-1 font-medium">
+                  <span>40</span>
+                  <span>180</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button id="btnStep2" type="button" disabled class="w-full py-4 px-6 text-lg font-bold bg-sand text-coffee rounded-md shadow-md enabled:hover:bg-coffee enabled:hover:text-sand transition-all duration-300 border-0 cursor-pointer mt-8 max-md:text-lg uppercase disabled:opacity-50 disabled:cursor-not-allowed">
+            CONTINUAR
+            <i class="fas fa-arrow-right ml-2"></i>
+          </button>
+
+          <div class="text-center mt-4">
+            <button id="btnVoltarStep2" type="button" class="text-black hover:text-sand transition-colors text-sm font-semibold inline-flex items-center gap-2">
+              <i class="fas fa-arrow-left text-xs"></i>
+              Voltar
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Nível de Atividade Física -->
+        <div id="step3" class="step-content hidden">
+          <p class="text-lg font-semibold text-black mb-6 text-center max-md:text-base">
+            Qual seu nível de atividade física:
+          </p>
+
+          <div class="space-y-4" data-step="3">
+            <label class="block cursor-pointer group">
+              <input type="radio" name="atividade" value="1.2" class="hidden" required>
+              <div class="border-2 border-black rounded-lg p-6 transition-all duration-300 hover:bg-black hover:border-white max-md:p-4">
+                <h3 class="text-lg font-bold text-black group-hover:text-white mb-1 max-md:text-base transition-colors duration-300">Sedentário</h3>
+                <p class="text-sm text-black group-hover:text-white font-light transition-colors duration-300">Pouco ou nenhum exercício</p>
+              </div>
+            </label>
+
+            <label class="block cursor-pointer group">
+              <input type="radio" name="atividade" value="1.4" class="hidden" required>
+              <div class="border-2 border-black rounded-lg p-6 transition-all duration-300 hover:bg-black hover:border-white max-md:p-4">
+                <h3 class="text-lg font-bold text-black group-hover:text-white mb-1 max-md:text-base transition-colors duration-300">Pouco Ativo</h3>
+                <p class="text-sm text-black group-hover:text-white font-light transition-colors duration-300">Exercícios leves ou esportes 1-3 dias / semana</p>
+              </div>
+            </label>
+
+            <label class="block cursor-pointer group">
+              <input type="radio" name="atividade" value="1.5" class="hidden" required>
+              <div class="border-2 border-black rounded-lg p-6 transition-all duration-300 hover:bg-black hover:border-white max-md:p-4">
+                <h3 class="text-lg font-bold text-black group-hover:text-white mb-1 max-md:text-base transition-colors duration-300">Moderadamente ativo</h3>
+                <p class="text-sm text-black group-hover:text-white font-light transition-colors duration-300">Exercício moderado ou esportes 3-5 dias / semana</p>
+              </div>
+            </label>
+
+            <label class="block cursor-pointer group">
+              <input type="radio" name="atividade" value="1.7" class="hidden" required>
+              <div class="border-2 border-black rounded-lg p-6 transition-all duration-300 hover:bg-black hover:border-white max-md:p-4">
+                <h3 class="text-lg font-bold text-black group-hover:text-white mb-1 max-md:text-base transition-colors duration-300">Muito ativo</h3>
+                <p class="text-sm text-black group-hover:text-white font-light transition-colors duration-300">Exercícios intensos ou esportes de 6-7 dias / semana</p>
+              </div>
+            </label>
+          </div>
+
+          <button id="btnCalcular" type="button" disabled class="w-full py-4 px-6 text-lg font-bold bg-sand text-coffee rounded-md shadow-md enabled:hover:bg-coffee enabled:hover:text-sand transition-all duration-300 border-0 cursor-pointer mt-8 max-md:text-lg disabled:opacity-50 disabled:cursor-not-allowed uppercase">
+            CALCULAR
+          </button>
+
+          <div class="text-center mt-4">
+            <button id="btnVoltarStep3" type="button" class="text-black hover:text-sand transition-colors text-sm font-semibold inline-flex items-center gap-2">
+              <i class="fas fa-arrow-left text-xs"></i>
+              Voltar
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Resultados -->
+        <div id="step4" class="step-content hidden">
+          <p class="text-base font-semibold text-black mb-4 text-center max-md:text-sm max-md:mb-3">
+            Pronto! Esse é seu gasto calórico diário estimado.
+          </p>
+
+          <div class="space-y-2 result-card-content">
+            <!-- Gasto Energético -->
+            <div class="bg-white border-2 border-black rounded-lg p-3 transition-all duration-300 hover:bg-black hover:border-white group">
+              <div class="flex items-center gap-3">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-fire text-2xl text-black group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-[10px] text-black group-hover:text-white font-semibold uppercase tracking-wide transition-colors duration-300">Gasto Energético Diário</p>
+                  <p class="text-xl font-black text-black group-hover:text-white transition-colors duration-300"><span id="gastoEnergetico">0</span> kcal</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Meta de Proteínas -->
+            <div class="bg-white border-2 border-black rounded-lg p-3 transition-all duration-300 hover:bg-black hover:border-white group">
+              <div class="flex items-center gap-3">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-drumstick-bite text-2xl text-black group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-[10px] text-black group-hover:text-white font-semibold uppercase tracking-wide transition-colors duration-300">Meta de Proteínas</p>
+                  <p class="text-xl font-black text-black group-hover:text-white transition-colors duration-300"><span id="proteina">0</span>g</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Emagrecer -->
+            <div class="bg-white border-2 border-black rounded-lg p-3 transition-all duration-300 hover:bg-black hover:border-white group">
+              <div class="flex items-center gap-3">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-weight-scale text-2xl text-black group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-[10px] text-black group-hover:text-white font-semibold uppercase tracking-wide transition-colors duration-300">Calorias Diárias para Emagrecer</p>
+                  <p class="text-xl font-black text-black group-hover:text-white transition-colors duration-300"><span id="emagrecer">0</span> kcal</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Hipertrofia -->
+            <div class="bg-white border-2 border-black rounded-lg p-3 transition-all duration-300 hover:bg-black hover:border-white group">
+              <div class="flex items-center gap-3">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-dumbbell text-2xl text-black group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-[10px] text-black group-hover:text-white font-semibold uppercase tracking-wide transition-colors duration-300">Calorias Diárias para Hipertrofia</p>
+                  <p class="text-xl font-black text-black group-hover:text-white transition-colors duration-300"><span id="hipertrofia">0</span> kcal</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Manter Peso -->
+            <div class="bg-white border-2 border-black rounded-lg p-3 transition-all duration-300 hover:bg-black hover:border-white group">
+              <div class="flex items-center gap-3">
+                <div class="flex-shrink-0">
+                  <i class="fas fa-balance-scale text-2xl text-black group-hover:text-white transition-colors duration-300"></i>
+                </div>
+                <div class="flex-1">
+                  <p class="text-[10px] text-black group-hover:text-white font-semibold uppercase tracking-wide transition-colors duration-300">Calorias Diárias para Manter o Peso</p>
+                  <p class="text-xl font-black text-black group-hover:text-white transition-colors duration-300"><span id="manterPeso">0</span> kcal</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a id="whatsappBtn" href="https://wa.me/554731701671?text=Ol%C3%A1!%20Acabei%20de%20calcular%20meu%20gasto%20energ%C3%A9tico%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20os%20servi%C3%A7os%20da%20cl%C3%ADnica." target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 w-full h-[48px] px-6 text-base font-bold bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white rounded-xl shadow-lg hover:from-[#128C7E] hover:to-[#075E54] hover:scale-[1.02] transition-all duration-300 mt-4 max-md:gap-2 uppercase">
+            <i class="fab fa-whatsapp text-xl"></i>
+            FALAR COM ESPECIALISTA
+          </a>
+
+          <button onclick="resetQuestionario()" type="button" class="w-full h-[48px] px-6 text-base font-bold bg-sand text-coffee rounded-xl shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 border-0 cursor-pointer mt-2 uppercase">
+            CALCULAR NOVAMENTE
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal de Contato -->
+  <div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-6 max-md:p-4">
+      <h3 class="text-xl font-black text-black mb-4 text-center uppercase">Antes de continuar</h3>
+      <p class="text-sm text-black mb-4 text-center">Por favor, preencha seus dados para falar com nosso especialista:</p>
+
+      <form id="contactForm" class="space-y-3">
+        <div>
+          <label class="block text-sm font-bold text-black mb-1 uppercase">Nome Completo</label>
+          <input
+            type="text"
+            id="userName"
+            required
+            class="w-full px-4 py-3 border-2 border-black rounded-lg focus:outline-none focus:border-sand transition-colors"
+            placeholder="Digite seu nome">
+        </div>
+
+        <div>
+          <label class="block text-sm font-bold text-black mb-1 uppercase">Telefone</label>
+          <input
+            type="tel"
+            id="userPhone"
+            required
+            class="w-full px-4 py-3 border-2 border-black rounded-lg focus:outline-none focus:border-sand transition-colors"
+            placeholder="(00) 00000-0000">
+        </div>
+
+        <div class="flex gap-2 mt-4">
+          <button
+            type="button"
+            id="closeModal"
+            class="flex-1 py-3 px-4 text-sm font-bold bg-white text-black border-2 border-black rounded-lg hover:bg-black hover:text-white transition-all duration-300 uppercase">
+            Cancelar
+          </button>
+          <button
+            type="submit"
+            class="flex-1 py-3 px-4 text-sm font-bold bg-sand text-coffee rounded-lg hover:bg-coffee hover:text-sand transition-all duration-300 uppercase">
+            Continuar
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- JavaScript do Questionário -->
+  <script src="scripts/questionarioController.js" defer></script>
+
+  <!-- JavaScript do Modal de Contato -->
+  <script>
+    (() => {
+      const modal = document.getElementById('contactModal');
+      const whatsappBtn = document.getElementById('whatsappBtn');
+      const contactForm = document.getElementById('contactForm');
+      const closeModalBtn = document.getElementById('closeModal');
+      const userNameInput = document.getElementById('userName');
+      const userPhoneInput = document.getElementById('userPhone');
+      let whatsappNumber = '554731701671'; // Número padrão
+
+      // Capturar UTMs da URL
+      function captureUTMs() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const utms = {
+          utm_source: urlParams.get('utm_source') || '',
+          utm_medium: urlParams.get('utm_medium') || '',
+          utm_campaign: urlParams.get('utm_campaign') || '',
+          utm_term: urlParams.get('utm_term') || '',
+          utm_content: urlParams.get('utm_content') || ''
+        };
+        return utms;
+      }
+
+      // Armazenar UTMs para uso posterior
+      const utmParams = captureUTMs();
+
+      // Buscar número do WhatsApp do webhook
+      async function fetchWhatsAppNumber() {
+        try {
+          const response = await fetch('https://automacoes.clinicarigatti.com.br/webhook/db448677-4dca-4eb7-9988-d37ad099cc41?classification=false');
+          const data = await response.json();
+
+          if (data && data.phone) {
+            whatsappNumber = data.phone.replace(/\D/g, ''); // Remove caracteres não numéricos
+            console.log('Número do WhatsApp carregado:', whatsappNumber);
+          }
+        } catch (error) {
+          console.error('Erro ao buscar número do WhatsApp:', error);
+          // Mantém o número padrão em caso de erro
+        }
+      }
+
+      // Buscar o número ao carregar a página
+      fetchWhatsAppNumber();
+
+      // Formatar telefone enquanto digita
+      userPhoneInput.addEventListener('input', (e) => {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length <= 11) {
+          value = value.replace(/^(\d{2})(\d)/g, '($1) $2');
+          value = value.replace(/(\d)(\d{4})$/, '$1-$2');
+          e.target.value = value;
+        } else {
+          e.target.value = e.target.value.slice(0, -1);
+        }
+      });
+
+      // Abrir modal ao clicar no botão WhatsApp
+      whatsappBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      });
+
+      // Fechar modal
+      closeModalBtn.addEventListener('click', () => {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      });
+
+      // Fechar modal ao clicar fora
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) {
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+        }
+      });
+
+      // Submeter formulário
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const nome = userNameInput.value.trim();
+        const telefone = userPhoneInput.value.trim();
+
+        if (nome && telefone) {
+          // Obter resultados da calculadora (do DOM)
+          const gastoEnergetico = document.getElementById('gastoEnergetico').textContent;
+          const proteina = document.getElementById('proteina').textContent;
+          const emagrecer = document.getElementById('emagrecer').textContent;
+          const hipertrofia = document.getElementById('hipertrofia').textContent;
+          const manterPeso = document.getElementById('manterPeso').textContent;
+
+          // Preparar dados para enviar ao webhook
+          const dados = {
+            nome: nome,
+            telefone: telefone,
+            resultados: {
+              gastoEnergeticoDiario: gastoEnergetico,
+              metaProteinas: proteina,
+              caloriasEmagrecer: emagrecer,
+              caloriasHipertrofia: hipertrofia,
+              caloriasManterPeso: manterPeso
+            },
+            utms: utmParams
+          };
+
+          // Enviar dados para o webhook
+          try {
+            const response = await fetch('https://automacoes.clinicarigatti.com.br/webhook/6df871d0-a20c-4a06-b405-d3534a51e099', {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(dados)
+            });
+
+            if (response.ok) {
+              console.log('Dados enviados com sucesso ao webhook');
+            } else {
+              console.error('Erro ao enviar dados ao webhook:', response.status);
+            }
+          } catch (error) {
+            console.error('Erro ao enviar dados ao webhook:', error);
+          }
+
+          // Criar mensagem personalizada
+          const mensagem = encodeURIComponent(
+            `Olá! Fiz o cálculo do meu gasto energético e quero entender qual protocolo da clínica é indicado para o meu caso.`
+          );
+
+          // Abrir WhatsApp em nova aba com o número dinâmico
+          window.open(`https://wa.me/${whatsappNumber}?text=${mensagem}`, '_blank');
+
+          // Fechar modal
+          modal.classList.add('hidden');
+          modal.classList.remove('flex');
+
+          // Limpar formulário
+          contactForm.reset();
+        }
+      });
+    })();
+  </script>
+
+</body>
+</html>
