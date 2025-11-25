@@ -50,12 +50,12 @@
     card.href = post.link;
     card.target = '_blank';
     card.rel = 'noopener noreferrer';
-    card.className = 'block group relative overflow-hidden';
+    card.className = 'block group relative overflow-hidden w-[372px] h-[209px] max-md:w-full max-md:h-auto max-md:aspect-video';
 
     const img = document.createElement('img');
     img.src = post.image;
     img.alt = post.title;
-    img.className = 'w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer group-hover:-translate-y-2 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:z-10 max-md:group-hover:-translate-y-1 max-md:group-hover:scale-[1.01] max-md:w-full max-md:h-auto';
+    img.className = 'w-full h-full object-cover transition-all duration-300 cursor-pointer group-hover:-translate-y-2 group-hover:scale-[1.02] group-hover:shadow-2xl group-hover:z-10 max-md:group-hover:-translate-y-1 max-md:group-hover:scale-[1.01]';
     img.loading = 'lazy';
     img.width = '372';
     img.height = '209';
