@@ -16,10 +16,10 @@ async function loadYouTubeVideos() {
       return;
     }
 
-    const videoGrid = document.querySelector('.grid.grid-cols-2');
-    
+    const videoGrid = document.getElementById('youtubeVideosGrid');
+
     if (!videoGrid) {
-      console.error('Grade de vídeos não encontrada');
+      console.error('Grade de vídeos do YouTube não encontrada');
       return;
     }
 

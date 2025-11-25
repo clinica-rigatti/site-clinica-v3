@@ -25,8 +25,14 @@
 
     const liteYoutube = document.createElement('lite-youtube');
     liteYoutube.setAttribute('videoid', video.videoId);
-    liteYoutube.setAttribute('params', 'controls=0&modestbranding=1&rel=0&showinfo=0');
+    liteYoutube.setAttribute('params', 'controls=0&modestbranding=1&rel=0&showinfo=0&enablejsapi=1');
     liteYoutube.classList.add('testimonial-video');
+
+    // Adiciona listener de clique para rastrear quando o vídeo é ativado
+    liteYoutube.addEventListener('click', function() {
+      // Marca como ativo com atributo personalizado
+      liteYoutube.setAttribute('data-video-playing', 'true');
+    });
 
     videoWrapper.appendChild(liteYoutube);
     return videoWrapper;
@@ -66,7 +72,27 @@
   }
 
 
+  function pauseAllVideos() {
+    // Busca todos os lite-youtube que foram marcados como tocando
+    const playingVideos = track.querySelectorAll('lite-youtube[data-video-playing="true"]');
+
+    playingVideos.forEach((liteYoutube) => {
+      // Simplesmente remove o atributo para resetar o estado
+      liteYoutube.removeAttribute('data-video-playing');
+      liteYoutube.classList.remove('lyt-activated');
+
+      // Tenta remover iframe se existir
+      const iframe = liteYoutube.querySelector('iframe');
+      if (iframe && iframe.parentNode) {
+        iframe.remove();
+      }
+    });
+  }
+
   function updateVideoStates() {
+    // Pausa todos os vídeos antes de mudar
+    pauseAllVideos();
+
     // Desabilita/habilita vídeos baseado na posição
     const allItems = track.querySelectorAll('.testimonial-video-item');
     const centerIndex = currentIndex + testimonialVideos.length;

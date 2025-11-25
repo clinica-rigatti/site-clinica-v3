@@ -11,7 +11,7 @@ const images = [
 ];
 
 const track = document.getElementById('resultsTrack');
-const carouselContainer = track?.parentElement?.parentElement;
+const carouselContainer = track?.parentElement?.parentElement?.parentElement;
 const prevBtn = carouselContainer?.querySelector('button[aria-label="Anterior"]');
 const nextBtn = carouselContainer?.querySelector('button[aria-label="Próximo"]');
 

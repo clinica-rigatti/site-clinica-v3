@@ -957,7 +957,30 @@
     .testimonial-carousel-container {
       position: relative;
       width: 100%;
+      max-width: 800px; /* 1 card completo (280px) + 2 partes maiores (220px cada) + 2 gaps (20px cada) = ~800px */
+      margin: 0 auto;
       overflow: hidden;
+    }
+
+    .testimonial-carousel-container::before,
+    .testimonial-carousel-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 150px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .testimonial-carousel-container::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(238, 236, 234, 1) 0%, rgba(238, 236, 234, 0) 100%);
+    }
+
+    .testimonial-carousel-container::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(238, 236, 234, 1) 0%, rgba(238, 236, 234, 0) 100%);
     }
 
     .testimonial-carousel-track {
@@ -974,8 +997,8 @@
 
     .testimonial-video-item {
       flex: 0 0 auto;
-      width: 260px;
-      height: 462px;
+      width: 280px;
+      height: 498px;
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
@@ -1010,16 +1033,24 @@
       transform: scale(1.2);
     }
 
-    /* Desktop/Large screens - 5 cards visible */
+    /* Desktop/Large screens - mostrar mais dos laterais */
     @media (min-width: 1400px) {
+      .testimonial-carousel-container {
+        max-width: 800px;
+      }
+
       .testimonial-video-item {
         width: 280px;
         height: 498px;
       }
     }
 
-    /* Tablet - 3-4 cards visible */
+    /* Tablet - ajusta para mostrar mais dos laterais */
     @media (max-width: 1024px) {
+      .testimonial-carousel-container {
+        max-width: 640px; /* 1 card (240px) + 2 partes maiores (180px cada) + 2 gaps (16px cada) */
+      }
+
       .testimonial-video-item {
         width: 240px;
         height: 427px;
@@ -1030,8 +1061,12 @@
       }
     }
 
-    /* Mobile - 2 cards visible */
+    /* Mobile - ajusta para mostrar mais dos laterais */
     @media (max-width: 768px) {
+      .testimonial-carousel-container {
+        max-width: 500px; /* 1 card (200px) + 2 partes maiores (140px cada) + 2 gaps (12px cada) */
+      }
+
       .testimonial-video-item {
         width: 200px;
         height: 356px;
@@ -1042,8 +1077,12 @@
       }
     }
 
-    /* Small Mobile - 1.5 cards visible */
+    /* Small Mobile - mostrar mais dos laterais */
     @media (max-width: 520px) {
+      .testimonial-carousel-container {
+        max-width: 440px; /* 1 card (180px) + 2 partes maiores (120px cada) + 2 gaps (10px cada) */
+      }
+
       .testimonial-video-item {
         width: 180px;
         height: 320px;
@@ -1051,6 +1090,55 @@
 
       .testimonial-carousel-track {
         gap: 10px;
+      }
+    }
+
+    /* Before/After Carousel */
+    .before-after-carousel-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+
+    .before-after-carousel-container::before,
+    .before-after-carousel-container::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 150px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    .before-after-carousel-container::before {
+      left: 0;
+      background: linear-gradient(to right, rgba(238, 236, 234, 1) 0%, rgba(238, 236, 234, 0) 100%);
+    }
+
+    .before-after-carousel-container::after {
+      right: 0;
+      background: linear-gradient(to left, rgba(238, 236, 234, 1) 0%, rgba(238, 236, 234, 0) 100%);
+    }
+
+    /* Responsive adjustments for before/after carousel */
+    @media (max-width: 1024px) {
+      .before-after-carousel-container {
+        max-width: 640px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .before-after-carousel-container {
+        max-width: 500px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .before-after-carousel-container {
+        max-width: 440px;
       }
     }
 
@@ -1126,6 +1214,7 @@
   <script src="scripts/testimonialVideosCarouselController.js" defer></script>
   <script src="scripts/beforeAndAfterCarouselController.js" defer></script>
   <script src="scripts/youtubeVideosController.js" defer></script>
+  <script src="scripts/blogPostsController.js" defer></script>
   <script src="scripts/input.js" defer></script>
   <script src="scripts/formHandler.js" defer></script>
 
@@ -1312,22 +1401,20 @@
         <div class="max-w-[520px] max-md:max-w-full">
           <h2 class="text-2xl font-light tracking-[1.375rem] mb-2 max-md:text-lg max-md:tracking-[0.625rem] max-md:mb-2">MÉTODO</h2>
           <img class="my-2 max-md:my-2.5 max-md:mx-auto" src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca.png" alt="Logo branca Clinica Rigatti" width="318" height="109" fetchpriority="high">
-          <p class="text-xl font-light leading-6 my-4 max-md:text-base">Emagreça de forma personalizada com protocolos médicos exclusivos da Clínica Rigatti.</p>
+          <p class="text-xl font-light leading-6 my-4 max-md:text-base">Emagreça de forma personalizada com protocolos médicos exclusivos.</p>
           <button id="heroAgendarBtn" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-2 max-md:px-4 max-md:w-auto border-0 cursor-pointer">Agendar minha avaliação</button>
         </div>
-        
-        <div class="absolute bottom-36 left-1/2 -translate-x-1/2 text-sm font-extrabold tracking-widest-2xl max-md:relative max-md:bottom-auto max-md:left-auto max-md:translate-x-0 max-md:mt-10 max-md:text-[10px]">SUTIL-PRECISA-PERSONALIZADA</div>
       </section>
 
       <!-- About Section -->
-      <section id="servicos" class="py-10 text-center bg-gradient-to-b from-black from-75% to-pearl to-60% max-md:from-75% max-md:to-60% text-black pt-20 pb-5">
-        <div class="max-w-[919px] px-5 mx-auto mb-8 text-pearl">
-          <h3 class="text-xl font-semibold uppercase mb-5">Discrição, ciência e acompanhamento contínuo.</h3>
-          <p class="text-lg font-light leading-snug">Referência em saúde personalizada. Atuamos com precisão técnica e escuta humana, oferecendo protocolos desenhados sob medida para restaurar o equilíbrio hormonal, potencializar a vitalidade e sustentar um estilo de vida com mais presença e longevidade.</p>
+      <section class="text-center bg-gradient-to-b from-black from-85% to-pearl to-70% max-md:from-85% max-md:to-70% text-black pt-20">
+        <div class="max-w-[919px] px-5 mx-auto pb-12 text-pearl">
+          <h3 class="text-xl font-semibold uppercase pb-5">Recupere o equilíbrio hormonal e a energia que você perdeu.</h3>
+          <p class="text-lg font-light leading-snug">Tratamentos médicos personalizados que atacam a causa da fadiga, ansiedade e ganho de peso, e não apenas os sintomas.</p>
         </div>
 
         <!-- Who We Help Section -->
-        <div class="max-w-[1400px] mx-auto px-5 mb-20 max-lg:mb-16">
+        <div class="max-w-[1400px] mx-auto px-5 py-12">
           <div class="flex items-center gap-12 max-lg:flex-col max-lg:gap-8">
             <!-- Imagem -->
             <div class="flex-1 max-w-[792px]">
@@ -1346,25 +1433,71 @@
               <h3 class="text-pearl text-xl font-semibold uppercase mb-6 w-full text-left max-lg:text-center">Quem Ajudamos</h3>
 
               <p class="text-pearl text-lg font-light leading-snug mb-8 w-full text-left max-lg:text-center">
-                A Clínica Rigatti ajuda pessoas que sofrem com ansiedade, fadiga constante, compulsão alimentar, baixa libido, insônia, queda de cabelo e dificuldade para emagrecer.
-                <br><br>
-                Com tratamentos personalizados, a clínica combate as causas hormonais por trás desses sintomas e promove uma transformação real na saúde, autoestima e bem-estar.
+                Se você sente seu corpo cansado, a mente ansiosa e a balança parada, existe um motivo hormonal por trás.
+                <br>
+                Na Clínica Rigatti, tratamos a causa e devolvemos vitalidade, equilíbrio e autoestima.
               </p>
 
               <button
-                class="cta-agendar-btn inline-block py-4 px-8 bg-coffee text-pearl text-sand font-bold tracking-widest hover:bg-sand hover:text-coffee transition-all duration-300 border-0 cursor-pointer shadow-md self-start max-lg:self-center"
+                class="cta-agendar-btn inline-block py-4 px-8 bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand font-bold tracking-widest transition-all duration-300 border-0 cursor-pointer shadow-md self-start max-lg:self-center"
               >
-                AGENDAR MINHA AVALIAÇÃO
+                DESCUBRA SE O MÉTODO RIGATTI É PRA VOCÊ
               </button>
             </div>
           </div>
         </div>
 
+        <!-- Método Rigatti Section -->
+        <section class="py-12" id="metodo">
+          <div class="max-w-[1400px] mx-auto px-5">
+            <div class="flex items-center gap-12 max-lg:flex-col-reverse max-lg:gap-8">
+              <!-- Conteúdo -->
+              <div class="flex-1 max-w-[480px] flex flex-col items-start max-lg:items-center">
+                <h3 class="text-pearl text-xl font-semibold uppercase mb-6 w-full text-left max-lg:text-center">
+                  Conheça o Método Rigatti
+                </h3>
+
+                <p class="text-pearl text-lg font-light leading-snug mb-8 w-full text-left max-lg:text-center">
+                  O Método Rigatti é um plano personalizado que une regulação hormonal, nutrição e suplementação.
+                  <br>
+                  Em 3 etapas, você entende seu corpo, trata as causas e sente o resultado no espelho e na saúde. Com mais clareza e disposição no dia a dia
+                </p>
+
+                <a
+                  href="clinica.html"
+                  class="inline-block py-4 px-16 bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand text-base font-bold tracking-widest transition-all duration-300 border-0 cursor-pointer shadow-md self-start max-lg:self-center"
+                >
+                  VEJA COMO FUNCIONA O MÉTODO
+                </a>
+              </div>
+
+              <!-- Imagem -->
+              <div class="flex-1 max-w-[792px]">
+                <img
+                  src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/dr-rigatti.webp"
+                  alt="Método Rigatti"
+                  class="w-full h-auto rounded-lg shadow-lg"
+                  loading="lazy"
+                  width="792"
+                  height="604"
+                >
+              </div>
+            </div>
+          </div>
+        </section>
+        
         <!-- Services Grid -->
-        <div class="relative mb-16">
+        <div class="relative py-12" id="servicos">
+          <!-- Título dos Protocolos -->
+          <div class="max-w-[1200px] mx-auto px-5 text-center">
+            <h3 class="text-pearl text-xl font-semibold uppercase pb-5">
+              Os nossos protocolos tratam a causa dos sintomas e devolvem vitalidade ao corpo e à mente.
+            </h3>
+          </div>
+
           <button class="services-btn-prev absolute top-1/2 -translate-y-1/2 left-2 z-[5] w-10 h-10 border-0 rounded-full bg-black/55 text-white text-2xl grid place-items-center cursor-pointer hover:bg-black/70 transition-all max-[1530px]:block hidden" aria-label="Anterior">‹</button>
 
-          <div class="services grid grid-cols-6 gap-1 px-40 mb-16 max-w-[1800px] mx-auto max-[1530px]:flex max-[1530px]:gap-3 max-[1530px]:px-12 max-[1530px]:overflow-x-auto max-[1530px]:scroll-snap-x max-[1530px]:scroll-smooth max-lg:px-12 hide-scrollbar">
+          <div class="services grid grid-cols-6 gap-1 px-40 max-w-[1800px] mx-auto max-[1530px]:flex max-[1530px]:gap-3 max-[1530px]:px-12 max-[1530px]:overflow-x-auto max-[1530px]:scroll-snap-x max-[1530px]:scroll-smooth max-lg:px-12 hide-scrollbar">
 
             <!-- Service Cards -->
             <a href="reposicao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px] max-[1530px]:flex-[0_0_32%] max-[1530px]:scroll-snap-align-center max-[1530px]:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4] max-md:max-w-none">
@@ -1374,7 +1507,7 @@
                   <h4 class="m-0 text-[15px] font-light uppercase text-white">Reposição hormonal</h4>
                 </div>
                 <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
-                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Reposição hormonal é devolver ao corpo o que o tempo levou: energia, foco, libido e bem-estar. Com ciência, personalização e segurança, ela reequilibra sistemas, reduz sintomas e resgata vitalidade. Você no controle do próprio ritmo, vivendo mais leve, produtivo e confiante. Com acompanhamento médico próximo.</p>
+                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Recupere sua energia, libido e foco com protocolos hormonais seguros e personalizados. Resultado: mais disposição, equilíbrio e autoconfiança.</p>
                 </div>
               </div>
             </a>
@@ -1386,7 +1519,7 @@
                   <h4 class="m-0 text-[15px] font-light uppercase text-white">Soroterapia</h4>
                 </div>
                 <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
-                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Soroterapia é nutrição direta na veia, com blends personalizados de vitaminas, minerais e aminoácidos que aceleram recuperação, energia e imunidade. Protocolo seguro, feito por equipe médica, para hidratar, reequilibrar e regenerar. Resultado: corpo mais disposto, mente clara e bem-estar duradouro.</p>
+                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Infusões intravenosas com vitaminas e minerais para restaurar vitalidade e imunidade. Ideal para quem sente fadiga, estresse ou baixa imunidade.</p>
                 </div>
               </div>
             </a>
@@ -1398,7 +1531,7 @@
                   <h4 class="m-0 text-[15px] font-light uppercase text-white">Nutrição Clínica<br>e Estética</h4>
                 </div>
                 <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
-                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Cuidar da saúde metabólica e da composição corporal vai além da estética: trata-se de investir em equilíbrio, longevidade e autoconfiança. Nossos planos nutricionais são desenvolvidos de forma individualizada, considerando objetivos específicos, rotina e estilo de vida, sempre com acompanhamento próximo e embasado em ciência.</p>
+                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Planos nutricionais individualizados que aceleram resultados, reduzem inflamações e favorecem a estética corporal.</p>
                 </div>
               </div>
             </a>
@@ -1410,7 +1543,7 @@
                   <h4 class="m-0 text-[15px] font-light uppercase text-white">Emagrecimento com Acompanhamento Médico</h4>
                 </div>
                 <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
-                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Na Rigatti®, emagrecer com acompanhamento médico é trocar tentativas por estratégia. Avaliamos hormônios, hábitos e metabolismo para criar um plano seguro e eficaz, com ajustes contínuos, monitoramento e suporte real. Resultado: perda de peso sustentável, menos fome, mais energia — ciência e cuidado.</p>
+                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Elimine o peso de forma definitiva com monitoramento médico e protocolos hormonais personalizados.</p>
                 </div>
               </div>
             </a>
@@ -1422,7 +1555,7 @@
                   <h4 class="m-0 text-[15px] font-light uppercase text-white">Saúde Feminina<br>e Longevidade</h4>
                 </div>
                 <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
-                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Saúde feminina e longevidade na Rigatti® é olhar integral: hormônios em equilíbrio, nutrição inteligente e manejo do estresse para mais vitalidade, libido e clareza mental. Cuidado personalizado, prevenção ativa e autonomia para viver décadas com disposição, pele luminosa e bem-estar.</p>
+                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Tratamentos integrados que equilibram hormônios, reduzem sintomas da menopausa e promovem longevidade com vitalidade.</p>
                 </div>
               </div>
             </a>
@@ -1434,7 +1567,7 @@
                   <h4 class="m-0 text-[15px] font-light uppercase text-white">Modulação Hormonal e Desempenho</h4>
                 </div>
                 <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
-                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Modulação hormonal e desempenho na Rigatti® é afinar seu motor interno. Com avaliação precisa, ajustamos hormônios-chave para elevar energia, foco, libido e recuperação. Resultado: corpo que rende mais, mente afiada e bem-estar constante — ciência, personalização e segurança, com acompanhamento médico próximo.</p>
+                  <p class="service-card__text text-sm font-light text-white leading-snug px-2">Otimização hormonal e metabólica para quem busca alta performance física e mental.</p>
                 </div>
               </div>
             </a>
@@ -1444,50 +1577,80 @@
         </div>
       </section>
 
-      <!-- Método Rigatti Section -->
-      <section class="bg-pearl">
-        <div class="max-w-[1400px] mx-auto px-5">
-          <div class="flex items-center gap-12 max-lg:flex-col max-lg:gap-8">
-            <!-- Imagem -->
-            <div class="flex-1 max-w-[833px]">
-              <img
-                src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/dr-rigatti.webp"
-                alt="Método Rigatti"
-                class="w-full h-auto rounded-lg shadow-lg"
-                loading="lazy"
-                width="833"
-                height="604"
-              >
-            </div>
+      <!-- Results Section with Videos and Before/After -->
+      <section class="text-center bg-pearl text-black py-12">
+        <!-- Título da Seção -->
+        <div class="max-w-[1100px] mx-auto px-5">
+          <h2 class="text-black text-[26px] font-extrabold uppercase tracking-widest text-center pb-5 max-md:text-2xl">
+            Resultados que você<br/>sente no corpo e vê no espelho
+          </h2>
 
-            <!-- Conteúdo -->
-            <div class="flex-1 max-w-[480px] flex flex-col items-start max-lg:items-center">
-              <h3 class="text-black text-xl font-semibold uppercase mb-6 w-full text-left max-lg:text-center">
-                Conheça o Método Rigatti
-              </h3>
+          <p class="text-black text-[19px] font-light leading-tight text-center pb-7">
+            +15 mil pacientes atendidos e resultados que você sente no corpo e vê no espelho. Veja histórias reais de quem restaurou a energia e voltou a se reconhecer.
+          </p>
+        </div>
 
-              <p class="text-black text-lg font-light leading-snug mb-8 w-full text-left max-lg:text-center">
-                Através do Método Rigatti combinamos regulação hormonal, nutrição anti-inflamatória, suplementação e terapias complementares para tratar a raiz dos sintomas.
-                <br><br>
-                A abordagem é 100% personalizada, baseada em exames, escuta ativa e um plano focado em transformar corpo, mente e emoções com segurança e resultados reais.
-              </p>
+        <!-- Testimonial Videos Carousel -->
+        <div class="relative max-w-full mx-auto px-5 h-[500px] max-[1400px]:h-[470px] max-md:h-[370px] max-sm:h-[340px] flex items-center justify-center">
+          <button class="testimonial-btn-prev absolute top-1/2 -translate-y-1/2 left-[calc(50%-450px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:left-2" aria-label="Vídeo anterior">‹</button>
 
-              <a
-                href="clinica.html"
-                class="inline-block py-4 px-16 bg-coffee text-sand text-base font-bold tracking-widest hover:bg-sand hover:text-coffee transition-all duration-300 border-0 cursor-pointer shadow-md self-start max-lg:self-center"
-              >
-                SAIBA MAIS
-              </a>
+          <div class="testimonial-carousel-container h-full w-full">
+            <div class="testimonial-carousel-track" id="testimonialTrack">
+              <!-- Vídeos serão inseridos via JavaScript -->
             </div>
           </div>
+
+          <button class="testimonial-btn-next absolute top-1/2 -translate-y-1/2 right-[calc(50%-450px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:right-2" aria-label="Próximo vídeo">›</button>
+        </div>
+
+        <!-- Before/After Images Carousel -->
+        <div class="max-w-[1100px] mx-auto px-5 pt-12 pb-8">
+          <h3 class="text-black text-[26px] font-extrabold uppercase tracking-widest text-center max-md:text-2xl">
+            Veja também alguns Antes e Depois
+          </h3>
+        </div>
+
+        <div class="relative h-[500px] flex justify-center items-center max-md:h-[400px]">
+          <button class="absolute top-1/2 -translate-y-1/2 left-[calc(50%-450px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:left-2" aria-label="Anterior">‹</button>
+
+          <div class="before-after-carousel-container h-full">
+            <div class="relative w-full h-full flex justify-center items-center">
+              <div class="w-full flex gap-5 transition-transform duration-500" id="resultsTrack">
+                <!-- As imagens serão inseridas via JavaScript -->
+              </div>
+            </div>
+          </div>
+
+          <button class="absolute top-1/2 -translate-y-1/2 right-[calc(50%-450px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:right-2" aria-label="Próximo">›</button>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="text-center pt-12">
+          <button class="cta-agendar-btn inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer uppercase">
+            AGENDAR AVALIAÇÃO
+          </button>
+        </div>
+      </section>
+
+      <!-- Calculadora IMC Section -->
+      <section class="bg-sand px-5 pt-5 pb-12 text-center">
+        <div class="max-w-3xl mx-auto">
+          <div class="inline-flex items-center justify-center w-24 h-24 bg-sand/20 rounded-full">
+            <i class="fa-solid fa-dumbbell text-5xl text-coffee"></i>
+          </div>
+          <h2 class="text-2xl font-black tracking-widest-xl text-coffee mb-4 max-md:text-xl">CALCULE SEU GASTO CALÓRICO</h2>
+          <p class="text-lg font-light text-black leading-relaxed mb-8 max-md:text-sm">
+            Calcule em segundos quantas calorias seu corpo realmente precisa por dia. Entenda seu gasto energético e ajuste treino e alimentação com estratégia, o primeiro passo para uma dieta eficaz e personalizada.
+          </p>
+          <a href="calculadora-imc.html" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-lg hover:bg-black hover:text-pearl hover:shadow-2xl transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">INICIAR</a>
         </div>
       </section>
 
       <!-- Team Section -->
-      <section class="py-10 text-center bg-pearl text-black" id="equipe">
-        <div class="max-w-[919px] px-5 mx-auto mb-8">
-          <h3 class="text-xl font-extrabold uppercase mb-8 text-black"><strong>NOSSA</strong> EQUIPE</h3>
-          <p class="text-lg font-light leading-snug text-black">Nosso time é formado por médicos, nutricionistas e profissionais que atuam com formação técnica, atualização científica constante e sensibilidade humana. Aqui, ciência e empatia caminham juntas.</p>
+      <section class="pt-12 pb-14 text-center bg-pearl text-black" id="equipe">
+        <div class="max-w-[919px] px-5 mx-auto pb-5">
+          <h2 class="text-black text-[26px] font-extrabold uppercase tracking-widest text-center pb-5 max-md:text-2xl"><strong>NOSSA</strong> EQUIPE</h2>
+          <p class="text-lg font-light leading-snug">Um time multidisciplinar liderado pelo Dr. Luiz Rigatti, dedicado a transformar ciência em cuidado real. <br> Cada profissional atua com um propósito: restaurar sua saúde com precisão técnica e empatia.</p>
         </div>
 
         <div class="team-carousel" id="teamCarousel" aria-label="Carrossel de membros da equipe">
@@ -1497,80 +1660,42 @@
         </div>
       </section>
 
-      <!-- Blog Section -->
-      <section class="flex gap-5 items-center justify-center py-10 px-[100px] bg-[#E4E4E4] max-lg:flex-col max-lg:py-10 max-lg:px-5" id="blog">
-        <div class="w-[30%] max-w-[505px] flex flex-col items-start max-lg:items-center max-lg:w-full">
-          <h3 class="text-lg font-extrabold uppercase leading-6 text-black mb-5 w-full text-left max-lg:text-center">Explore nosso blog e transforme<br>informação em bem-estar.</h3>
-          <p class="text-lg font-light text-black leading-snug mb-8 w-full text-left max-lg:text-center">Aqui você encontra conteúdos exclusivos sobre saúde hormonal, emagrecimento, performance, qualidade de vida e os bastidores da nossa abordagem personalizada. Criado para quem busca mais conhecimento, clareza e autonomia na própria jornada de transformação, o blog é o espaço onde ciência, cuidado e experiência se encontram. Inspire-se, aprenda e dê o próximo passo com confiança.</p>
-          <a href="https://blog.clinicarigatti.com.br/" target="_blank" rel="external" class="inline-block py-4 px-16 bg-coffee text-sand text-base font-bold tracking-widest hover:bg-sand hover:text-coffee transition-all duration-300 border-0 cursor-pointer shadow-md self-start max-lg:self-center">SAIBA MAIS</a>
+      <!-- Blog & YouTube Section -->
+      <section class="bg-black text-pearl py-12 px-[100px] max-lg:px-5" id="blog">
+        <h2 class="text-pearl text-[26px] font-extrabold uppercase tracking-widest pb-10 text-center max-md:text-2xl">Conteúdos mais recentes</h2>
+
+        <div class="flex gap-10 justify-center items-start max-xl:flex-col max-xl:items-center">
+          <!-- Blog Grid -->
+          <div class="flex flex-col items-center">
+            <h3 class="text-pearl text-xl font-bold uppercase mb-5 tracking-wider">Blog</h3>
+          <div id="blogPostsGrid" class="grid grid-cols-2 gap-1 flex-shrink-0 max-md:grid-cols-1 max-md:w-full max-md:max-w-md">
+            <!-- Os cards dos posts serão carregados dinamicamente pelo JavaScript -->
+          </div>
         </div>
-        <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/blog.webp" alt="Blog" class="w-[70%] max-w-[900px] object-cover flex-shrink-0 max-lg:w-full max-lg:max-w-[600px] max-lg:h-auto" loading="lazy" width="900" height="1200">
+
+          <!-- YouTube Grid -->
+          <div class="flex flex-col items-center">
+            <h3 class="text-pearl text-xl font-bold uppercase mb-5 tracking-wider">YouTube</h3>
+          <div id="youtubeVideosGrid" class="grid grid-cols-2 gap-1 flex-shrink-0 max-md:grid-cols-1 max-md:w-full max-md:max-w-md">
+            <img src="https://placehold.co/372x209" alt="Vídeo 1" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-md:w-full max-md:h-auto" loading="lazy" width="372" height="209">
+            <img src="https://placehold.co/372x209" alt="Vídeo 2" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-md:w-full max-md:h-auto" loading="lazy" width="372" height="209">
+            <img src="https://placehold.co/371x209" alt="Vídeo 3" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-md:w-full max-md:h-auto" loading="lazy" width="372" height="209">
+            <img src="https://placehold.co/372x209" alt="Vídeo 4" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-md:w-full max-md:h-auto" loading="lazy" width="372" height="209">
+          </div>
+          </div>
+        </div>
       </section>
 
       <!-- CTA Section -->
-      <section class="bg-[#E4E4E4] px-5 pb-10 pt-0 text-center">
-        <div class="w-[90%] max-w-[1400px] mx-auto border-t border-coffee/40 mb-10"></div>
-        <h2 class="text-2xl font-black tracking-widest-xl text-black mb-2.5 leading-none">AGENDE SUA CONSULTA</h2>
-        <p class="text-base font-light uppercase tracking-wide text-black mb-8">Desperte sua força real.</p>
-        <button class="cta-agendar-btn inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-md hover:bg-sand hover:text-coffee transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">AGENDAR AGORA</button>
-      </section>
-
-      <!-- Results Section with Videos and Before/After -->
-      <section class="py-10 text-center bg-pearl text-black">
-        <!-- Título da Seção -->
-        <div class="max-w-[1100px] mx-auto px-5 mb-16">
-          <h2 class="text-black text-[32px] font-extrabold uppercase tracking-widest text-center mb-8 max-md:text-2xl">
-            Resultados que você<br/>sente no corpo e vê no espelho
-          </h2>
-
-          <p class="text-black text-[19px] font-light leading-tight text-center">
-            Mais energia para viver seus dias com leveza.<br/>
-            Sono restaurado para acordar renovada.<br/>
-            Hormônios equilibrados que trazem paz, disposição e autoestima.<br/>
-            E um emagrecimento que não volta, porque trata a causa, não só o sintoma.<br/><br/>
-            Na Rigatti, cada resultado é reflexo de um cuidado real com você.
-          </p>
-        </div>
-
-        <!-- Testimonial Videos Carousel -->
-        <div class="relative max-w-full mx-auto px-5 h-[500px] max-[1400px]:h-[470px] max-md:h-[370px] max-sm:h-[340px] flex items-center justify-center mb-16">
-          <button class="testimonial-btn-prev absolute top-1/2 -translate-y-1/2 left-5 z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:left-2" aria-label="Vídeo anterior">‹</button>
-
-          <div class="testimonial-carousel-container h-full w-full">
-            <div class="testimonial-carousel-track" id="testimonialTrack">
-              <!-- Vídeos serão inseridos via JavaScript -->
-            </div>
-          </div>
-
-          <button class="testimonial-btn-next absolute top-1/2 -translate-y-1/2 right-5 z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:right-2" aria-label="Próximo vídeo">›</button>
-        </div>
-
-        <!-- Before/After Images Carousel -->
-        <div class="max-w-[1100px] mx-auto px-5 mb-8">
-          <h3 class="text-black text-[32px] font-extrabold uppercase tracking-widest text-center max-md:text-2xl">
-            Veja também alguns Antes e Depois
-          </h3>
-        </div>
-
-        <div class="relative h-[500px] flex justify-center items-center overflow-hidden max-md:h-[400px]">
-          <button class="absolute top-1/2 -translate-y-1/2 left-5 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer z-10 flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl" aria-label="Anterior">‹</button>
-          
-          <div class="relative w-full h-full flex justify-center items-center">
-            <div class="w-full flex gap-5 transition-transform duration-500" id="resultsTrack">
-              <!-- As imagens serão inseridas via JavaScript -->
-            </div>
-          </div>
-          
-          <button class="absolute top-1/2 -translate-y-1/2 right-5 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer z-10 flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl" aria-label="Próximo">›</button>
-        </div>
+      <section class="bg-black px-5 pt-12 pb-14 text-center text-pearl">
+        <button class="cta-agendar-btn inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">SAIBA MAIS SOBRE O MÉTODO RIGATTI</button>
       </section>
 
       <!-- Trust Badges Section -->
-      <section class="bg-[#E4E4E4] py-10 px-5">
+      <!-- <section class="bg-[#E4E4E4] py-10 px-5">
         <div class="max-w-[1400px] mx-auto">
           <div class="grid grid-cols-1 md:grid-cols-3 gap-x-8 gap-y-10 max-md:gap-6">
 
-            <!-- Badge 1 -->
             <div class="flex items-start gap-4 max-md:gap-3">
               <div class="flex-shrink-0">
                 <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/verificado-gold.png" alt="Verificado" class="w-12 h-12" width="48" height="48" loading="lazy">
@@ -1580,7 +1705,6 @@
               </div>
             </div>
 
-            <!-- Badge 2 -->
             <div class="flex items-start gap-4 max-md:gap-3">
               <div class="flex-shrink-0">
                 <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/verificado-gold.png" alt="Verificado" class="w-12 h-12" width="48" height="48" loading="lazy">
@@ -1590,7 +1714,6 @@
               </div>
             </div>
 
-            <!-- Badge 3 -->
             <div class="flex items-start gap-4 max-md:gap-3">
               <div class="flex-shrink-0">
                 <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/verificado-gold.png" alt="Verificado" class="w-12 h-12" width="48" height="48" loading="lazy">
@@ -1600,7 +1723,6 @@
               </div>
             </div>
 
-            <!-- Badge 4 -->
             <div class="flex items-start gap-4 max-md:gap-3">
               <div class="flex-shrink-0">
                 <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/verificado-gold.png" alt="Verificado" class="w-12 h-12" width="48" height="48" loading="lazy">
@@ -1610,7 +1732,6 @@
               </div>
             </div>
 
-            <!-- Badge 5 -->
             <div class="flex items-start gap-4 max-md:gap-3">
               <div class="flex-shrink-0">
                 <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/verificado-gold.png" alt="Verificado" class="w-12 h-12" width="48" height="48" loading="lazy">
@@ -1620,7 +1741,6 @@
               </div>
             </div>
 
-            <!-- Badge 6 -->
             <div class="flex items-start gap-4 max-md:gap-3">
               <div class="flex-shrink-0">
                 <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/verificado-gold.png" alt="Verificado" class="w-12 h-12" width="48" height="48" loading="lazy">
@@ -1632,46 +1752,10 @@
 
           </div>
         </div>
-      </section>
-
-      <!-- Calculadora IMC Section -->
-      <section class="bg-white px-5 py-10 text-center">
-        <div class="max-w-3xl mx-auto">
-          <div class="inline-flex items-center justify-center w-24 h-24 bg-sand/20 rounded-full mb-6">
-            <i class="fas fa-weight-scale text-5xl text-coffee"></i>
-          </div>
-          <h2 class="text-2xl font-black tracking-widest-xl text-coffee mb-4 max-md:text-xl">CALCULE SEU GASTO CALÓRICO</h2>
-          <p class="text-base font-light text-black leading-relaxed mb-8 max-md:text-sm">
-            Descubra quantas calorias seu corpo queima por dia com nossa <strong>calculadora de gasto calórico diário</strong>.
-            Calcule agora e entenda suas necessidades energéticas para alcançar seus objetivos.
-            <strong>Conhecer seu gasto calórico</strong> é essencial para planejar uma dieta eficaz e personalizada.
-          </p>
-          <a href="calculadora-imc.html" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">CALCULAR GASTO CALÓRICO</a>
-        </div>
-      </section>
-
-      <!-- YouTube Section -->
-      <section class="flex flex-col gap-0 py-10 px-[100px] bg-[#E4E4E4] max-lg:px-5">
-        <h2 class="text-[32px] font-extrabold tracking-widest-xl uppercase mb-16 text-center text-black max-md:text-2xl max-md:mb-8">Acompanhe nosso canal do Youtube</h2>
-        
-        <div class="flex gap-5 justify-center items-center max-xl:flex-col">
-          <div class="grid grid-cols-2 gap-1 flex-shrink-0 max-md:grid-cols-1 max-md:w-full max-md:max-w-md">
-            <img src="https://placehold.co/372x209" alt="Vídeo 1" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-md:w-full max-md:h-auto" loading="lazy" width="372" height="209">
-            <img src="https://placehold.co/372x209" alt="Vídeo 2" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-md:w-full max-md:h-auto" loading="lazy" width="372" height="209">
-            <img src="https://placehold.co/371x209" alt="Vídeo 3" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-md:w-full max-md:h-auto" loading="lazy" width="372" height="209">
-            <img src="https://placehold.co/372x209" alt="Vídeo 4" class="w-[372px] h-[209px] aspect-video object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01] max-md:w-full max-md:h-auto" loading="lazy" width="372" height="209">
-          </div>
-          
-          <div class="w-[30%] max-w-[505px] flex flex-col items-start max-xl:items-center max-xl:w-full max-xl:max-w-3xl">
-            <h3 class="text-lg font-extrabold uppercase leading-6 text-black mb-5 w-full text-left max-xl:text-center">No YouTube, compartilhamos tudo o que você precisa saber para transformar sua saúde e seu corpo com consciência.</h3>
-            <p class="text-lg font-light text-black leading-snug mb-8 w-full text-left max-xl:text-center">Falamos sobre hormônios, emagrecimento, qualidade de vida e respondemos dúvidas reais de quem está nessa jornada. É conteúdo direto, sem enrolação, para te ajudar a despertar sua melhor versão.</p>
-            <a href="https://www.youtube.com/@clinicarigatti" target="_blank" rel="external" class="inline-block py-4 px-16 bg-coffee text-sand text-base font-bold tracking-widest hover:bg-sand hover:text-coffee transition-all duration-300 border-0 cursor-pointer shadow-md self-start max-xl:self-center">SAIBA MAIS</a>
-          </div>
-        </div>
-      </section>
+      </section> -->
 
       <!-- Contact Section with Map -->
-      <section class="w-full h-[600px] max-md:h-[400px]" id="contato">
+      <section class="w-full h-[200px] max-md:h-[400px]" id="contato">
         <div id="map" class="w-full h-full"></div>
       </section>
 
@@ -1750,16 +1834,12 @@
             <ul class="list-none">
               <li class="mb-5"><a href="clinica.html" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">A CLÍNICA</a></li>
               <li class="mb-5"><a href="#servicos" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">TRATAMENTOS</a></li>
-              <li class="mb-5"><a href="#equipe" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">NOSSA EQUIPE</a></li>
-              <li class="mb-5"><a href="https://blog.clinicarigatti.com.br/" target="_blank" rel="external" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">BLOG</a></li>
+              <li class="mb-5"><a href="#metodo" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">MÉTODO RIGATTI</a></li>
+              <li class="mb-5"><a href="#blog" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity">CONTEÚDOS</a></li>
             </ul>
           </div>
             
           <div class="flex-1">
-            <p class="text-pearl mb-5 leading-normal">
-              <i class="fa-solid fa-pager"></i>
-              <a href="https://nacional.metodorigatti.com.br" target="_blank" rel="external" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity ml-2">nacional.metodorigatti.com.br</a>
-            </p>
             <p class="text-pearl mb-5 leading-normal">
               <i class="fa-brands fa-whatsapp"></i>
               <a href="https://wa.me/554731701206?text=Olá!+Tenho+interesse+e+queria+mais+informações,+por+favor." target="_blank" rel="external" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity ml-2">(47) 3170 - 1206</a>

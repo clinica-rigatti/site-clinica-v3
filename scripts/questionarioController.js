@@ -81,24 +81,24 @@
   function initStep2() {
     const generoInputs = document.querySelectorAll('input[name="genero"]');
     const idadeRange = document.getElementById('idadeRange');
-    const idadeValue = document.getElementById('idadeValue');
+    const idadeInput = document.getElementById('idadeInput');
     const alturaRange = document.getElementById('alturaRange');
-    const alturaValue = document.getElementById('alturaValue');
+    const alturaInput = document.getElementById('alturaInput');
     const pesoRange = document.getElementById('pesoRange');
-    const pesoValue = document.getElementById('pesoValue');
+    const pesoInput = document.getElementById('pesoInput');
     const btnContinuar = document.getElementById('btnStep2');
     const btnVoltar = document.getElementById('btnVoltarStep2');
 
     // Verifica se todos os elementos foram encontrados
-    if (!idadeRange || !idadeValue) {
+    if (!idadeRange || !idadeInput) {
       console.error('Elementos de idade não encontrados');
       return;
     }
-    if (!alturaRange || !alturaValue) {
+    if (!alturaRange || !alturaInput) {
       console.error('Elementos de altura não encontrados');
       return;
     }
-    if (!pesoRange || !pesoValue) {
+    if (!pesoRange || !pesoInput) {
       console.error('Elementos de peso não encontrados');
       return;
     }
@@ -113,28 +113,94 @@
       });
     });
 
-    // Idade
+    // Idade - Sincronização entre input e range
     idadeRange.addEventListener('input', (e) => {
       const valor = parseInt(e.target.value);
       formData.idade = valor;
-      idadeValue.textContent = `${valor} anos`;
+      idadeInput.value = valor;
       console.log('Idade atualizada:', valor);
     });
 
-    // Altura
+    idadeInput.addEventListener('input', (e) => {
+      const valor = parseInt(e.target.value);
+      if (!isNaN(valor)) {
+        formData.idade = valor;
+        idadeRange.value = valor;
+        console.log('Idade atualizada (input):', valor);
+      }
+    });
+
+    // Validação ao sair do campo
+    idadeInput.addEventListener('blur', (e) => {
+      let valor = parseInt(e.target.value);
+      // Validação dos limites
+      if (isNaN(valor) || valor < 19) valor = 19;
+      if (valor > 80) valor = 80;
+
+      formData.idade = valor;
+      idadeRange.value = valor;
+      e.target.value = valor;
+      console.log('Idade validada:', valor);
+    });
+
+    // Altura - Sincronização entre input e range
     alturaRange.addEventListener('input', (e) => {
       const valor = parseInt(e.target.value);
       formData.altura = valor;
-      alturaValue.textContent = `${valor} cm`;
+      alturaInput.value = valor;
       console.log('Altura atualizada:', valor);
     });
 
-    // Peso
+    alturaInput.addEventListener('input', (e) => {
+      const valor = parseInt(e.target.value);
+      if (!isNaN(valor)) {
+        formData.altura = valor;
+        alturaRange.value = valor;
+        console.log('Altura atualizada (input):', valor);
+      }
+    });
+
+    // Validação ao sair do campo
+    alturaInput.addEventListener('blur', (e) => {
+      let valor = parseInt(e.target.value);
+      // Validação dos limites
+      if (isNaN(valor) || valor < 130) valor = 130;
+      if (valor > 230) valor = 230;
+
+      formData.altura = valor;
+      alturaRange.value = valor;
+      e.target.value = valor;
+      console.log('Altura validada:', valor);
+    });
+
+    // Peso - Sincronização entre input e range
     pesoRange.addEventListener('input', (e) => {
       const valor = parseInt(e.target.value);
       formData.peso = valor;
-      pesoValue.textContent = `${valor} kg`;
+      pesoInput.value = valor;
       console.log('Peso atualizado:', valor);
+    });
+
+    pesoInput.addEventListener('input', (e) => {
+      const valor = parseInt(e.target.value);
+      if (!isNaN(valor)) {
+        formData.peso = valor;
+        pesoRange.value = valor;
+        console.log('Peso atualizado (input):', valor);
+      }
+    });
+
+    // Validação ao sair do campo
+    pesoInput.addEventListener('blur', (e) => {
+      let valor = parseInt(e.target.value);
+      // Validação dos limites
+      if (isNaN(valor) || valor < 40) valor = 40;
+      if (valor > 180) valor = 180;
+
+      formData.peso = valor;
+      pesoRange.value = valor;
+      e.target.value = valor;
+      console.log('Peso validado:', valor);
     });
 
     // Botão Continuar - apenas avança se gênero estiver selecionado
@@ -279,25 +345,25 @@
       input.checked = false;
     });
 
-    // Reseta os valores dos sliders
+    // Reseta os valores dos sliders e inputs
     const idadeRange = document.getElementById('idadeRange');
     const alturaRange = document.getElementById('alturaRange');
     const pesoRange = document.getElementById('pesoRange');
-    const idadeValue = document.getElementById('idadeValue');
-    const alturaValue = document.getElementById('alturaValue');
-    const pesoValue = document.getElementById('pesoValue');
+    const idadeInput = document.getElementById('idadeInput');
+    const alturaInput = document.getElementById('alturaInput');
+    const pesoInput = document.getElementById('pesoInput');
 
-    if (idadeRange) {
+    if (idadeRange && idadeInput) {
       idadeRange.value = 19;
-      idadeValue.textContent = '19 anos';
+      idadeInput.value = 19;
     }
-    if (alturaRange) {
+    if (alturaRange && alturaInput) {
       alturaRange.value = 170;
-      alturaValue.textContent = '170 cm';
+      alturaInput.value = 170;
     }
-    if (pesoRange) {
+    if (pesoRange && pesoInput) {
       pesoRange.value = 100;
-      pesoValue.textContent = '100 kg';
+      pesoInput.value = 100;
     }
 
     // Volta para o início
