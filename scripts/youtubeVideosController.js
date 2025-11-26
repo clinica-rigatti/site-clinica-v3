@@ -36,7 +36,7 @@ async function loadYouTubeVideos() {
         link.href = `https://www.youtube.com/watch?v=${videoId}`;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
-        link.className = 'block';
+        link.className = 'block w-full h-[180px] max-md:h-auto max-md:aspect-video';
         link.title = videoTitle;
         
         mediaItems[index].src = thumbnail;
