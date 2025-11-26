@@ -30,6 +30,9 @@
   <link rel="preconnect" href="https://vod-adaptive-ak.vimeocdn.com" crossorigin>
   <link rel="preconnect" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com" crossorigin>
   <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
+
+  <!-- Preload da imagem de fundo do hero para carregamento instantâneo -->
+  <link rel="preload" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/fundo-da-hero-do-site.webp" as="image" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
@@ -205,20 +208,6 @@
       scrollbar-width: none;
     }
 
-    /* Hero video placeholder */
-    .hero-video-placeholder {
-      background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-      opacity: 1;
-      transition: opacity 0.5s ease-in-out;
-      will-change: opacity;
-      transform: translateZ(0); /* Force GPU acceleration */
-    }
-
-    .hero-video-placeholder.loaded {
-      opacity: 0;
-      pointer-events: none;
-      visibility: hidden; /* Remove from layout when loaded */
-    }
 
     /* Lazy loading - SIMPLIFICADO */
     img[loading="lazy"] {
@@ -1309,36 +1298,25 @@
     (function() {
       function loadHeroVideo() {
         const container = document.getElementById('videoContainer');
-        const placeholder = document.getElementById('videoPlaceholder');
 
         if (!container) return;
 
         const iframe = document.createElement('iframe');
-        iframe.src = 'https://player.vimeo.com/video/1129969584?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0';
+        iframe.src = 'https://player.vimeo.com/video/1129969584?background=1&autoplay=1&loop=1&muted=1&title=0&byline=0&portrait=0&autopause=0&quality=auto';
         iframe.setAttribute('frameborder', '0');
         iframe.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
         iframe.setAttribute('title', 'background-site');
+        iframe.setAttribute('loading', 'eager');
         iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;';
 
         container.appendChild(iframe);
-
-        // Remove o placeholder após o iframe carregar
-        iframe.onload = function() {
-          setTimeout(function() {
-            if (placeholder) {
-              placeholder.classList.add('loaded');
-            }
-          }, 500);
-        };
       }
 
-      // Carrega o vídeo após o conteúdo crítico
+      // Carrega o vídeo imediatamente
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', function() {
-          setTimeout(loadHeroVideo, 100);
-        });
+        document.addEventListener('DOMContentLoaded', loadHeroVideo);
       } else {
-        setTimeout(loadHeroVideo, 100);
+        loadHeroVideo();
       }
     })();
   </script>
@@ -1387,10 +1365,10 @@
     <main>
       <!-- Hero Section -->
       <section class="relative h-[976px] max-md:h-auto max-md:min-h-[600px] flex items-center pl-[315px] max-xl:pl-[120px] max-md:pl-10 max-md:pr-10 max-md:pt-36 max-md:pb-20 max-md:justify-center max-md:text-center max-md:flex-col overflow-hidden">
-        <!-- Placeholder enquanto o vídeo carrega -->
-        <div id="videoPlaceholder" class="hero-video-placeholder absolute -z-10" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;"></div>
+        <!-- Imagem de fundo estática (aparece instantaneamente) -->
+        <div class="absolute inset-0 -z-20 bg-cover bg-center" style="background-image: url('https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/fundo-da-hero-do-site.webp');"></div>
 
-        <!-- Container do iframe -->
+        <!-- Container do iframe (vídeo fica por cima da imagem) -->
         <div id="videoContainer" class="absolute -z-10 pointer-events-none" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;">
           <!-- O iframe será injetado aqui pelo JavaScript -->
         </div>
