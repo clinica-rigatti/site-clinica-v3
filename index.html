@@ -56,6 +56,10 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.css">
   <script type="module" src="https://cdn.jsdelivr.net/npm/@justinribeiro/lite-youtube@1.5.0/lite-youtube.js"></script>
 
+  <!-- Swiper.js -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
   <!-- Tailwind CDN - SÍNCRONO (necessário para evitar FOUC) -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -208,6 +212,161 @@
       scrollbar-width: none;
     }
 
+    /* Swiper Services - Mobile Only */
+    .services-swiper {
+      display: none;
+    }
+
+    @media (max-width: 1530px) {
+      .services-grid-desktop {
+        display: none !important;
+      }
+      .services-swiper {
+        display: block;
+        padding-bottom: 50px;
+      }
+      .services-swiper .swiper-slide {
+        max-width: 320px;
+      }
+      .services-swiper .swiper-slide .service-card {
+        aspect-ratio: 3/4;
+        max-height: 420px;
+      }
+      .services-swiper .swiper-pagination {
+        bottom: 10px;
+      }
+      .services-swiper .swiper-pagination-bullet {
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 1;
+      }
+      .services-swiper .swiper-pagination-bullet-active {
+        background: #C1B490;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .services-swiper .swiper-slide {
+        max-width: 280px;
+      }
+      .services-swiper .swiper-slide .service-card {
+        max-height: 370px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .services-swiper .swiper-slide {
+        max-width: 240px;
+      }
+      .services-swiper .swiper-slide .service-card {
+        max-height: 320px;
+      }
+    }
+
+    /* Swiper Testimonials - Mobile Only */
+    .testimonials-swiper {
+      display: none;
+    }
+
+    .testimonials-desktop {
+      display: block;
+    }
+
+    @media (max-width: 1024px) {
+      .testimonials-desktop {
+        display: none !important;
+      }
+      .testimonials-swiper {
+        display: block;
+        padding-bottom: 50px;
+      }
+      .testimonials-swiper .swiper-slide {
+        width: 200px;
+      }
+      .testimonials-swiper .swiper-slide lite-youtube {
+        height: 400px;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.2);
+      }
+      .testimonials-swiper .swiper-pagination {
+        bottom: 10px;
+      }
+      .testimonials-swiper .swiper-pagination-bullet {
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 1;
+      }
+      .testimonials-swiper .swiper-pagination-bullet-active {
+        background: #C1B490;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .testimonials-swiper .swiper-slide {
+        width: 180px;
+      }
+      .testimonials-swiper .swiper-slide lite-youtube {
+        height: 320px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .testimonials-swiper .swiper-slide {
+        width: 160px;
+      }
+      .testimonials-swiper .swiper-slide lite-youtube {
+        height: 380px;
+      }
+    }
+
+    /* Swiper Before/After - Mobile Only */
+    .before-after-swiper {
+      display: none;
+    }
+
+    .before-after-desktop {
+      display: block;
+    }
+
+    @media (max-width: 1024px) {
+      .before-after-desktop {
+        display: none !important;
+      }
+      .before-after-swiper {
+        display: block;
+        padding-bottom: 50px;
+      }
+      .before-after-swiper .swiper-slide {
+        width: auto;
+        height: auto;
+      }
+      .before-after-swiper .swiper-slide img {
+        height: 400px;
+        width: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.2);
+      }
+      .before-after-swiper .swiper-pagination {
+        bottom: 10px;
+      }
+      .before-after-swiper .swiper-pagination-bullet {
+        background: rgba(0, 0, 0, 0.3);
+        opacity: 1;
+      }
+      .before-after-swiper .swiper-pagination-bullet-active {
+        background: #C1B490;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .before-after-swiper .swiper-slide img {
+        height: 320px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .before-after-swiper .swiper-slide img {
+        height: 380px;
+      }
+    }
 
     /* Lazy loading - SIMPLIFICADO */
     img[loading="lazy"] {
@@ -1215,7 +1374,6 @@
   </style>
   <script src="scripts/teamCarouselController.js" defer></script>
   <script src="scripts/menuHomeController.js" defer></script>
-  <script src="scripts/servicesCarouselController.js" defer></script>
   <script src="scripts/testimonialVideosCarouselController.js" defer></script>
   <script src="scripts/beforeAndAfterCarouselController.js" defer></script>
   <script src="scripts/youtubeVideosController.js" defer></script>
@@ -1671,12 +1829,9 @@
             </h3>
           </div>
 
-          <button class="services-btn-prev absolute top-1/2 -translate-y-1/2 left-2 z-[5] w-10 h-10 border-0 rounded-full bg-black/55 text-white text-2xl grid place-items-center cursor-pointer hover:bg-black/70 transition-all max-[1530px]:block hidden" aria-label="Anterior">‹</button>
-
-          <div class="services grid grid-cols-6 gap-1 px-40 max-w-[1800px] mx-auto max-[1530px]:flex max-[1530px]:gap-3 max-[1530px]:px-12 max-[1530px]:overflow-x-auto max-[1530px]:scroll-snap-x max-[1530px]:scroll-smooth max-lg:px-12 hide-scrollbar">
-
-            <!-- Service Cards -->
-            <a href="reposicao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px] max-[1530px]:flex-[0_0_32%] max-[1530px]:scroll-snap-align-center max-[1530px]:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4] max-md:max-w-none">
+          <!-- Desktop Grid (>1530px) -->
+          <div class="services-grid-desktop grid grid-cols-6 gap-1 px-40 max-w-[1800px] mx-auto">
+            <a href="reposicao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px]">
               <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/reposicao-hormonal.webp" alt="Reposição hormonal" class="w-full h-full object-cover" loading="lazy" width="400" height="370">
               <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
                 <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
@@ -1688,7 +1843,7 @@
               </div>
             </a>
 
-            <a href="soroterapia.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px] max-[1530px]:flex-[0_0_32%] max-[1530px]:scroll-snap-align-center max-[1530px]:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4] max-md:max-w-none">
+            <a href="soroterapia.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px]">
               <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/soroterapia.webp" alt="Soroterapia" class="w-full h-full object-cover" loading="lazy" width="400" height="370">
               <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
                 <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
@@ -1700,7 +1855,7 @@
               </div>
             </a>
 
-            <a href="nutricao.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px] max-[1530px]:flex-[0_0_32%] max-[1530px]:scroll-snap-align-center max-[1530px]:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4] max-md:max-w-none">
+            <a href="nutricao.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px]">
               <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/nutricao-clinica-e-estetica.webp" alt="Nutrição" class="w-full h-full object-cover" loading="lazy" width="400" height="370">
               <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
                 <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
@@ -1712,7 +1867,7 @@
               </div>
             </a>
 
-            <a href="emagrecimento.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px] max-[1530px]:flex-[0_0_32%] max-[1530px]:scroll-snap-align-center max-[1530px]:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4] max-md:max-w-none">
+            <a href="emagrecimento.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px]">
               <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/emagrecimento-com-acompanhamento.webp" alt="Emagrecimento" class="w-full h-full object-cover" loading="lazy" width="400" height="370">
               <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
                 <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
@@ -1724,7 +1879,7 @@
               </div>
             </a>
 
-            <a href="saude-feminina.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px] max-[1530px]:flex-[0_0_32%] max-[1530px]:scroll-snap-align-center max-[1530px]:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4] max-md:max-w-none">
+            <a href="saude-feminina.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px]">
               <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/saude-feminina-e-longevidade.webp" alt="Saúde Feminina" class="w-full h-full object-cover" loading="lazy" width="400" height="370">
               <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
                 <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
@@ -1736,7 +1891,7 @@
               </div>
             </a>
 
-            <a href="modulacao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px] max-[1530px]:flex-[0_0_32%] max-[1530px]:scroll-snap-align-center max-[1530px]:rounded-md max-md:flex-[0_0_50%] max-sm:flex-[0_0_88%] max-md:h-auto max-md:aspect-[3/4] max-md:max-w-none">
+            <a href="modulacao-hormonal.html" class="service-card cursor-pointer relative h-[370px] overflow-hidden max-w-[280px]">
               <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/modulacao-hormonal-e-desempenho.webp" alt="Modulação Hormonal" class="w-full h-full object-cover" loading="lazy" width="400" height="370">
               <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
                 <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
@@ -1749,7 +1904,95 @@
             </a>
           </div>
 
-          <button class="services-btn-next absolute top-1/2 -translate-y-1/2 right-2 z-[5] w-10 h-10 border-0 rounded-full bg-black/55 text-white text-2xl grid place-items-center cursor-pointer hover:bg-black/70 transition-all max-[1530px]:block hidden" aria-label="Próximo">›</button>
+          <!-- Mobile Swiper (<=1530px) -->
+          <div class="services-swiper swiper px-5">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide">
+                <a href="reposicao-hormonal.html" class="service-card cursor-pointer relative block aspect-[3/4] overflow-hidden rounded-md">
+                  <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/reposicao-hormonal.webp" alt="Reposição hormonal" class="w-full h-full object-cover" loading="lazy">
+                  <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+                    <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
+                      <h4 class="m-0 text-[15px] font-light uppercase text-white">Reposição hormonal</h4>
+                    </div>
+                    <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+                      <p class="service-card__text text-sm font-light text-white leading-snug px-2">Recupere sua energia, libido e foco com protocolos hormonais seguros e personalizados. Resultado: mais disposição, equilíbrio e autoconfiança.</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="soroterapia.html" class="service-card cursor-pointer relative block aspect-[3/4] overflow-hidden rounded-md">
+                  <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/soroterapia.webp" alt="Soroterapia" class="w-full h-full object-cover" loading="lazy">
+                  <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+                    <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
+                      <h4 class="m-0 text-[15px] font-light uppercase text-white">Soroterapia</h4>
+                    </div>
+                    <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+                      <p class="service-card__text text-sm font-light text-white leading-snug px-2">Infusões intravenosas com vitaminas e minerais para restaurar vitalidade e imunidade. Ideal para quem sente fadiga, estresse ou baixa imunidade.</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="nutricao.html" class="service-card cursor-pointer relative block aspect-[3/4] overflow-hidden rounded-md">
+                  <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/nutricao-clinica-e-estetica.webp" alt="Nutrição" class="w-full h-full object-cover" loading="lazy">
+                  <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+                    <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
+                      <h4 class="m-0 text-[15px] font-light uppercase text-white">Nutrição Clínica<br>e Estética</h4>
+                    </div>
+                    <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+                      <p class="service-card__text text-sm font-light text-white leading-snug px-2">Planos nutricionais individualizados que aceleram resultados, reduzem inflamações e favorecem a estética corporal.</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="emagrecimento.html" class="service-card cursor-pointer relative block aspect-[3/4] overflow-hidden rounded-md">
+                  <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/emagrecimento-com-acompanhamento.webp" alt="Emagrecimento" class="w-full h-full object-cover" loading="lazy">
+                  <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+                    <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
+                      <h4 class="m-0 text-[15px] font-light uppercase text-white">Emagrecimento com Acompanhamento Médico</h4>
+                    </div>
+                    <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+                      <p class="service-card__text text-sm font-light text-white leading-snug px-2">Elimine o peso de forma definitiva com monitoramento médico e protocolos hormonais personalizados.</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="saude-feminina.html" class="service-card cursor-pointer relative block aspect-[3/4] overflow-hidden rounded-md">
+                  <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/saude-feminina-e-longevidade.webp" alt="Saúde Feminina" class="w-full h-full object-cover" loading="lazy">
+                  <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+                    <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
+                      <h4 class="m-0 text-[15px] font-light uppercase text-white">Saúde Feminina<br>e Longevidade</h4>
+                    </div>
+                    <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+                      <p class="service-card__text text-sm font-light text-white leading-snug px-2">Tratamentos integrados que equilibram hormônios, reduzem sintomas da menopausa e promovem longevidade com vitalidade.</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+
+              <div class="swiper-slide">
+                <a href="modulacao-hormonal.html" class="service-card cursor-pointer relative block aspect-[3/4] overflow-hidden rounded-md">
+                  <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/servicos/modulacao-hormonal-e-desempenho.webp" alt="Modulação Hormonal" class="w-full h-full object-cover" loading="lazy">
+                  <div class="service-card__overlay absolute inset-0 flex flex-col justify-start items-center gap-2 px-4 pb-10 bg-[rgba(15,15,15,0.88)]">
+                    <div class="w-full h-1/4 flex items-center justify-center flex-shrink-0">
+                      <h4 class="m-0 text-[15px] font-light uppercase text-white">Modulação Hormonal e Desempenho</h4>
+                    </div>
+                    <div class="service-card__content w-full h-3/4 flex items-start justify-center py-2">
+                      <p class="service-card__text text-sm font-light text-white leading-snug px-2">Otimização hormonal e metabólica para quem busca alta performance física e mental.</p>
+                    </div>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="swiper-pagination"></div>
+          </div>
         </div>
       </section>
 
@@ -1813,9 +2056,9 @@
           </p>
         </div>
 
-        <!-- Testimonial Videos Carousel -->
-        <div class="relative max-w-full mx-auto px-5 h-[500px] max-[1400px]:h-[470px] max-md:h-[370px] max-sm:h-[340px] flex items-center justify-center">
-          <button class="testimonial-btn-prev absolute top-1/2 -translate-y-1/2 left-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:left-2" aria-label="Vídeo anterior">‹</button>
+        <!-- Testimonial Videos Carousel - Desktop -->
+        <div class="testimonials-desktop relative max-w-full mx-auto px-5 h-[500px] max-[1400px]:h-[470px] flex items-center justify-center">
+          <button class="testimonial-btn-prev absolute top-1/2 -translate-y-1/2 left-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors" aria-label="Vídeo anterior">‹</button>
 
           <div class="testimonial-carousel-container h-full w-full">
             <div class="testimonial-carousel-track" id="testimonialTrack">
@@ -1823,7 +2066,32 @@
             </div>
           </div>
 
-          <button class="testimonial-btn-next absolute top-1/2 -translate-y-1/2 right-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:right-2" aria-label="Próximo vídeo">›</button>
+          <button class="testimonial-btn-next absolute top-1/2 -translate-y-1/2 right-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors" aria-label="Próximo vídeo">›</button>
+        </div>
+
+        <!-- Testimonial Videos Carousel - Mobile (Swiper) -->
+        <div class="testimonials-swiper swiper px-5">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <lite-youtube videoid="le6XyOIPR4I" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="g3lKdlwaTmY" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="w8Rfg-i02uo" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="O1uL8XpTxmE" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="-xMJsGeM7Bo" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="4528aztD6A0" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
         </div>
 
         <!-- Before/After Images Carousel -->
@@ -1833,8 +2101,9 @@
           </h3>
         </div>
 
-        <div class="relative h-[500px] flex justify-center items-center max-md:h-[400px]">
-          <button class="absolute top-1/2 -translate-y-1/2 left-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:left-2" aria-label="Anterior">‹</button>
+        <!-- Before/After - Desktop -->
+        <div class="before-after-desktop relative h-[500px] flex justify-center items-center">
+          <button class="absolute top-1/2 -translate-y-1/2 left-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors" aria-label="Anterior">‹</button>
 
           <div class="before-after-carousel-container h-full">
             <div class="relative w-full h-full flex justify-center items-center">
@@ -1844,7 +2113,41 @@
             </div>
           </div>
 
-          <button class="absolute top-1/2 -translate-y-1/2 right-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors max-md:w-10 max-md:h-10 max-md:text-xl max-md:right-2" aria-label="Próximo">›</button>
+          <button class="absolute top-1/2 -translate-y-1/2 right-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors" aria-label="Próximo">›</button>
+        </div>
+
+        <!-- Before/After - Mobile (Swiper) -->
+        <div class="before-after-swiper swiper px-5">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-9.webp" alt="Resultado 9" loading="lazy">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-2.webp" alt="Resultado 2" loading="lazy">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-5.webp" alt="Resultado 5" loading="lazy">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-1.webp" alt="Resultado 1" loading="lazy">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-3.webp" alt="Resultado 3" loading="lazy">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-4.webp" alt="Resultado 4" loading="lazy">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-6.webp" alt="Resultado 6" loading="lazy">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-7.webp" alt="Resultado 7" loading="lazy">
+            </div>
+            <div class="swiper-slide">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/antes-e-depois/antes-e-depois-8.webp" alt="Resultado 8" loading="lazy">
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
         </div>
 
         <!-- CTA Button -->
@@ -1873,7 +2176,7 @@
       <section class="pt-12 pb-14 text-center bg-pearl text-black" id="equipe">
         <div class="max-w-[919px] px-5 mx-auto pb-5">
           <h2 class="text-black text-[26px] font-extrabold uppercase tracking-widest text-center pb-5 max-md:text-2xl"><strong>NOSSA</strong> EQUIPE</h2>
-          <p class="text-lg font-light leading-snug"><span class="whitespace-nowrap">Um time multidisciplinar liderado pelo Dr. Luiz Rigatti, dedicado a transformar ciência em cuidado real.</span> <br> Cada profissional atua com um propósito: restaurar sua saúde com precisão técnica e empatia.</p>
+          <p class="text-lg font-light leading-snug pb-8"><span class="whitespace-nowrap">Um time multidisciplinar liderado pelo Dr. Luiz Rigatti, dedicado a transformar ciência em cuidado real.</span> <br> Cada profissional atua com um propósito: restaurar sua saúde com precisão técnica e empatia.</p>
         </div>
 
         <div class="team-carousel" id="teamCarousel" aria-label="Carrossel de membros da equipe">
@@ -2213,6 +2516,66 @@
         }
       }
     })();
+  </script>
+
+  <!-- Swiper Initialization -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof Swiper !== 'undefined') {
+        // Services Swiper
+        new Swiper('.services-swiper', {
+          slidesPerView: 1.2,
+          spaceBetween: 12,
+          centeredSlides: true,
+          pagination: {
+            el: '.services-swiper .swiper-pagination',
+            clickable: true,
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 2.2,
+              centeredSlides: false,
+            },
+            1024: {
+              slidesPerView: 3.2,
+              centeredSlides: false,
+            }
+          }
+        });
+
+        // Testimonials Swiper
+        new Swiper('.testimonials-swiper', {
+          slidesPerView: 1.2,
+          spaceBetween: 12,
+          centeredSlides: true,
+          pagination: {
+            el: '.testimonials-swiper .swiper-pagination',
+            clickable: true,
+          },
+          breakpoints: {
+            640: {
+              slidesPerView: 1.5,
+              centeredSlides: true,
+            },
+            768: {
+              slidesPerView: 2,
+              centeredSlides: false,
+            }
+          }
+        });
+
+        // Before/After Swiper
+        new Swiper('.before-after-swiper', {
+          slidesPerView: 'auto',
+          spaceBetween: 12,
+          centeredSlides: true,
+          pagination: {
+            el: '.before-after-swiper .swiper-pagination',
+            clickable: true,
+          }
+        });
+      }
+    });
   </script>
 </body>
 </html>
