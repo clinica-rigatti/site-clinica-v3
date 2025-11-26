@@ -148,7 +148,7 @@
         padding-bottom: 50px;
       }
       .services-swiper .swiper-slide {
-        max-width: 320px;
+        width: 320px;
       }
       .services-swiper .swiper-slide .service-card {
         aspect-ratio: 3/4;
@@ -168,7 +168,7 @@
 
     @media (max-width: 768px) {
       .services-swiper .swiper-slide {
-        max-width: 280px;
+        width: 280px;
       }
       .services-swiper .swiper-slide .service-card {
         max-height: 370px;
@@ -177,7 +177,7 @@
 
     @media (max-width: 520px) {
       .services-swiper .swiper-slide {
-        max-width: 240px;
+        width: 240px;
       }
       .services-swiper .swiper-slide .service-card {
         max-height: 320px;
@@ -520,23 +520,12 @@
     document.addEventListener('DOMContentLoaded', function() {
       if (typeof Swiper !== 'undefined') {
         new Swiper('.services-swiper', {
-          slidesPerView: 1.2,
+          slidesPerView: 'auto',
           spaceBetween: 12,
           centeredSlides: true,
-          loop: true,
           pagination: {
             el: '.services-swiper .swiper-pagination',
             clickable: true,
-          },
-          breakpoints: {
-            640: {
-              slidesPerView: 2.2,
-              centeredSlides: false,
-            },
-            1024: {
-              slidesPerView: 3.2,
-              centeredSlides: false,
-            }
           }
         });
       }
