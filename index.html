@@ -264,111 +264,155 @@
       }
     }
 
-    /* Swiper Testimonials - Mobile Only */
+    /* Swiper Testimonials */
     .testimonials-swiper {
-      display: none;
+      display: block;
+      padding-bottom: 50px;
+      padding-left: 20px;
+      padding-right: 20px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      overflow: visible;
     }
 
     .testimonials-desktop {
-      display: block;
+      display: none !important;
+    }
+
+    /* Desktop - tamanho padrão */
+    .testimonials-swiper .swiper-slide {
+      width: 280px !important;
+      height: 498px !important;
+    }
+
+    .testimonials-swiper .swiper-slide lite-youtube {
+      width: 280px !important;
+      height: 498px !important;
+      aspect-ratio: unset !important;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .testimonials-swiper .swiper-pagination {
+      bottom: 10px;
+    }
+
+    .testimonials-swiper .swiper-pagination-bullet {
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 1;
+    }
+
+    .testimonials-swiper .swiper-pagination-bullet-active {
+      background: #C1B490;
     }
 
     @media (max-width: 1024px) {
-      .testimonials-desktop {
-        display: none !important;
-      }
-      .testimonials-swiper {
-        display: block;
-        padding-bottom: 50px;
-      }
       .testimonials-swiper .swiper-slide {
-        width: 200px;
+        width: 200px !important;
+        height: 356px !important;
       }
       .testimonials-swiper .swiper-slide lite-youtube {
-        height: 400px;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.2);
-      }
-      .testimonials-swiper .swiper-pagination {
-        bottom: 10px;
-      }
-      .testimonials-swiper .swiper-pagination-bullet {
-        background: rgba(0, 0, 0, 0.3);
-        opacity: 1;
-      }
-      .testimonials-swiper .swiper-pagination-bullet-active {
-        background: #C1B490;
+        width: 200px !important;
+        height: 356px !important;
       }
     }
 
     @media (max-width: 768px) {
       .testimonials-swiper .swiper-slide {
-        width: 180px;
+        width: 240px !important;
+        height: 427px !important;
       }
       .testimonials-swiper .swiper-slide lite-youtube {
-        height: 320px;
+        width: 240px !important;
+        height: 427px !important;
       }
     }
 
     @media (max-width: 520px) {
       .testimonials-swiper .swiper-slide {
-        width: 160px;
+        width: 220px !important;
+        height: 391px !important;
       }
       .testimonials-swiper .swiper-slide lite-youtube {
-        height: 380px;
+        width: 220px !important;
+        height: 391px !important;
       }
     }
 
-    /* Swiper Before/After - Mobile Only */
+    /* Swiper Before/After */
     .before-after-swiper {
-      display: none;
+      display: block;
+      padding-bottom: 50px;
+      padding-left: 20px;
+      padding-right: 20px;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      overflow: visible;
     }
 
     .before-after-desktop {
-      display: block;
+      display: none !important;
+    }
+
+    /* Desktop - tamanho padrão */
+    .before-after-swiper .swiper-slide {
+      width: 350px !important;
+      height: 498px !important;
+    }
+
+    .before-after-swiper .swiper-slide img {
+      width: 350px !important;
+      height: 498px !important;
+      object-fit: cover !important;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .before-after-swiper .swiper-pagination {
+      bottom: 10px;
+    }
+
+    .before-after-swiper .swiper-pagination-bullet {
+      background: rgba(0, 0, 0, 0.3);
+      opacity: 1;
+    }
+
+    .before-after-swiper .swiper-pagination-bullet-active {
+      background: #C1B490;
     }
 
     @media (max-width: 1024px) {
-      .before-after-desktop {
-        display: none !important;
-      }
-      .before-after-swiper {
-        display: block;
-        padding-bottom: 50px;
-        padding-left: 20px;
-        padding-right: 20px;
-      }
       .before-after-swiper .swiper-slide {
-        width: auto;
-        height: auto;
+        width: 320px !important;
+        height: 498px !important;
       }
       .before-after-swiper .swiper-slide img {
-        height: 400px;
-        width: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 10px 5px rgba(0, 0, 0, 0.2);
-      }
-      .before-after-swiper .swiper-pagination {
-        bottom: 10px;
-      }
-      .before-after-swiper .swiper-pagination-bullet {
-        background: rgba(0, 0, 0, 0.3);
-        opacity: 1;
-      }
-      .before-after-swiper .swiper-pagination-bullet-active {
-        background: #C1B490;
+        width: 320px !important;
+        height: 498px !important;
       }
     }
 
     @media (max-width: 768px) {
+      .before-after-swiper .swiper-slide {
+        width: 300px !important;
+        height: 427px !important;
+      }
       .before-after-swiper .swiper-slide img {
-        height: 320px;
+        width: 300px !important;
+        height: 427px !important;
       }
     }
 
     @media (max-width: 520px) {
+      .before-after-swiper .swiper-slide {
+        width: 280px !important;
+        height: 391px !important;
+      }
       .before-after-swiper .swiper-slide img {
-        height: 380px;
+        width: 280px !important;
+        height: 391px !important;
       }
     }
 
@@ -1105,210 +1149,6 @@
       padding-top: 0 !important;
     }
 
-    /* Testimonial Videos Carousel */
-    .testimonial-carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-
-    .testimonial-carousel-container::before,
-    .testimonial-carousel-container::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 200px;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .testimonial-carousel-container::before {
-      left: 0;
-      background: linear-gradient(to right, rgba(238, 236, 234, 1) 0%, rgba(238, 236, 234, 0) 100%);
-    }
-
-    .testimonial-carousel-container::after {
-      right: 0;
-      background: linear-gradient(to left, rgba(238, 236, 234, 1) 0%, rgba(238, 236, 234, 0) 100%);
-    }
-
-    .testimonial-carousel-track {
-      display: flex;
-      gap: 20px;
-      transition: transform 0.5s ease-in-out;
-      will-change: transform;
-      height: 100%;
-    }
-
-    .testimonial-carousel-track.no-transition {
-      transition: none;
-    }
-
-    .testimonial-video-item {
-      flex: 0 0 auto;
-      width: 280px;
-      height: 498px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-
-    .testimonial-video-item.active-video {
-      transform: scale(1.05);
-      z-index: 10;
-    }
-
-    .testimonial-video-item.inactive-video {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-
-    .testimonial-video {
-      width: 100%;
-      height: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-      transition: box-shadow 0.3s ease;
-    }
-
-    .active-video .testimonial-video {
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
-    }
-
-    .testimonial-dot {
-      transition: all 0.3s ease;
-    }
-
-    .testimonial-dot:hover {
-      transform: scale(1.2);
-    }
-
-    /* Desktop/Large screens - manter tamanho dos cards */
-    @media (min-width: 1400px) {
-      .testimonial-video-item {
-        width: 280px;
-        height: 498px;
-      }
-    }
-
-    /* Tablet - ajusta para mostrar mais dos laterais */
-    @media (max-width: 1024px) {
-      .testimonial-carousel-container {
-        max-width: 640px; /* 1 card (240px) + 2 partes maiores (180px cada) + 2 gaps (16px cada) */
-      }
-
-      .testimonial-video-item {
-        width: 240px;
-        height: 427px;
-      }
-
-      .testimonial-carousel-track {
-        gap: 16px;
-      }
-    }
-
-    /* Mobile - ajusta para mostrar mais dos laterais */
-    @media (max-width: 768px) {
-      .testimonial-carousel-container {
-        max-width: 500px; /* 1 card (200px) + 2 partes maiores (140px cada) + 2 gaps (12px cada) */
-      }
-
-      .testimonial-carousel-container::before,
-      .testimonial-carousel-container::after {
-        width: 80px;
-      }
-
-      .testimonial-video-item {
-        width: 200px;
-        height: 356px;
-      }
-
-      .testimonial-carousel-track {
-        gap: 12px;
-      }
-    }
-
-    /* Small Mobile - mostrar mais dos laterais */
-    @media (max-width: 520px) {
-      .testimonial-carousel-container {
-        max-width: 440px; /* 1 card (180px) + 2 partes maiores (120px cada) + 2 gaps (10px cada) */
-      }
-
-      .testimonial-carousel-container::before,
-      .testimonial-carousel-container::after {
-        width: 50px;
-      }
-
-      .testimonial-video-item {
-        width: 180px;
-        height: 320px;
-      }
-
-      .testimonial-carousel-track {
-        gap: 10px;
-      }
-    }
-
-    /* Before/After Carousel */
-    .before-after-carousel-container {
-      position: relative;
-      width: 100%;
-      max-width: 1000px;
-      margin: 0 auto;
-      overflow: hidden;
-    }
-
-    .before-after-carousel-container::before,
-    .before-after-carousel-container::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      width: 200px;
-      z-index: 5;
-      pointer-events: none;
-    }
-
-    .before-after-carousel-container::before {
-      left: 0;
-      background: linear-gradient(to right, rgba(238, 236, 234, 1) 0%, rgba(238, 236, 234, 0) 100%);
-    }
-
-    .before-after-carousel-container::after {
-      right: 0;
-      background: linear-gradient(to left, rgba(238, 236, 234, 1) 0%, rgba(238, 236, 234, 0) 100%);
-    }
-
-    /* Responsive adjustments for before/after carousel */
-    @media (max-width: 1024px) {
-      .before-after-carousel-container {
-        max-width: 640px;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .before-after-carousel-container {
-        max-width: 500px;
-      }
-
-      .before-after-carousel-container::before,
-      .before-after-carousel-container::after {
-        width: 80px;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .before-after-carousel-container {
-        max-width: 440px;
-      }
-
-      .before-after-carousel-container::before,
-      .before-after-carousel-container::after {
-        width: 50px;
-      }
-    }
 
     /* Lite YouTube custom styles */
     lite-youtube {
@@ -1425,8 +1265,6 @@
   </style>
   <script src="scripts/teamCarouselController.js" defer></script>
   <script src="scripts/menuHomeController.js" defer></script>
-  <script src="scripts/testimonialVideosCarouselController.js" defer></script>
-  <script src="scripts/beforeAndAfterCarouselController.js" defer></script>
   <script src="scripts/youtubeVideosController.js" defer></script>
   <script src="scripts/blogPostsController.js" defer></script>
   <script src="scripts/input.js" defer></script>
@@ -1523,6 +1361,7 @@
     (function() {
       function loadHeroVideo() {
         const container = document.getElementById('videoContainer');
+        const backgroundImage = document.getElementById('heroBackgroundImage');
 
         if (!container) return;
 
@@ -1535,6 +1374,16 @@
         iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%;';
 
         container.appendChild(iframe);
+
+        // Esconde a imagem de fundo após 3 segundos
+        setTimeout(() => {
+          if (backgroundImage) {
+            backgroundImage.style.opacity = '0';
+            setTimeout(() => {
+              backgroundImage.style.display = 'none';
+            }, 500);
+          }
+        }, 3000);
       }
 
       // Carrega o vídeo imediatamente
@@ -1589,7 +1438,7 @@
       <!-- Hero Section -->
       <section class="relative h-[976px] max-md:h-auto max-md:min-h-[600px] flex items-center pl-[315px] max-xl:pl-[120px] max-md:pl-10 max-md:pr-10 max-md:pt-36 max-md:pb-20 max-md:justify-center max-md:text-center max-md:flex-col overflow-hidden">
         <!-- Imagem de fundo estática (aparece instantaneamente) -->
-        <div class="absolute inset-0 -z-20 bg-cover bg-center" style="background-image: url('https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/fundo-da-hero-do-site.webp');"></div>
+        <div id="heroBackgroundImage" class="absolute inset-0 -z-20 bg-cover bg-center transition-opacity duration-500" style="background-image: url('https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/fundo-da-hero-do-site.webp');"></div>
 
         <!-- Container do iframe (vídeo fica por cima da imagem) -->
         <div id="videoContainer" class="absolute -z-10 pointer-events-none" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;">
@@ -2107,20 +1956,7 @@
           </p>
         </div>
 
-        <!-- Testimonial Videos Carousel - Desktop -->
-        <div class="testimonials-desktop relative max-w-full mx-auto px-5 h-[500px] max-[1400px]:h-[470px] flex items-center justify-start">
-          <button class="testimonial-btn-prev absolute top-1/2 -translate-y-1/2 left-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors" aria-label="Vídeo anterior">‹</button>
-
-          <div class="testimonial-carousel-container h-full w-full">
-            <div class="testimonial-carousel-track" id="testimonialTrack">
-              <!-- Vídeos serão inseridos via JavaScript -->
-            </div>
-          </div>
-
-          <button class="testimonial-btn-next absolute top-1/2 -translate-y-1/2 right-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors" aria-label="Próximo vídeo">›</button>
-        </div>
-
-        <!-- Testimonial Videos Carousel - Mobile (Swiper) -->
+        <!-- Testimonial Videos Carousel (Swiper) -->
         <div class="testimonials-swiper swiper px-5">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -2152,22 +1988,7 @@
           </h3>
         </div>
 
-        <!-- Before/After - Desktop -->
-        <div class="before-after-desktop relative h-[500px] flex justify-center items-center">
-          <button class="absolute top-1/2 -translate-y-1/2 left-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors" aria-label="Anterior">‹</button>
-
-          <div class="before-after-carousel-container h-full">
-            <div class="relative w-full h-full flex justify-center items-center">
-              <div class="w-full flex gap-5 transition-transform duration-500" id="resultsTrack">
-                <!-- As imagens serão inseridas via JavaScript -->
-              </div>
-            </div>
-          </div>
-
-          <button class="absolute top-1/2 -translate-y-1/2 right-[calc(50%-550px)] z-10 bg-white/90 hover:bg-white border-0 w-[50px] h-[50px] rounded-full cursor-pointer flex items-center justify-center text-2xl shadow-md transition-colors" aria-label="Próximo">›</button>
-        </div>
-
-        <!-- Before/After - Mobile (Swiper) -->
+        <!-- Before/After (Swiper) -->
         <div class="before-after-swiper swiper px-5">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
@@ -2588,9 +2409,18 @@
 
         // Testimonials Swiper
         new Swiper('.testimonials-swiper', {
-          slidesPerView: 1.2,
-          spaceBetween: 12,
+          effect: 'coverflow',
+          grabCursor: true,
           centeredSlides: true,
+          slidesPerView: 'auto',
+          initialSlide: 2,
+          coverflowEffect: {
+            rotate: 20,
+            stretch: 0,
+            depth: 200,
+            modifier: 1,
+            slideShadows: true,
+          },
           pagination: {
             el: '.testimonials-swiper .swiper-pagination',
             clickable: true,
@@ -2599,9 +2429,18 @@
 
         // Before/After Swiper
         new Swiper('.before-after-swiper', {
+          effect: 'coverflow',
+          grabCursor: true,
+          centeredSlides: true,
           slidesPerView: 'auto',
-          spaceBetween: 12,
-          centeredSlides: false,
+          initialSlide: 4,
+          coverflowEffect: {
+            rotate: 20,
+            stretch: 0,
+            depth: 200,
+            modifier: 1,
+            slideShadows: true,
+          },
           pagination: {
             el: '.before-after-swiper .swiper-pagination',
             clickable: true,
