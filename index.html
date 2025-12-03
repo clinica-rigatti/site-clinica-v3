@@ -1270,7 +1270,7 @@
   <script src="scripts/input.js" defer></script>
   <script src="scripts/formHandler.js" defer></script>
 
-  <!-- WhatsApp Button Controller -->
+  <!-- Modal Button Controller -->
   <script>
     (() => {
       let scriptLoaded = false;
@@ -1317,18 +1317,10 @@
         document.head.appendChild(script);
       }
 
-      // Adiciona listener aos botões
+      // Adiciona listener aos botões (exceto WhatsApp)
       function init() {
-        const whatsappBtn = document.getElementById('whatsappFloatingBtn');
         const heroBtn = document.getElementById('heroAgendarBtn');
         const ctaButtons = document.querySelectorAll('.cta-agendar-btn');
-
-        if (whatsappBtn) {
-          whatsappBtn.addEventListener('click', loadModalScript);
-          console.log('✅ Listener adicionado ao botão WhatsApp');
-        } else {
-          console.error('❌ Botão WhatsApp não encontrado');
-        }
 
         if (heroBtn) {
           heroBtn.addEventListener('click', loadModalScript);
@@ -2101,9 +2093,9 @@
     </main>
 
     <!-- WhatsApp Floating Button -->
-    <button id="whatsappFloatingBtn" class="whatsapp-floating-btn" aria-label="Abrir avaliação no WhatsApp">
+    <a href="https://wa.me/554731701671?text=Olá!+Tenho+interesse+e+queria+mais+informações,+por+favor." target="_blank" rel="noopener noreferrer" id="whatsappFloatingBtn" class="whatsapp-floating-btn" aria-label="Abrir conversa no WhatsApp">
       <i class="fa-brands fa-whatsapp"></i>
-    </button>
+    </a>
 
     <!-- Modal Container -->
     <div id="modalOverlay" class="modal-overlay hidden">
@@ -2181,7 +2173,7 @@
           <div class="flex-1">
             <p class="text-pearl mb-5 leading-normal">
               <i class="fa-brands fa-whatsapp"></i>
-              <a href="https://wa.me/554731701206?text=Olá!+Tenho+interesse+e+queria+mais+informações,+por+favor." target="_blank" rel="external" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity ml-2">(47) 3170 - 1206</a>
+              <a href="https://wa.me/554731701671?text=Olá!+Tenho+interesse+e+queria+mais+informações,+por+favor." target="_blank" rel="external" class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity ml-2">(47) 3170 - 1671</a>
             </p>
             <p class="text-pearl mb-5 leading-normal">
               <i class="fa-solid fa-location-dot"></i>
