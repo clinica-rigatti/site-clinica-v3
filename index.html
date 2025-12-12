@@ -92,6 +92,123 @@
       font-weight: 700 !important;
     }
 
+    /* Botão Gold Hero */
+    .btn-gold-hero {
+      position: relative;
+      overflow: hidden;
+      background: #000;
+      border-radius: 1rem !important;
+      border: 2px solid #E5C77F;
+      transition: all .4s cubic-bezier(.25, .46, .45, .94);
+      transform: translateY(0);
+    }
+
+    .btn-gold-hero .btn-text-textured,
+    .gold-textured {
+      background-image: url('https://res.cloudinary.com/dasjivjk8/image/upload/v1763756739/Captura_de_tela_de_2025-11-13_10-52-37_fu80dh.png');
+      background-size: cover;
+      background-position: 0% center;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      position: relative;
+      z-index: 2;
+    }
+
+    .btn-gold-hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, .6) 50%, transparent 100%);
+      transition: left .8s ease-in-out;
+      z-index: 1;
+    }
+
+    .btn-gold-hero:hover::before {
+      left: 100%;
+    }
+
+    .btn-gold-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at center, rgba(255, 255, 255, .2), transparent 70%);
+      opacity: 0;
+      transition: opacity .4s;
+      z-index: 1;
+    }
+
+    .btn-gold-hero:hover::after {
+      opacity: 1;
+    }
+
+    .btn-gold-hero:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 24px rgba(212, 175, 55, .5);
+    }
+
+    /* Header layout */
+    #main-header .header-content {
+      position: relative;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    #main-header #header-logo {
+      width: 180px;
+      height: auto;
+    }
+
+    #main-header #desktop-nav {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    #mobile-nav {
+      display: none !important;
+    }
+
+    @media (max-width: 1228px) {
+      #mobile-nav {
+        display: none;
+      }
+
+      #mobile-nav[style*="display: flex"] {
+        display: flex !important;
+      }
+      #main-header #desktop-nav {
+        display: none;
+      }
+
+      #main-header .mobile-menu-btn {
+        display: block;
+        position: absolute;
+        right: 40px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      #header-social {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #main-header .header-content {
+        padding: 0 10px;
+      }
+
+      #main-header .mobile-menu-btn {
+        right: 10px;
+      }
+    }
+
     /* Carrossel da equipe com CSS Animation */
     .team-carousel {
       --gap: 12px;
@@ -1391,28 +1508,44 @@
   <div class="w-full mx-auto relative overflow-hidden">
     
     <!-- Header -->
-    <header class="absolute top-0 left-0 right-0 z-[2] py-[15px] bg-black max-md:flex max-md:justify-between max-md:py-5 max-md:px-2.5">
-      <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo+capa.webp" alt="Clínica Rigatti" class="w-[262px] h-[51px] mx-auto max-md:mx-0 max-md:w-[180px] max-md:h-auto" width="262" height="51" fetchpriority="high">
-      
-      <button id="mobile-menu-btn" class="hidden max-md:block bg-transparent text-3xl border-none text-pearl" aria-label="Abrir menu de navegação">
-        <i class="fa-solid fa-bars"></i>
-      </button>
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-[100] py-[15px] bg-black max-md:flex max-md:justify-between max-md:py-5 max-md:px-2.5 transition-all duration-300">
+      <div class="header-content max-md:flex max-md:flex-row max-md:justify-between max-md:w-full">
+        <img id="header-logo" src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo+capa.webp" alt="Clínica Rigatti" class="w-[262px] h-[51px] max-md:w-[180px] max-md:h-auto transition-all duration-300" width="262" height="51" fetchpriority="high">
 
-      <nav class="flex absolute font-bold left-1/2 -translate-x-1/2 justify-center gap-[60px] mt-[45px] max-md:hidden" aria-label="Navegação principal">
+        <button id="mobile-menu-btn" class="mobile-menu-btn hidden bg-transparent text-3xl border-none text-pearl" aria-label="Abrir menu de navegação">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+
+        <nav id="desktop-nav" class="flex font-bold justify-center gap-[60px]" aria-label="Navegação principal">
         <a href="clinica.html" class="text-pearl no-underline text-sm hover:opacity-70 transition-opacity duration-300">CLÍNICA</a>
         <a href="#servicos" class="text-pearl no-underline text-sm hover:opacity-70 transition-opacity duration-300">TRATAMENTOS</a>
         <a href="#equipe" class="text-pearl no-underline text-sm hover:opacity-70 transition-opacity duration-300">NOSSA EQUIPE</a>
         <a href="#contato" class="text-pearl no-underline text-sm hover:opacity-70 transition-opacity duration-300">CONTATO</a>
-      </nav>
+        <a href="https://blog.clinicarigatti.com.br/" target="_blank" rel="noopener noreferrer" class="text-pearl no-underline text-sm hover:opacity-70 transition-opacity duration-300">BLOG</a>
+        </nav>
+      </div>
 
-      <nav id="mobile-nav" class="hidden md:!hidden font-bold flex-col gap-5 items-center bg-black w-[90%] mt-[70px] p-5 absolute top-6 left-1/2 -translate-x-1/2 shadow-[0_4px_6px_rgba(0,0,0,0.7)] z-[1000] transition-all duration-300 ease-in-out max-w-[1000px]" aria-label="Navegação principal mobile">
+      <nav id="mobile-nav" class="hidden font-bold flex-col gap-5 items-center bg-black w-[90%] mt-[70px] p-5 absolute top-6 left-1/2 -translate-x-1/2 shadow-[0_4px_6px_rgba(0,0,0,0.7)] z-[1000] transition-all duration-300 ease-in-out max-w-[1000px]" aria-label="Navegação principal mobile">
         <a href="clinica.html" class="text-pearl no-underline text-lg hover:opacity-70 transition-opacity duration-300">CLÍNICA</a>
         <a href="#servicos" class="text-pearl no-underline text-lg hover:opacity-70 transition-opacity duration-300">TRATAMENTOS</a>
         <a href="#equipe" class="text-pearl no-underline text-lg hover:opacity-70 transition-opacity duration-300">NOSSA EQUIPE</a>
         <a href="#contato" class="text-pearl no-underline text-lg hover:opacity-70 transition-opacity duration-300">CONTATO</a>
+        <a href="https://blog.clinicarigatti.com.br/" target="_blank" rel="noopener noreferrer" class="text-pearl no-underline text-lg hover:opacity-70 transition-opacity duration-300">BLOG</a>
+
+        <div class="flex gap-8 mt-3 pt-5 border-t border-pearl/30">
+          <a class="text-pearl no-underline text-2xl hover:opacity-70 transition-opacity duration-300" href="https://www.instagram.com/rigattibr" target="_blank" rel="external" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a class="text-pearl no-underline text-2xl hover:opacity-70 transition-opacity duration-300" href="https://www.youtube.com/@clinicarigatti" target="_blank" rel="external" aria-label="YouTube">
+            <i class="fa-brands fa-youtube"></i>
+          </a>
+          <a class="text-pearl no-underline text-2xl hover:opacity-70 transition-opacity duration-300" href="https://www.linkedin.com/in/dr-luiz-henrique-rigatti/" target="_blank" rel="external" aria-label="LinkedIn">
+            <i class="fa-brands fa-linkedin"></i>
+          </a>
+        </div>
       </nav>
 
-      <div class="absolute top-[35%] right-4 md:right-8 lg:right-12 xl:right-16 flex gap-5 max-md:hidden">
+      <div id="header-social" class="absolute top-[35%] right-4 md:right-8 lg:right-12 xl:right-16 flex gap-5">
         <a class="text-white no-underline text-base font-light hover:opacity-70 transition-opacity duration-300" href="https://www.instagram.com/rigattibr" target="_blank" rel="external" aria-label="Instagram">
           <i class="fa-brands fa-instagram"></i>
         </a>
@@ -1443,8 +1576,10 @@
         <div class="max-w-[520px] max-md:max-w-full">
           <h2 class="text-2xl font-light tracking-[1.375rem] mb-2 max-md:text-lg max-md:tracking-[0.625rem] max-md:mb-2">MÉTODO</h2>
           <img class="my-2 max-md:my-2.5 max-md:mx-auto" src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca.png" alt="Logo branca Clinica Rigatti" width="318" height="109" fetchpriority="high">
-          <p class="text-xl font-light leading-6 my-4 max-md:text-base">Emagreça de forma personalizada com protocolos médicos exclusivos.</p>
-          <button id="heroAgendarBtn" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-2 max-md:px-4 max-md:w-auto border-0 cursor-pointer">Agendar minha avaliação</button>
+          <p class="text-xl font-light leading-6 my-6 max-md:text-base">Emagreça de forma personalizada com protocolos médicos exclusivos.</p>
+          <button id="heroAgendarBtn" class="btn-gold-hero h-14 md:h-[60px] px-6 md:px-10 text-md md:text-xl font-bold">
+            <span class="btn-text-textured">AGENDAR MINHA AVALIAÇÃO</span>
+          </button>
         </div>
       </section>
 
@@ -1551,12 +1686,12 @@
         </section>
         
         <!-- SECTION DIVIDER -->
-        <section class="w-full pt-12" id="metodo">
+        <section class="w-full pt-12 pb-5" id="metodo">
           <div class="mx-auto max-w-[1200px] px-4 md:px-6 lg:px-8">
             <div class="flex items-center justify-center gap-6">
               <div class="w-[200px] h-[2px] bg-pearl"></div>
-              <h3 class="text-pearl text-xl font-semibold uppercase">
-                O QUE FAZEMOS AQUI NÃO É COMUM
+              <h3 class="text-pearl text-[26px] font-extrabold uppercase tracking-widest max-md:text-2xl">
+                MÉTODO RIGATTI
               </h3>
               <div class="w-[200px] h-[2px] bg-pearl"></div>
             </div>
@@ -1564,19 +1699,25 @@
         </section>
 
         <!-- MÉTODO / SERVIÇOS -->
-        <section class="mx-auto max-w-[1200px] pt-8 pb-12 px-5" aria-label="Método Médico Rigatti">
+        <section class="mx-auto max-w-[1200px] pb-12 px-5" aria-label="Método Médico Rigatti">
           <header>
-            <p class="mx-auto max-w-3xl text-center text-pearl text-xl rg-lead pb-10">
-              Enquanto clínicas comuns tratam apenas sintomas, nós ajustamos a causa.<br />
-              O Método Médico Rigatti combina ciência, tecnologia e personalização absoluta para entregar
-              resultados
-              previsíveis, mensuráveis e sustentáveis.
+            <p class="mx-auto max-w-[1200px] text-center text-pearl text-xl rg-lead">
+              Nasce da união entre ciência avançada, tecnologia de precisão e uma personalização que
+              vai além do convencional. Investigamos profundamente seus marcadores hormonais,
+              metabólicos, inflamatórios e comportamentais para entender, com exatidão, por que seu
+              corpo deixou de responder como antes.
+            </p>
+            <br>
+            <p class="mx-auto max-w-[1200px] text-center text-pearl text-xl rg-lead">
+              A partir desse diagnóstico completo, construímos um plano médico individualizado que
+              restaura equilíbrio, energia, estética, performance e longevidade, com resultados
+              previsíveis, mensuráveis e sustentáveis. Aqui, tratamos a causa, não os sintomas, e
+              devolvemos ao seu corpo a capacidade natural de funcionar na sua melhor versão.
             </p>
           </header>
 
           <!-- Accordion Serviços (sem position absolute) -->
-          <div id="servicos" class="space-y-3" data-accordion="single">
-            <!-- Item -->
+          <!-- <div id="servicos" class="space-y-3" data-accordion="single">
             <details class="group rounded-xl overflow-hidden bg-pearl">
               <summary
                 class="flex items-center justify-between gap-4 px-4 sm:px-6 py-4 cursor-pointer bg-sand bg-center text-black font-bold">
@@ -1672,7 +1813,7 @@
                 </p>
               </div>
             </details>
-          </div>
+          </div> -->
         </section>
 
         <!-- Método Rigatti Section -->
@@ -1711,7 +1852,18 @@
             </div>
           </div>
         </section> -->
-        
+
+        <!-- Como Atuamos Section -->
+        <section class="bg-black text-center py-12 px-5">
+          <div class="max-w-[1200px] mx-auto">
+            <h2 class="text-pearl text-[26px] font-extrabold uppercase tracking-widest pb-5 max-md:text-2xl">Como atuamos</h2>
+            <p class="text-lg font-light text-pearl leading-relaxed">
+              Combinamos análises avançadas, tecnologia, evidências científicas e acompanhamento médico contínuo para corrigir desequilíbrios internos que afetam peso, humor, sono, libido, metabolismo e desempenho.<br>
+              Não tratamos apenas sintomas: tratamos o que causa os sintomas.
+            </p>
+          </div>
+        </section>
+
         <!-- Services Grid -->
         <div class="relative py-12" id="servicos">
           <!-- Título dos Protocolos -->
@@ -1888,48 +2040,35 @@
         </div>
       </section>
 
-      <!-- SOBRE O DR. -->
-      <section id="instrutor" class="py-12 bg-pearl font-poppins text-black">
-        <div class="max-w-[1200px] mx-auto px-4 md:px-6">
-          <div class="flex items-start justify-center gap-10 dr-section-container">
-            <!-- Avatar -->
-            <div class="flex-shrink-0">
-              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/dr-rigatti.webp"
-              alt="Dr. Rigatti"
-              class="w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 object-cover border-4 border-rigatti-gold shadow-lg aspect-square">
-            </div>
-
-            <!-- Conteúdo -->
-            <div class="text-left max-md:text-center">
-              <h2 class="text-2xl md:text-3xl font-semibold uppercase mb-4">Dr. Luiz Henrique Rigatti</h2>
-              <p class="text-base md:text-lg mb-6">
-                Médico, palestrante e criador do Método Médico Rigatti, referência em medicina integrativa, longevidade e alta performance.
-              </p>
-              <ul class="space-y-3 text-left inline-block">
-                  <li class="flex items-center gap-3">
-                    <i class="fas fa-check-circle text-xl"></i>
-                    <span>Mais de 10 anos transformando vidas no Brasil</span>
-                  </li>
-                  <li class="flex items-center gap-3">
-                    <i class="fas fa-check-circle text-xl"></i>
-                    <span>Referência nacional em medicina integrativa e longevidade</span>
-                  </li>
-                  <li class="flex items-center gap-3">
-                    <i class="fas fa-check-circle text-xl"></i>
-                    <span>Protocolos inspirados em Dr. Thierry Hertoghe</span>
-                  </li>
-                  <li class="flex items-center gap-3">
-                    <i class="fas fa-check-circle text-xl"></i>
-                    <span>Uso de IA para diagnóstico e ajustes precisos</span>
-                  </li>
-                  <li class="flex items-center gap-3">
-                    <i class="fas fa-check-circle text-xl"></i>
-                    <span>Especialista em tratar pacientes exigentes com foco em performance</span>
-                  </li>
+      <!-- 6. DR. RIGATTI -->
+      <section id="quem-esta-por-tras" class="bg-pearl pt-20 md:pt-28 pb-20 md:pb-28">
+        <div class="container mx-auto px-4 md:px-8 lg:px-40">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            <div class="scroll-target">
+              <p class="text-sm font-semibold tracking-widest mb-4"><span class="gold-textured">QUEM ESTÁ POR TRÁS</span></p>
+              <div class="mb-6">
+                <h2 class="text-3xl md:text-4xl font-bold text-black">
+                  DR. LUIZ HENRIQUE <span class="gold-textured">RIGATTI</span>
+                </h2>
+                <p class="text-sm text-gray-600 mt-1">CRM/SC 13293</p>
+              </div>
+              <div class="space-y-2 text-lg font-light text-black leading-relaxed">
+                <p>Médico, palestrante e empresário.</p>
+                <p>Criador do Método Rigatti® — medicina de precisão, longevidade e alta performance.</p>
+                <ul class="text-lg font-light text-black mt-6">
+                  <li class="flex items-start"><span class="gold-textured mr-3 mt-1">✓</span> <span>Mais de 15 anos de experiência clínica</span></li>
+                  <li class="flex items-start"><span class="gold-textured mr-3 mt-1">✓</span> <span>Protocolos baseados em Dr. Thierry Hertoghe (Bélgica)</span></li>
+                  <li class="flex items-start"><span class="gold-textured mr-3 mt-1">✓</span> <span>Pioneiro em cetose no Brasil (10 anos consecutivos)</span></li>
+                  <li class="flex items-start"><span class="gold-textured mr-3 mt-1">✓</span> <span>Fundador da Clínica Rigatti em Balneário Camboriú</span></li>
+                  <li class="flex items-start"><span class="gold-textured mr-3 mt-1">✓</span> <span>Criador do programa Médicos 7D</span></li>
+                  <li class="flex items-start"><span class="gold-textured mr-3 mt-1">✓</span> <span>Uso de IA e tecnologia de ponta para medicina de precisão</span></li>
+                  <li class="flex items-start"><span class="gold-textured mr-3 mt-1">✓</span> <span>Atendimento focado em performance, emagrecimento e resultados reais</span></li>
+                  <li class="flex items-start"><span class="gold-textured mr-3 mt-1">✓</span> <span>Abordagem fundamentada em evidências científicas atualizadas</span></li>
                 </ul>
-                <p class="mt-8 text-lg border-l-4 border-black pl-4 text-left">
-                  Abordagem integrativa baseada em evidências científicas atualizadas.
-                </p>
+              </div>
+            </div>
+            <div class="flex justify-center items-center scroll-target">
+              <img src="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/dr-rigatti.webp" alt="Foto do Dr. Luiz Henrique Rigatti" class="w-full max-w-sm md:max-w-md object-cover shadow-2xl rounded-2xl">
             </div>
           </div>
         </div>
@@ -1946,38 +2085,6 @@
           <p class="text-black text-[19px] font-light leading-tight text-center pb-7">
             +15 mil pacientes atendidos e resultados que você sente no corpo e vê no espelho. Veja histórias reais de quem restaurou a energia e voltou a se reconhecer.
           </p>
-        </div>
-
-        <!-- Testimonial Videos Carousel (Swiper) -->
-        <div class="testimonials-swiper swiper px-5">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <lite-youtube videoid="le6XyOIPR4I" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
-            </div>
-            <div class="swiper-slide">
-              <lite-youtube videoid="g3lKdlwaTmY" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
-            </div>
-            <div class="swiper-slide">
-              <lite-youtube videoid="w8Rfg-i02uo" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
-            </div>
-            <div class="swiper-slide">
-              <lite-youtube videoid="O1uL8XpTxmE" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
-            </div>
-            <div class="swiper-slide">
-              <lite-youtube videoid="-xMJsGeM7Bo" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
-            </div>
-            <div class="swiper-slide">
-              <lite-youtube videoid="4528aztD6A0" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
-            </div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-        <!-- Before/After Images Carousel -->
-        <div class="max-w-[1100px] mx-auto px-5 pt-12 pb-8">
-          <h3 class="text-black text-[26px] font-extrabold uppercase tracking-widest text-center max-md:text-2xl">
-            Veja também alguns Antes e Depois
-          </h3>
         </div>
 
         <!-- Before/After (Swiper) -->
@@ -2014,10 +2121,42 @@
           <div class="swiper-pagination"></div>
         </div>
 
+        <!-- Testimonial Videos Carousel -->
+        <div class="max-w-[1100px] mx-auto px-5 pt-12 pb-14">
+          <h3 class="text-black text-[26px] font-extrabold uppercase tracking-widest text-center max-md:text-2xl">
+            Veja também alguns Depoimentos
+          </h3>
+        </div>
+
+        <!-- Testimonial Videos Carousel (Swiper) -->
+        <div class="testimonials-swiper swiper px-5">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <lite-youtube videoid="le6XyOIPR4I" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="g3lKdlwaTmY" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="w8Rfg-i02uo" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="O1uL8XpTxmE" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="-xMJsGeM7Bo" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+            <div class="swiper-slide">
+              <lite-youtube videoid="4528aztD6A0" params="controls=0&modestbranding=1&rel=0&showinfo=0" class="rounded-2xl overflow-hidden shadow-lg aspect-[9/16]"></lite-youtube>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+
         <!-- CTA Button -->
         <div class="text-center pt-12">
-          <button class="cta-agendar-btn inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer uppercase">
-            AGENDAR AVALIAÇÃO
+          <button class="cta-agendar-btn btn-gold-hero h-14 md:h-16 px-6 md:px-10 text-sm md:text-xl font-bold">
+            <span class="btn-text-textured">AGENDAR AVALIAÇÃO</span>
           </button>
         </div>
       </section>
@@ -2032,7 +2171,9 @@
           <p class="text-lg font-light text-black leading-relaxed mb-8 max-md:text-sm">
             Calcule em segundos quantas calorias seu corpo realmente precisa por dia. Entenda seu gasto energético e ajuste treino e alimentação com estratégia, o primeiro passo para uma dieta eficaz e personalizada.
           </p>
-          <a href="calculadora-imc.html" class="inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-coffee text-sand shadow-lg hover:bg-black hover:text-pearl hover:shadow-2xl transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">INICIAR</a>
+          <a href="calculadora-imc.html" class="btn-gold-hero h-14 md:h-16 px-6 md:px-10 text-sm md:text-xl font-bold inline-flex items-center justify-center">
+            <span class="btn-text-textured">INICIAR</span>
+          </a>
         </div>
       </section>
 
@@ -2053,7 +2194,7 @@
       <!-- Blog & YouTube Section -->
       <section class="bg-black text-pearl py-12 px-5" id="blog">
         <div class="max-w-[1200px] mx-auto">
-          <h2 class="text-pearl text-[26px] font-extrabold uppercase tracking-widest pb-10 text-center max-md:text-2xl">Conteúdos mais recentes</h2>
+          <h2 class="text-pearl text-[26px] font-extrabold uppercase tracking-widest pb-10 text-center max-md:text-2xl">Saiba mais nos nossos outros canais</h2>
 
           <div class="flex gap-10 justify-center items-start blog-youtube-container">
           <!-- Blog Grid -->
@@ -2062,6 +2203,9 @@
           <div id="blogPostsGrid" class="grid grid-cols-2 gap-x-[10px] gap-y-[10px] w-[650px] mx-auto flex-shrink-0 max-md:grid-cols-1 max-md:w-full max-md:max-w-[350px]">
             <!-- Os cards dos posts serão carregados dinamicamente pelo JavaScript -->
           </div>
+          <a href="https://blog.clinicarigatti.com.br/" target="_blank" rel="noopener noreferrer" class="btn-gold-hero h-12 md:h-14 px-6 md:px-8 text-sm md:text-base font-bold inline-flex items-center justify-center mt-6">
+            <span class="btn-text-textured">VER MAIS NO BLOG</span>
+          </a>
         </div>
 
           <!-- YouTube Grid -->
@@ -2073,6 +2217,9 @@
             <img src="https://placehold.co/320x180" alt="Vídeo 3" class="w-full h-full object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01]" loading="lazy" width="320" height="180">
             <img src="https://placehold.co/320x180" alt="Vídeo 4" class="w-full h-full object-cover transition-all duration-300 cursor-pointer hover:-translate-y-2 hover:scale-[1.02] hover:shadow-2xl hover:z-10 max-md:hover:-translate-y-1 max-md:hover:scale-[1.01]" loading="lazy" width="320" height="180">
           </div>
+          <a href="https://www.youtube.com/@clinicarigatti" target="_blank" rel="noopener noreferrer" class="btn-gold-hero h-12 md:h-14 px-6 md:px-8 text-sm md:text-base font-bold inline-flex items-center justify-center mt-6">
+            <span class="btn-text-textured">VER MAIS NO YOUTUBE</span>
+          </a>
           </div>
           </div>
         </div>
@@ -2080,7 +2227,9 @@
 
       <!-- CTA Section -->
       <section class="bg-black px-5 pt-12 pb-14 text-center text-pearl">
-        <button class="cta-agendar-btn inline-block py-[18px] px-10 text-xl font-bold tracking-widest-xl bg-sand text-coffee shadow-md hover:bg-coffee hover:text-sand transition-all duration-300 max-md:text-base max-md:py-4 max-md:px-8 border-0 cursor-pointer">SAIBA MAIS SOBRE O MÉTODO RIGATTI</button>
+        <button class="cta-agendar-btn btn-gold-hero h-14 md:h-16 px-6 md:px-10 text-sm md:text-xl font-bold">
+          <span class="btn-text-textured">SAIBA MAIS SOBRE O MÉTODO RIGATTI</span>
+        </button>
       </section>
 
       <!-- Contact Section with Map -->
@@ -2111,7 +2260,7 @@
 
           <div id="progressContainer" class="progress-container">
             <div class="progress-text">
-              <span id="progressText">1 / 10</span>
+              <span id="progressText"></span>
             </div>
             <div class="progress-bar-bg">
               <div id="progressBar" class="progress-bar" style="width: 10%"></div>
