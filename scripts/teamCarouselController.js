@@ -13,11 +13,11 @@
     { name: 'SAMUEL NUNES',       role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/samuel.webp'         },
     { name: 'ANGELINO GONSALVES', role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/angelino.webp'       },
     { name: 'JOÃO PILLON',        role: 'PROGRAMADOR',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/joao-pillon.webp'    },
-    { name: 'ADILSON MATHEUS',    role: 'DIRETOR DE OPERAÇÕES', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/adilson.webp'        },
+    { name: 'ADILSON MATHEUS',    role: 'DIRETOR DE OPERAÇÕES', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/foto+matheus+site.png' },
     { name: 'ANA PAULA AZEVEDO',  role: 'CONFIRMAÇÃO',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/ana.webp'            },
     { name: 'CLEIDIANE CUBAS',    role: 'CONCIERGE',            image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/cleidiane.webp'      },
     { name: 'BRUNO LEON',         role: 'RECOMPRA',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/bruno.webp'          },
-    { name: 'LARISSA PADULA',     role: 'SOCIAL MEDIA',         image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/larissa-padula.webp' },
+    { name: 'LARISSA PADULA',     role: 'ESTRATEGISTA DIGITAL', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/larissa-padula.webp' },
     { name: 'LUCAS HULSE',        role: 'VIDEOMAKER',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/lucas.webp'          },
     { name: 'IGOR',               role: 'DESIGNER',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/igor.webp'           }
   ];
