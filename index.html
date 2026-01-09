@@ -1406,13 +1406,22 @@
       }
     }
 
-    // Pré-carrega o formulário assim que disponível
-    (function preloadForm() {
-      if (typeof RigattiForm !== 'undefined' && RigattiForm['questionario-de-triagem-rigatti']) {
-        console.log('RigattiForm disponível, pré-carregando...');
-        RigattiForm['questionario-de-triagem-rigatti'].preload();
+    // Pré-carrega o formulário assim que disponível (após DOM estar pronto)
+    (function() {
+      function preloadForm() {
+        if (typeof RigattiForm !== 'undefined' && RigattiForm['questionario-de-triagem-rigatti']) {
+          console.log('RigattiForm disponível, pré-carregando...');
+          RigattiForm['questionario-de-triagem-rigatti'].preload();
+        } else {
+          setTimeout(preloadForm, 100);
+        }
+      }
+
+      // Aguarda o DOM estar pronto antes de tentar preload
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', preloadForm);
       } else {
-        setTimeout(preloadForm, 100);
+        preloadForm();
       }
     })();
 
