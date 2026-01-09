@@ -31,6 +31,10 @@
   <link rel="preconnect" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com" crossorigin>
   <link rel="preconnect" href="https://player.vimeo.com" crossorigin>
 
+  <!-- Conexão antecipada com o servidor do embed do formulário -->
+  <link rel="preconnect" href="https://maria.clinicarigatti.com.br" crossorigin>
+  <link rel="dns-prefetch" href="https://maria.clinicarigatti.com.br">
+
   <!-- Preload da imagem de fundo do hero para carregamento instantâneo -->
   <link rel="preload" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/diversos/fundo-da-hero-do-site.webp" as="image" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
@@ -44,6 +48,9 @@
   <!-- Preload de imagens críticas above the fold -->
   <link rel="preload" as="image" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo+capa.webp" fetchpriority="high">
   <link rel="preload" as="image" href="https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/logos/logo-branca.png" fetchpriority="high">
+
+  <!-- Script do embed do formulário com prioridade alta -->
+  <script src="https://maria.clinicarigatti.com.br/api/forms/embed/questionario-de-triagem-rigatti/script" async fetchpriority="high"></script>
 
   <!-- Carregamento SÍNCRONO mas otimizado com display=swap -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
@@ -1387,73 +1394,53 @@
   <script src="scripts/input.js" defer></script>
   <script src="scripts/formHandler.js" defer></script>
 
-  <!-- Modal Button Controller -->
+  <!-- Formulário Embed Controller -->
   <script>
-    (() => {
-      let scriptLoaded = false;
-
-      function loadModalScript() {
-        if (scriptLoaded) {
-          // Se o script já foi carregado, apenas abre o modal
-          if (typeof toggleModal === 'function') {
-            toggleModal();
-          }
-          return;
-        }
-
-        // Carrega o script do modal
-        const script = document.createElement('script');
-        script.src = 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/scripts/modalScoreController.js';
-        script.onload = function() {
-          scriptLoaded = true;
-          console.log('✅ Script do modal carregado com sucesso');
-
-          // Aguarda um momento para garantir que todas as funções foram definidas
-          setTimeout(() => {
-            // Verifica se as funções necessárias existem
-            if (typeof toggleModal === 'function') {
-              console.log('✅ Função toggleModal encontrada');
-              toggleModal();
-
-              // Força a renderização do conteúdo se necessário
-              setTimeout(() => {
-                if (typeof renderContent === 'function') {
-                  console.log('✅ Forçando renderização do conteúdo');
-                  renderContent();
-                }
-              }, 100);
-            } else {
-              console.error('❌ Função toggleModal não encontrada');
-            }
-          }, 100);
-        };
-        script.onerror = function() {
-          console.error('❌ Erro ao carregar o script do modal');
-          alert('Erro ao carregar o formulário. Por favor, tente novamente.');
-        };
-        document.head.appendChild(script);
+    // Função para abrir formulário com verificação
+    function abrirFormulario() {
+      if (typeof RigattiForm !== 'undefined' && RigattiForm['questionario-de-triagem-rigatti']) {
+        RigattiForm['questionario-de-triagem-rigatti'].open();
+      } else {
+        console.error('RigattiForm não carregado. Verifique o console para erros.');
+        alert('Formulário ainda carregando. Tente novamente em alguns segundos.');
       }
+    }
 
-      // Adiciona listener aos botões (exceto WhatsApp)
+    // Pré-carrega o formulário assim que disponível
+    (function preloadForm() {
+      if (typeof RigattiForm !== 'undefined' && RigattiForm['questionario-de-triagem-rigatti']) {
+        console.log('RigattiForm disponível, pré-carregando...');
+        RigattiForm['questionario-de-triagem-rigatti'].preload();
+      } else {
+        setTimeout(preloadForm, 100);
+      }
+    })();
+
+    // Adiciona listener aos botões
+    (function() {
       function init() {
         const heroBtn = document.getElementById('heroAgendarBtn');
         const ctaButtons = document.querySelectorAll('.cta-agendar-btn');
+        const whatsappBtn = document.getElementById('whatsappFloatingBtn');
 
         if (heroBtn) {
-          heroBtn.addEventListener('click', loadModalScript);
+          heroBtn.addEventListener('click', abrirFormulario);
           console.log('✅ Listener adicionado ao botão Hero');
-        } else {
-          console.error('❌ Botão Hero não encontrado');
         }
 
         // Adiciona listener a todos os botões CTA
         ctaButtons.forEach((btn, index) => {
-          btn.addEventListener('click', loadModalScript);
+          btn.addEventListener('click', abrirFormulario);
           console.log(`✅ Listener adicionado ao botão CTA ${index + 1}`);
         });
 
-        if (ctaButtons.length === 0) {
-          console.error('❌ Nenhum botão CTA encontrado');
+        // Adiciona listener ao botão do WhatsApp
+        if (whatsappBtn) {
+          whatsappBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            abrirFormulario();
+          });
+          console.log('✅ Listener adicionado ao botão WhatsApp');
         }
       }
 
@@ -2197,9 +2184,9 @@
     </main>
 
     <!-- WhatsApp Floating Button -->
-    <a href="https://wa.me/554731701671?text=Olá!+Tenho+interesse+e+queria+mais+informações,+por+favor." target="_blank" rel="noopener noreferrer" id="whatsappFloatingBtn" class="whatsapp-floating-btn" aria-label="Abrir conversa no WhatsApp">
+    <button type="button" id="whatsappFloatingBtn" class="whatsapp-floating-btn" aria-label="Abrir formulário de agendamento">
       <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    </button>
 
     <!-- Modal Container -->
     <div id="modalOverlay" class="modal-overlay hidden">
