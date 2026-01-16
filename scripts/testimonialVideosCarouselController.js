@@ -2,15 +2,14 @@
   // Array de vídeos de depoimentos
   const testimonialVideos = [
     { videoId: '8QZBoXdy8Rs', title: 'Depoimento 1' },
-    { videoId: '6PniZF-UvjM', title: 'Depoimento 2' },
-    { videoId: 'WmTOAEk5oNw', title: 'Depoimento 3' },
-    { videoId: '4HuxiJ9oFTY', title: 'Depoimento 4' },
-    { videoId: 'GYwUzWv9d3Q', title: 'Depoimento 5' },
-    { videoId: 'nG-9m9bvDG0', title: 'Depoimento 6' },
-    { videoId: 'DWpP2Zr3XMI', title: 'Depoimento 7' },
-    { videoId: '99yYtDsgYt4', title: 'Depoimento 8' },
-    { videoId: 'lHXBHiO25kQ', title: 'Depoimento 9' },
-    { videoId: 'GZOKIJGp2hY', title: 'Depoimento 10' }
+    { videoId: 'WmTOAEk5oNw', title: 'Depoimento 2' },
+    { videoId: '4HuxiJ9oFTY', title: 'Depoimento 3' },
+    { videoId: 'GYwUzWv9d3Q', title: 'Depoimento 4' },
+    { videoId: 'nG-9m9bvDG0', title: 'Depoimento 5' },
+    { videoId: 'DWpP2Zr3XMI', title: 'Depoimento 6' },
+    { videoId: '99yYtDsgYt4', title: 'Depoimento 7' },
+    { videoId: 'lHXBHiO25kQ', title: 'Depoimento 8' },
+    { videoId: 'GZOKIJGp2hY', title: 'Depoimento 9' }
   ];
 
   let currentIndex = 0;
