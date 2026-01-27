@@ -74,8 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         utm_term: utmParams.utm_term
       };
       
-      console.log("formData =>", formData);
-      
       try {
         const response = await fetch(WEBHOOK_URL, {
           method: 'POST',

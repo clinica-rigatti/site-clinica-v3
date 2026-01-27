@@ -12,10 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
       // Toggle display
       if (mobileNav.style.display === 'none') {
         mobileNav.style.display = 'flex';
-        console.log('Menu aberto!');
       } else {
         mobileNav.style.display = 'none';
-        console.log('Menu fechado!');
       }
     });
 

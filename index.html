@@ -1410,7 +1410,6 @@
     (function() {
       function preloadForm() {
         if (typeof RigattiForm !== 'undefined' && RigattiForm['questionario-de-triagem-rigatti']) {
-          console.log('RigattiForm disponível, pré-carregando...');
           RigattiForm['questionario-de-triagem-rigatti'].preload();
         } else {
           setTimeout(preloadForm, 100);
@@ -1434,13 +1433,11 @@
 
         if (heroBtn) {
           heroBtn.addEventListener('click', abrirFormulario);
-          console.log('✅ Listener adicionado ao botão Hero');
         }
 
         // Adiciona listener a todos os botões CTA
-        ctaButtons.forEach((btn, index) => {
+        ctaButtons.forEach((btn) => {
           btn.addEventListener('click', abrirFormulario);
-          console.log(`✅ Listener adicionado ao botão CTA ${index + 1}`);
         });
 
         // Adiciona listener ao botão do WhatsApp
@@ -1449,7 +1446,6 @@
             e.preventDefault();
             abrirFormulario();
           });
-          console.log('✅ Listener adicionado ao botão WhatsApp');
         }
       }
 

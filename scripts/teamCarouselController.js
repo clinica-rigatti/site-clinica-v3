@@ -49,9 +49,6 @@
       track.appendChild(createMemberCard(member));
     });
 
-    console.log('Total de cards criados:', track.children.length);
-    console.log('Total de membros originais:', teamMembers.length);
-
     const SPEED = parseFloat(root.dataset.speed) || 50; // px/s
     let paused = false;
     let position = 0;
@@ -70,10 +67,7 @@
           totalWidth += cardWidth + gap;
         }
       }
-      
-      console.log('Largura calculada de um conjunto:', totalWidth);
-      console.log('Cards por conjunto:', teamMembers.length);
-      
+
       return totalWidth;
     }
 
@@ -105,7 +99,6 @@
         if (position >= setWidth) {
           position = position - setWidth;
           resetCount++;
-          console.log(`Reset #${resetCount} - Nova position: ${position.toFixed(2)}`);
         }
         
         track.style.transform = `translateX(-${position}px)`;
@@ -143,7 +136,6 @@
           setWidth = getSetWidth();
           const progress = position / oldSetWidth;
           position = progress * setWidth;
-          console.log('Resize - Novo setWidth:', setWidth);
         }
       }, 250);
     });

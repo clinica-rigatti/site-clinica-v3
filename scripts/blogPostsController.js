@@ -10,7 +10,6 @@
       }
 
       const data = await response.json();
-      console.log('Posts do blog carregados:', data);
 
       // O JSON retorna um array diretamente ou um objeto com array
       const posts = Array.isArray(data) ? data : (data.posts || []);
@@ -37,8 +36,6 @@
         const card = createBlogPostCard(post);
         blogPostsGrid.appendChild(card);
       });
-
-      console.log(`${latestPosts.length} posts do blog carregados com sucesso`);
 
     } catch (error) {
       console.error('Erro ao carregar posts do blog:', error);

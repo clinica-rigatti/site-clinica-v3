@@ -118,7 +118,6 @@
       const valor = parseInt(e.target.value);
       formData.idade = valor;
       idadeInput.value = valor;
-      console.log('Idade atualizada:', valor);
     });
 
     idadeInput.addEventListener('input', (e) => {
@@ -126,7 +125,6 @@
       if (!isNaN(valor)) {
         formData.idade = valor;
         idadeRange.value = valor;
-        console.log('Idade atualizada (input):', valor);
       }
     });
 
@@ -140,7 +138,6 @@
       formData.idade = valor;
       idadeRange.value = valor;
       e.target.value = valor;
-      console.log('Idade validada:', valor);
     });
 
     // Altura - Sincronização entre input e range
@@ -148,7 +145,6 @@
       const valor = parseInt(e.target.value);
       formData.altura = valor;
       alturaInput.value = valor;
-      console.log('Altura atualizada:', valor);
     });
 
     alturaInput.addEventListener('input', (e) => {
@@ -156,7 +152,6 @@
       if (!isNaN(valor)) {
         formData.altura = valor;
         alturaRange.value = valor;
-        console.log('Altura atualizada (input):', valor);
       }
     });
 
@@ -170,7 +165,6 @@
       formData.altura = valor;
       alturaRange.value = valor;
       e.target.value = valor;
-      console.log('Altura validada:', valor);
     });
 
     // Peso - Sincronização entre input e range
@@ -178,7 +172,6 @@
       const valor = parseInt(e.target.value);
       formData.peso = valor;
       pesoInput.value = valor;
-      console.log('Peso atualizado:', valor);
     });
 
     pesoInput.addEventListener('input', (e) => {
@@ -186,7 +179,6 @@
       if (!isNaN(valor)) {
         formData.peso = valor;
         pesoRange.value = valor;
-        console.log('Peso atualizado (input):', valor);
       }
     });
 
@@ -200,7 +192,6 @@
       formData.peso = valor;
       pesoRange.value = valor;
       e.target.value = valor;
-      console.log('Peso validado:', valor);
     });
 
     // Botão Continuar - apenas avança se gênero estiver selecionado
