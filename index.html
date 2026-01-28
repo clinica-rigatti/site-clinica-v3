@@ -1480,42 +1480,54 @@
       }
     }
 
-    // Observer para detectar quando o popup fecha e remover a classe do body
+    // Listener para remover classe do body quando fechar o popup
     (function() {
-      let popupWasOpen = false;
-
-      function initObserver() {
-        const observer = new MutationObserver(function() {
-          const overlay = document.querySelector('.rigatti-popup-overlay');
-          const isOpen = overlay && overlay.offsetParent !== null;
-
-          if (isOpen) {
-            popupWasOpen = true;
-          } else if (popupWasOpen && !isOpen) {
-            document.body.classList.remove('rigatti-popup-open');
-            popupWasOpen = false;
+      function init() {
+        // Detecta clique no botão de fechar
+        document.addEventListener('click', function(e) {
+          if (e.target.closest('.rigatti-popup-close')) {
+            setTimeout(function() {
+              document.body.classList.remove('rigatti-popup-open');
+            }, 300);
           }
         });
 
-        observer.observe(document.body, {
-          childList: true,
-          subtree: true
+        // Detecta clique no overlay (fora do modal) para fechar
+        document.addEventListener('click', function(e) {
+          if (e.target.classList && e.target.classList.contains('rigatti-popup-overlay')) {
+            setTimeout(function() {
+              document.body.classList.remove('rigatti-popup-open');
+            }, 300);
+          }
+        });
+
+        // Detecta tecla ESC
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape') {
+            setTimeout(function() {
+              document.body.classList.remove('rigatti-popup-open');
+            }, 300);
+          }
         });
       }
 
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initObserver);
+        document.addEventListener('DOMContentLoaded', init);
       } else {
-        initObserver();
+        init();
       }
     })();
 
     // Pré-carrega o formulário assim que disponível (após DOM estar pronto)
     (function() {
+      let attempts = 0;
+      const maxAttempts = 100; // Máximo 10 segundos (100 * 100ms)
+
       function preloadForm() {
         if (typeof RigattiForm !== 'undefined' && RigattiForm['questionario-de-triagem-rigatti']) {
           RigattiForm['questionario-de-triagem-rigatti'].preload();
-        } else {
+        } else if (attempts < maxAttempts) {
+          attempts++;
           setTimeout(preloadForm, 100);
         }
       }
