@@ -1150,20 +1150,20 @@
       overflow: hidden !important;
     }
 
-    /* Botão X do RigattiForm */
+    /* Botão X do RigattiForm - posicionado relativo ao modal */
     .rigatti-popup-close {
-      position: fixed !important;
-      top: 16px !important;
-      right: 16px !important;
+      position: absolute !important;
+      top: 12px !important;
+      right: 12px !important;
       width: 44px !important;
       height: 44px !important;
-      z-index: 1000000 !important;
+      z-index: 10 !important;
       background: rgba(255, 255, 255, 0.95) !important;
       border-radius: 50% !important;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
     }
 
-    /* Overlay ocupa toda a tela */
+    /* Overlay ocupa toda a tela e centraliza o modal */
     .rigatti-popup-overlay {
       position: fixed !important;
       top: 0 !important;
@@ -1172,6 +1172,25 @@
       bottom: 0 !important;
       width: 100% !important;
       height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Modal centralizado */
+    .rigatti-popup-modal {
+      width: 100% !important;
+      max-width: 700px !important;
+      max-height: 90vh !important;
+      position: relative !important;
+    }
+
+    /* Iframe ocupa o modal */
+    .rigatti-popup-iframe {
+      width: 100% !important;
+      height: 90vh !important;
+      max-height: 750px !important;
     }
 
     @media (max-width: 640px) {
