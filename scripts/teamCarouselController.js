@@ -17,8 +17,7 @@
     { name: 'ANA PAULA AZEVEDO',  role: 'CONFIRMAÇÃO',          image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/ana.webp'            },
     { name: 'CLEIDIANE CUBAS',    role: 'CONCIERGE',            image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/cleidiane.webp'      },
     { name: 'BRUNO LEON',         role: 'RECOMPRA',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/bruno.webp'          },
-    { name: 'LARISSA PADULA',     role: 'ESTRATEGISTA DIGITAL', image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/larissa-padula.webp' },
-    { name: 'LUCAS HULSE',        role: 'VIDEOMAKER',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/lucas.webp'          },
+    // { name: 'LUCAS HULSE',        role: 'VIDEOMAKER',           image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/lucas.webp'          },
     { name: 'IGOR',               role: 'DESIGNER',             image: 'https://clinicarigatti.s3.sa-east-1.amazonaws.com/imagens-site-v3/time/igor.webp'           }
   ];
 
