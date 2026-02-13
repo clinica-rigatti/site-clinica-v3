@@ -1,0 +1,9 @@
+{
+  "redirects": [
+    {
+      "source": "/sintomas",
+      "destination": "/",
+      "permanent": true
+    }
+  ]
+}
